@@ -1,0 +1,52 @@
+// General container
+
+".container": {
+	backgroundColor: "white",
+	width: Ti.UI.FILL,
+	height: Ti.UI.FILL,
+	layout: "vertical"
+}
+
+// Views
+
+".bottomView": {
+	bottom: 0,
+	width: Ti.UI.FILL,
+	height: "auto"
+}
+
+// Label
+
+/*
+"Label": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	color: "#000"
+}
+
+"#label": {
+	font: {
+		fontSize: 18
+	},
+	top: 50
+}
+*/
+
+// Buttons
+
+"#btnPlay": {
+	font: {
+		fontSize: 20
+	},
+	backgroundColor: "#ff00bfff",
+	textColor: "#fff",
+	borderRadius: 6,
+	// borderColor: "#996495ed",
+	shadowColor: "#9987cefa",
+	shadowOffset: {x:-2,y:-2},
+	left: 50,
+	right: 50,
+	textAlign: "center",
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE
+}

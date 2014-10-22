@@ -1,0 +1,7 @@
+<Alloy>
+	<Window class="container">
+		<View class="bottomView">
+			<Button id="btnPlay" onClick="playGame">JOUER</Button>
+		</View>
+	</Window>
+</Alloy>
