@@ -1,7 +1,19 @@
 <Alloy>
 	<Window class="container">
-		<View class="bottomView">
-			<Button id="btnPlay" onClick="playGame">JOUER</Button>
+		<View id="wrapper">
+			<View id="topView">
+				<ImageView id="logo" image="appicon.png" />
+				<Label id="title">CrossSudoku</Label>
+			</View>
+			<View id="contentView">
+				<Label id="msgScore">Best time:&#xD;10'02''56</Label>
+			</View>
+			<View id="bottomView">
+				<View id="wrapButton">
+					<Button id="btnRetrieve" onClick="retrieveGame">CONTINUE</Button>
+					<Button id="btnPlay" onClick="playGame">NEW GAME</Button>
+				</View>
+			</View>
 		</View>
 	</Window>
 </Alloy>

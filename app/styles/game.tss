@@ -1,3 +1,49 @@
-".container" : {
-  
+// General container
+"#game_container": {
+	backgroundColor: "white",
+	width: Ti.UI.FILL,
+	height: Ti.UI.FILL,
+	layout: "vertical"
+}
+
+"#wrapper": {
+	top: 0,
+	width: Ti.UI.FILL,
+	height: Ti.UI.FILL
+}
+
+// Views
+"#topView": {
+	top: 0,
+	left: 20,
+	right: 20,
+	width: Ti.UI.FILL,
+	height: 60,
+	layout: "horizontal"
+}
+
+// Logo
+"#logo": {
+	top: 10,
+	left: 0,
+	right: 10,
+	width: 60,
+	height: 60
+}
+
+// Label
+"Label": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	color: "#000"
+}
+
+"#title": {
+	font: {
+		fontSize: 28,
+		fontWeight: 'bold'
+	},
+	verticalAlign: "center",
+	width: Ti.UI.SIZE,
+	height: 60
 }

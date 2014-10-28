@@ -1,5 +1,10 @@
 <Alloy>
-	<Window class="container">
-		<Label id="label">Hello, World</Label>
+	<Window id="game_container">
+		<View id="wrapper">
+			<View id="topView">
+				<!--ImageView id="logo" image="imgback.png" /-->
+				<Label id="title" onClick="goBack">&lt; Back</Label>
+			</View>
+		</View>
 	</Window>
 </Alloy>

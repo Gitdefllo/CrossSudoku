@@ -1,5 +1,4 @@
 // General container
-
 ".container": {
 	backgroundColor: "white",
 	width: Ti.UI.FILL,
@@ -7,46 +6,97 @@
 	layout: "vertical"
 }
 
-// Views
+"#wrapper": {
+	top: 0,
+	width: Ti.UI.FILL,
+	height: Ti.UI.FILL
+}
 
-".bottomView": {
-	bottom: 0,
+// Views
+"#topView": {
+	top: 0,
+	left: 20,
+	right: 20,
+	width: Ti.UI.FILL,
+	height: 60,
+	layout: "horizontal"
+}
+
+"#contentView": {
+	bottom: 70,
+	top: 120,
 	width: Ti.UI.FILL,
 	height: "auto"
 }
 
-// Label
+"#bottomView": {
+	bottom: 0,
+	left: 20,
+	right: 20
+}
 
-/*
+"#wrapButton": {
+	bottom: 30,
+	top: 20,
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
+	layout: "vertical"
+}
+
+// Logo
+"#logo": {
+	top: 10,
+	left: 0,
+	right: 10,
+	width: 60,
+	height: 60
+}
+
+// Label
 "Label": {
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
 	color: "#000"
 }
 
-"#label": {
+"#title": {
 	font: {
-		fontSize: 18
+		fontSize: 28,
+		fontWeight: 'bold'
 	},
-	top: 50
+	verticalAlign: "center",
+	width: Ti.UI.SIZE,
+	height: 60
 }
-*/
+
+"#msgScore": {
+	font: {
+		fontSize: 25
+	},
+	textAlign: "center"
+}
 
 // Buttons
-
-"#btnPlay": {
+"Button": {
 	font: {
-		fontSize: 20
+		fontSize: 25
 	},
-	backgroundColor: "#ff00bfff",
-	textColor: "#fff",
+	backgroundColor: "green",
+	color: "white",
 	borderRadius: 6,
 	// borderColor: "#996495ed",
-	shadowColor: "#9987cefa",
-	shadowOffset: {x:-2,y:-2},
-	left: 50,
-	right: 50,
-	textAlign: "center",
+	// shadowColor: "#87cefa",
+	// shadowOffset: {x:-2,y:-2},
+	textAlign: "center"
+}
+
+"#btnPlay": {
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
+}
+
+"#btnRetrieve": {
+	bottom: 20,
 	width: Ti.UI.FILL,
 	height: Ti.UI.SIZE
 }
