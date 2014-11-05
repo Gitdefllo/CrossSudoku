@@ -9,10 +9,22 @@ function __processArg(obj, key) {
 
 function Controller() {
     function playGame() {
+        var game = Alloy.createController("game", {
+            newGame: 1,
+            timeSecondSudoku: 0,
+            timeMinuteSudoku: 0,
+            timeHourSudoku: 0
+        }).getView();
         game.open();
     }
     function retrieveGame() {
-        alert("continue");
+        var game = Alloy.createController("game", {
+            newGame: 0,
+            timeSecondSudoku: secVal,
+            timeMinuteSudoku: minVal,
+            timeHourSudoku: hourVal
+        }).getView();
+        game.open();
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
@@ -45,16 +57,16 @@ function Controller() {
         id: "wrapper"
     });
     $.__views.index.add($.__views.wrapper);
-    $.__views.topView = Ti.UI.createView({
+    $.__views.topWrapper = Ti.UI.createView({
         top: 0,
         left: 20,
         right: 20,
         width: Ti.UI.FILL,
         height: 60,
         layout: "horizontal",
-        id: "topView"
+        id: "topWrapper"
     });
-    $.__views.wrapper.add($.__views.topView);
+    $.__views.wrapper.add($.__views.topWrapper);
     $.__views.logo = Ti.UI.createImageView({
         top: 10,
         left: 0,
@@ -64,7 +76,7 @@ function Controller() {
         id: "logo",
         image: "appicon.png"
     });
-    $.__views.topView.add($.__views.logo);
+    $.__views.topWrapper.add($.__views.logo);
     $.__views.title = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: 60,
@@ -77,15 +89,25 @@ function Controller() {
         text: "CrossSudoku",
         id: "title"
     });
-    $.__views.topView.add($.__views.title);
-    $.__views.contentView = Ti.UI.createView({
-        bottom: 70,
+    $.__views.topWrapper.add($.__views.title);
+    $.__views.contentWrapper = Ti.UI.createView({
+        right: 20,
+        left: 20,
         top: 120,
+        id: "contentWrapper"
+    });
+    $.__views.wrapper.add($.__views.contentWrapper);
+    $.__views.contentView = Ti.UI.createView({
+        top: 0,
+        backgroundColor: "#e8e8e8",
+        borderWidth: 1,
+        borderColor: "#1b1b1b",
+        borderRadius: 6,
         width: Ti.UI.FILL,
-        height: "auto",
+        height: Ti.UI.SIZE,
         id: "contentView"
     });
-    $.__views.wrapper.add($.__views.contentView);
+    $.__views.contentWrapper.add($.__views.contentView);
     $.__views.msgScore = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -93,69 +115,98 @@ function Controller() {
         font: {
             fontSize: 25
         },
+        top: "40dp",
+        bottom: "40dp",
         textAlign: "center",
         text: "Best time:\n10'02''56",
         id: "msgScore"
     });
     $.__views.contentView.add($.__views.msgScore);
-    $.__views.bottomView = Ti.UI.createView({
-        bottom: 0,
+    $.__views.bottomWrapper = Ti.UI.createView({
+        bottom: 20,
         left: 20,
         right: 20,
-        id: "bottomView"
+        id: "bottomWrapper"
     });
-    $.__views.wrapper.add($.__views.bottomView);
-    $.__views.wrapButton = Ti.UI.createView({
-        bottom: 30,
-        top: 20,
+    $.__views.wrapper.add($.__views.bottomWrapper);
+    $.__views.buttonContainer = Ti.UI.createView({
+        bottom: 0,
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
-        layout: "vertical",
-        id: "wrapButton"
+        id: "buttonContainer"
     });
-    $.__views.bottomView.add($.__views.wrapButton);
-    $.__views.btnRetrieve = Ti.UI.createButton({
-        font: {
-            fontSize: 25
-        },
+    $.__views.bottomWrapper.add($.__views.buttonContainer);
+    $.__views.btnRetrieve = Ti.UI.createView({
+        width: "47%",
+        height: Ti.UI.SIZE,
         backgroundColor: "green",
         color: "white",
+        borderWidth: 1,
+        borderColor: "#1b1b1b",
         borderRadius: 6,
-        textAlign: "center",
-        bottom: 20,
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        title: "CONTINUE",
+        left: 0,
         id: "btnRetrieve"
     });
-    $.__views.wrapButton.add($.__views.btnRetrieve);
-    retrieveGame ? $.__views.btnRetrieve.addEventListener("click", retrieveGame) : __defers["$.__views.btnRetrieve!click!retrieveGame"] = true;
-    $.__views.btnPlay = Ti.UI.createButton({
-        font: {
-            fontSize: 25
-        },
-        backgroundColor: "green",
-        color: "white",
-        borderRadius: 6,
-        textAlign: "center",
+    $.__views.buttonContainer.add($.__views.btnRetrieve);
+    $.__views.__alloyId117 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
-        title: "NEW GAME",
+        color: "white",
+        font: {
+            fontSize: 20
+        },
+        backgroundColor: "none",
+        top: "10dp",
+        bottom: "10dp",
+        textAlign: "center",
+        text: "continue",
+        id: "__alloyId117"
+    });
+    $.__views.btnRetrieve.add($.__views.__alloyId117);
+    retrieveGame ? $.__views.__alloyId117.addEventListener("click", retrieveGame) : __defers["$.__views.__alloyId117!click!retrieveGame"] = true;
+    $.__views.btnPlay = Ti.UI.createView({
+        width: "47%",
+        height: Ti.UI.SIZE,
+        backgroundColor: "green",
+        color: "white",
+        borderWidth: 1,
+        borderColor: "#1b1b1b",
+        borderRadius: 6,
+        right: 0,
         id: "btnPlay"
     });
-    $.__views.wrapButton.add($.__views.btnPlay);
-    playGame ? $.__views.btnPlay.addEventListener("click", playGame) : __defers["$.__views.btnPlay!click!playGame"] = true;
+    $.__views.buttonContainer.add($.__views.btnPlay);
+    $.__views.__alloyId118 = Ti.UI.createLabel({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        color: "white",
+        font: {
+            fontSize: 20
+        },
+        backgroundColor: "none",
+        top: "10dp",
+        bottom: "10dp",
+        textAlign: "center",
+        text: "new game",
+        id: "__alloyId118"
+    });
+    $.__views.btnPlay.add($.__views.__alloyId118);
+    playGame ? $.__views.__alloyId118.addEventListener("click", playGame) : __defers["$.__views.__alloyId118!click!playGame"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
-    var game = Alloy.createController("game", {}).getView();
+    var dataTableSudoku, secVal, minVal, hourVal;
     $.btnRetrieve.hide();
     Ti.App.addEventListener("retrieveDatas", function(data) {
-        alert("You sent me : " + data.tableValues);
+        dataTableSudoku = data.tableValues;
+        alert(dataTableSudoku);
+        secVal = data.secValues;
+        minVal = data.minValues;
+        hourVal = data.hourValues;
         $.btnRetrieve.show();
     });
     $.index.open();
-    __defers["$.__views.btnRetrieve!click!retrieveGame"] && $.__views.btnRetrieve.addEventListener("click", retrieveGame);
-    __defers["$.__views.btnPlay!click!playGame"] && $.__views.btnPlay.addEventListener("click", playGame);
+    __defers["$.__views.__alloyId117!click!retrieveGame"] && $.__views.__alloyId117.addEventListener("click", retrieveGame);
+    __defers["$.__views.__alloyId118!click!playGame"] && $.__views.__alloyId118.addEventListener("click", playGame);
     _.extend($, exports);
 }
 

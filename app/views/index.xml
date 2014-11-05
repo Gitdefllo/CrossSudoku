@@ -1,17 +1,23 @@
 <Alloy>
 	<Window class="container">
 		<View id="wrapper">
-			<View id="topView">
+			<View id="topWrapper">
 				<ImageView id="logo" image="appicon.png" />
 				<Label id="title">CrossSudoku</Label>
 			</View>
-			<View id="contentView">
-				<Label id="msgScore">Best time:&#xD;10'02''56</Label>
+			<View id="contentWrapper"> <!-- global view with 20px left/right margins -->
+				<View id="contentView"> <!-- sub view with a width to FILL (to keep the 20px left/right margins from parent) -->
+					<Label id="msgScore">Best time:&#xD;10'02''56</Label>
+				</View>
 			</View>
-			<View id="bottomView">
-				<View id="wrapButton">
-					<Button id="btnRetrieve" onClick="retrieveGame">CONTINUE</Button>
-					<Button id="btnPlay" onClick="playGame">NEW GAME</Button>
+			<View id="bottomWrapper"> <!-- global view at 20px from bottom and margins left/right to 20px -->
+				<View id="buttonContainer"> <!-- sub view with a width to FILL -->
+					<View class="buttonView" id="btnRetrieve"> <!-- left view (47% of the screen) -->
+						<Label class="fakeButton" onClick="retrieveGame">continue</Label>
+					</View>
+					<View class="buttonView" id="btnPlay"> <!-- right view (47% of the screen) -->
+						<Label class="fakeButton" onClick="playGame">new game</Label>
+					</View>
 				</View>
 			</View>
 		</View>

@@ -12,35 +12,21 @@
 	height: Ti.UI.FILL
 }
 
-// Views
-"#topView": {
+// Wrappers
+"#topWrapper": {
 	top: 0,
-	left: 20,
-	right: 20,
+	left: 20, right: 20, // margins
 	width: Ti.UI.FILL,
 	height: 60,
 	layout: "horizontal"
 }
 
-"#contentView": {
-	bottom: 70,
-	top: 120,
-	width: Ti.UI.FILL,
-	height: "auto"
+"#contentWrapper": {
+	right: 20, left: 20, top: 120 // margins
 }
 
-"#bottomView": {
-	bottom: 0,
-	left: 20,
-	right: 20
-}
-
-"#wrapButton": {
-	bottom: 30,
-	top: 20,
-	width: Ti.UI.FILL,
-	height: Ti.UI.SIZE,
-	layout: "vertical"
+"#bottomWrapper": {
+	bottom: 20, left: 20, right: 20 // margins
 }
 
 // Logo
@@ -69,34 +55,61 @@
 	height: 60
 }
 
+// Score content
+"#contentView": {
+	top: 0, // margins
+	backgroundColor: "#e8e8e8",
+	borderWidth: 1,
+    borderColor: '#1b1b1b',
+	borderRadius: 6,
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE
+}
+
 "#msgScore": {
 	font: {
 		fontSize: 25
 	},
-	textAlign: "center"
+	top: "40dp", bottom: "40dp", // padding
+	textAlign: "center",
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE
 }
 
-// Buttons
-"Button": {
-	font: {
-		fontSize: 25
-	},
+// Fake Buttons
+"#buttonContainer": {
+	bottom: 0,
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE
+}
+
+".buttonView": {
+	width: "47%",
+  	height: Ti.UI.SIZE,
 	backgroundColor: "green",
 	color: "white",
-	borderRadius: 6,
-	// borderColor: "#996495ed",
-	// shadowColor: "#87cefa",
-	// shadowOffset: {x:-2,y:-2},
-	textAlign: "center"
+	borderWidth: 1,
+    borderColor: '#1b1b1b',
+	// shadowColor: "#87cefa", shadowOffset: {x:-2,y:-2},
+	borderRadius: 6
+}
+
+".fakeButton": {
+	font: {
+		fontSize: 20
+	},
+	backgroundColor: "none",
+	top: "10dp", bottom: "10dp", // padding
+  	color: "white",
+	textAlign: "center",
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE
 }
 
 "#btnPlay": {
-	width: Ti.UI.FILL,
-	height: Ti.UI.SIZE,
+	right: 0
 }
 
-"#btnRetrieve": {
-	bottom: 20,
-	width: Ti.UI.FILL,
-	height: Ti.UI.SIZE
+"#btnRetrieve": { 
+	left: 0
 }

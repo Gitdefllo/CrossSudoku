@@ -9,26 +9,19 @@
 "#wrapper": {
 	top: 0,
 	width: Ti.UI.FILL,
-	height: Ti.UI.FILL
+	height: Ti.UI.FILL,
+	layout: "vertical"
 }
 
-// Views
-"#topView": {
-	top: 0,
-	left: 20,
-	right: 20,
-	width: Ti.UI.FILL,
-	height: 60,
+// Wrappers
+"#topWrapper": {
+	top: 10, left: 20, right: 20, // margins
+	height: Ti.UI.SIZE,
 	layout: "horizontal"
 }
 
-// Logo
-"#logo": {
-	top: 10,
-	left: 0,
-	right: 10,
-	width: 60,
-	height: 60
+"#sudoWrapper": {
+	top: 20, left: 20, right: 20, // margins
 }
 
 // Label
@@ -38,12 +31,120 @@
 	color: "#000"
 }
 
-"#title": {
+// Back button (return)
+"#backView": {
+	left: 0,
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	backgroundColor: "#e2e2e2",
+	color: "black",
+	borderWidth: 1,
+    borderColor: '#1b1b1b',
+	// shadowColor: "#87cefa", shadowOffset: {x:-2,y:-2},
+	borderRadius: 6
+}
+
+"#backLabel": {
 	font: {
-		fontSize: 28,
-		fontWeight: 'bold'
+		fontSize: 25
 	},
+	color: "black",
+	backgroundColor: "none",
+	top: "5dp", bottom: "5dp", right: "20dp", left: "20dp", // padding
 	verticalAlign: "center",
 	width: Ti.UI.SIZE,
-	height: 60
+	height: Ti.UI.SIZE
 }
+
+// Timer view
+"#timerView": {
+	right: 0,
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE
+}
+
+"#timerMainLabel": {
+	layout: "horizontal"
+}
+
+// Sudoku table
+"#sudoRowTable1": {
+	top: 0,
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	borderWidth: 1,
+    borderColor: '#1b1b1b',
+	layout: "horizontal"
+}
+
+"#sudoRowTable2": {
+	top: 56,
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	borderWidth: 1,
+    borderColor: '#1b1b1b',
+	layout: "horizontal"
+}
+
+"#sudoRowTable3": {
+	top: 112,
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	borderWidth: 1,
+    borderColor: '#1b1b1b',
+	layout: "horizontal"
+}
+
+// Sudoku inner table
+".sudoMinTable": {
+	left: 0, 
+	top: 0,
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	borderWidth: 1,
+    borderColor: '#1b1b1b',
+	layout: "vertical"
+}
+
+// Sudoku row table
+".sudoHorizontalRow": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	layout: "horizontal"
+}
+
+// Sudoku case table
+".sudoCase": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	top: "10dp", bottom: "10dp", right: "10dp", left: "10dp", // padding
+	verticalAlign: "center"
+}
+
+// Sudoku case manual border table
+".borderCaseRight": { right: 0, borderWidth: 1, borderColor: '#a1a1a1', height: Ti.UI.FILL }
+".borderCaseBottom": { bottom: 0, borderWidth: 1, borderColor: '#a1a1a1', width: Ti.UI.FILL }
+
+/*
+"#sudoTable1Column1": {
+	borderWidth: 1,
+    borderColor: '#1b1b1b',
+	textAlign: "center"
+}
+
+"TableViewRow": {
+	borderWidth: 1,
+    borderColor: '#1b1b1b',
+	textAlign: "center"
+}
+
+"#sudoTableRow1": { width: "10%", left: 0 }
+"#sudoTableRow2": { width: "10%", left: "10%" }
+"#sudoTableRow3": { width: "10%", left: "20%" }
+"#sudoTableRow4": { width: "10%", left: "30%" }
+"#sudoTableRow5": { width: "10%", left: "40%" }
+"#sudoTableRow6": { width: "10%", left: "50%" }
+"#sudoTableRow7": { width: "10%", left: "60%" }
+"#sudoTableRow8": { width: "10%", left: "70%" }
+"#sudoTableRow9": { width: "10%", left: "80%" }
+*/
