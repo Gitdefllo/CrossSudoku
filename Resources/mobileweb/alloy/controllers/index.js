@@ -148,7 +148,7 @@ function Controller() {
         id: "btnRetrieve"
     });
     $.__views.buttonContainer.add($.__views.btnRetrieve);
-    $.__views.__alloyId117 = Ti.UI.createLabel({
+    $.__views.__alloyId1 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "white",
@@ -160,10 +160,10 @@ function Controller() {
         bottom: "10dp",
         textAlign: "center",
         text: "continue",
-        id: "__alloyId117"
+        id: "__alloyId1"
     });
-    $.__views.btnRetrieve.add($.__views.__alloyId117);
-    retrieveGame ? $.__views.__alloyId117.addEventListener("click", retrieveGame) : __defers["$.__views.__alloyId117!click!retrieveGame"] = true;
+    $.__views.btnRetrieve.add($.__views.__alloyId1);
+    retrieveGame ? $.__views.__alloyId1.addEventListener("click", retrieveGame) : __defers["$.__views.__alloyId1!click!retrieveGame"] = true;
     $.__views.btnPlay = Ti.UI.createView({
         width: "47%",
         height: Ti.UI.SIZE,
@@ -176,7 +176,7 @@ function Controller() {
         id: "btnPlay"
     });
     $.__views.buttonContainer.add($.__views.btnPlay);
-    $.__views.__alloyId118 = Ti.UI.createLabel({
+    $.__views.__alloyId2 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "white",
@@ -188,10 +188,10 @@ function Controller() {
         bottom: "10dp",
         textAlign: "center",
         text: "new game",
-        id: "__alloyId118"
+        id: "__alloyId2"
     });
-    $.__views.btnPlay.add($.__views.__alloyId118);
-    playGame ? $.__views.__alloyId118.addEventListener("click", playGame) : __defers["$.__views.__alloyId118!click!playGame"] = true;
+    $.__views.btnPlay.add($.__views.__alloyId2);
+    playGame ? $.__views.__alloyId2.addEventListener("click", playGame) : __defers["$.__views.__alloyId2!click!playGame"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     var dataTableSudoku, secVal, minVal, hourVal;
@@ -205,8 +205,8 @@ function Controller() {
         $.btnRetrieve.show();
     });
     $.index.open();
-    __defers["$.__views.__alloyId117!click!retrieveGame"] && $.__views.__alloyId117.addEventListener("click", retrieveGame);
-    __defers["$.__views.__alloyId118!click!playGame"] && $.__views.__alloyId118.addEventListener("click", playGame);
+    __defers["$.__views.__alloyId1!click!retrieveGame"] && $.__views.__alloyId1.addEventListener("click", retrieveGame);
+    __defers["$.__views.__alloyId2!click!playGame"] && $.__views.__alloyId2.addEventListener("click", playGame);
     _.extend($, exports);
 }
 

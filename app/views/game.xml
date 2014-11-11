@@ -11,268 +11,117 @@
 					</Label>
 				</View>
 			</View>
-			<View id="sudoWrapper">
-				<View id="sudoRowTable1">
-					<View class="sudoMinTable">
-						<View class="sudoHorizontalRow">
-							<Label>1</Label>
-							<Label>2</Label>
-							<Label>3</Label>
-						</View>
-						<View class="sudoHorizontalRow">
-							<Label>4</Label>
-							<Label>5</Label>
-							<Label>6</Label>
-						</View>
-						<View class="sudoHorizontalRow">
-							<Label>7</Label>
-							<Label>8</Label>
-							<Label>9</Label>
-						</View>
-					</View>
-					<View class="sudoMinTable">
-						<View class="sudoHorizontalRow">
-							<Label>1</Label>
-							<Label>2</Label>
-							<Label>3</Label>
-						</View>
-						<View class="sudoHorizontalRow">
-							<Label>4</Label>
-							<Label>5</Label>
-							<Label>6</Label>
-						</View>
-						<View class="sudoHorizontalRow">
-							<Label>7</Label>
-							<Label>8</Label>
-							<Label>9</Label>
-						</View>
-					</View>
-					<View class="sudoMinTable">
-						<View class="sudoHorizontalRow">
-							<Label>1</Label>
-							<Label>2</Label>
-							<Label>3</Label>
-						</View>
-						<View class="sudoHorizontalRow">
-							<Label>4</Label>
-							<Label>5</Label>
-							<Label>6</Label>
-						</View>
-						<View class="sudoHorizontalRow">
-							<Label>7</Label>
-							<Label>8</Label>
-							<Label>9</Label>
-						</View>
-					</View>
-				</View>
-				<View id="sudoRowTable2">
-					<View class="sudoMinTable">
-						<View class="sudoHorizontalRow">
-							<Label>1</Label>
-							<Label>2</Label>
-							<Label>3</Label>
-						</View>
-						<View class="sudoHorizontalRow">
-							<Label>4</Label>
-							<Label>5</Label>
-							<Label>6</Label>
-						</View>
-						<View class="sudoHorizontalRow">
-							<Label>7</Label>
-							<Label>8</Label>
-							<Label>9</Label>
-						</View>
-					</View>
-					<View class="sudoMinTable">
-						<View class="sudoHorizontalRow">
-							<Label>1</Label>
-							<Label>2</Label>
-							<Label>3</Label>
-						</View>
-						<View class="sudoHorizontalRow">
-							<Label>4</Label>
-							<Label>5</Label>
-							<Label>6</Label>
-						</View>
-						<View class="sudoHorizontalRow">
-							<Label>7</Label>
-							<Label>8</Label>
-							<Label>9</Label>
-						</View>
-					</View>
-					<View class="sudoMinTable">
-						<View class="sudoHorizontalRow">
-							<Label>1</Label>
-							<Label>2</Label>
-							<Label>3</Label>
-						</View>
-						<View class="sudoHorizontalRow">
-							<Label>4</Label>
-							<Label>5</Label>
-							<Label>6</Label>
-						</View>
-						<View class="sudoHorizontalRow">
-							<Label>7</Label>
-							<Label>8</Label>
-							<Label>9</Label>
-						</View>
-					</View>
-				</View>
-				<View id="sudoRowTable3">
-					<View class="sudoMinTable">
-						<View class="sudoHorizontalRow">
-							<Label>1</Label>
-							<Label>2</Label>
-							<Label>3</Label>
-						</View>
-						<View class="sudoHorizontalRow">
-							<Label>4</Label>
-							<Label>5</Label>
-							<Label>6</Label>
-						</View>
-						<View class="sudoHorizontalRow">
-							<Label>7</Label>
-							<Label>8</Label>
-							<Label>9</Label>
-						</View>
-					</View>
-					<View class="sudoMinTable">
-						<View class="sudoHorizontalRow">
-							<Label>1</Label>
-							<Label>2</Label>
-							<Label>3</Label>
-						</View>
-						<View class="sudoHorizontalRow">
-							<Label>4</Label>
-							<Label>5</Label>
-							<Label>6</Label>
-						</View>
-						<View class="sudoHorizontalRow">
-							<Label>7</Label>
-							<Label>8</Label>
-							<Label>9</Label>
-						</View>
-					</View>
-					<View class="sudoMinTable">
-						<View class="sudoHorizontalRow">
-							<Label>1</Label>
-							<Label>2</Label>
-							<Label>3</Label>
-						</View>
-						<View class="sudoHorizontalRow">
-							<Label>4</Label>
-							<Label>5</Label>
-							<Label>6</Label>
-						</View>
-						<View class="sudoHorizontalRow">
-							<Label>7</Label>
-							<Label>8</Label>
-							<Label>9</Label>
-						</View>
-					</View>
-				</View>
-			<!--
-				<TableView id="sudoTableRow1">
-					<TableViewRow title="1"></TableViewRow>
-					<TableViewRow title="2"></TableViewRow>
-					<TableViewRow title="3"></TableViewRow>
-					<TableViewRow title="4"></TableViewRow>
-					<TableViewRow title="5"></TableViewRow>
-					<TableViewRow title="6"></TableViewRow>
-					<TableViewRow title="7"></TableViewRow>
-					<TableViewRow title="8"></TableViewRow>
-					<TableViewRow title="9"></TableViewRow>
-				</TableView>
-				<TableView id="sudoTableRow2">
-					<TableViewRow title="1"></TableViewRow>
-					<TableViewRow title="2"></TableViewRow>
-					<TableViewRow title="3"></TableViewRow>
-					<TableViewRow title="4"></TableViewRow>
-					<TableViewRow title="5"></TableViewRow>
-					<TableViewRow title="6"></TableViewRow>
-					<TableViewRow title="7"></TableViewRow>
-					<TableViewRow title="8"></TableViewRow>
-					<TableViewRow title="9"></TableViewRow>
-				</TableView>
-				<TableView id="sudoTableRow3">
-					<TableViewRow title="1"></TableViewRow>
-					<TableViewRow title="2"></TableViewRow>
-					<TableViewRow title="3"></TableViewRow>
-					<TableViewRow title="4"></TableViewRow>
-					<TableViewRow title="5"></TableViewRow>
-					<TableViewRow title="6"></TableViewRow>
-					<TableViewRow title="7"></TableViewRow>
-					<TableViewRow title="8"></TableViewRow>
-					<TableViewRow title="9"></TableViewRow>
-				</TableView>
-				<TableView id="sudoTableRow4">
-					<TableViewRow title="1"></TableViewRow>
-					<TableViewRow title="2"></TableViewRow>
-					<TableViewRow title="3"></TableViewRow>
-					<TableViewRow title="4"></TableViewRow>
-					<TableViewRow title="5"></TableViewRow>
-					<TableViewRow title="6"></TableViewRow>
-					<TableViewRow title="7"></TableViewRow>
-					<TableViewRow title="8"></TableViewRow>
-					<TableViewRow title="9"></TableViewRow>
-				</TableView>
-				<TableView id="sudoTableRow5">
-					<TableViewRow title="1"></TableViewRow>
-					<TableViewRow title="2"></TableViewRow>
-					<TableViewRow title="3"></TableViewRow>
-					<TableViewRow title="4"></TableViewRow>
-					<TableViewRow title="5"></TableViewRow>
-					<TableViewRow title="6"></TableViewRow>
-					<TableViewRow title="7"></TableViewRow>
-					<TableViewRow title="8"></TableViewRow>
-					<TableViewRow title="9"></TableViewRow>
-				</TableView>
-				<TableView id="sudoTableRow6">
-					<TableViewRow title="1"></TableViewRow>
-					<TableViewRow title="2"></TableViewRow>
-					<TableViewRow title="3"></TableViewRow>
-					<TableViewRow title="4"></TableViewRow>
-					<TableViewRow title="5"></TableViewRow>
-					<TableViewRow title="6"></TableViewRow>
-					<TableViewRow title="7"></TableViewRow>
-					<TableViewRow title="8"></TableViewRow>
-					<TableViewRow title="9"></TableViewRow>
-				</TableView>
-				<TableView id="sudoTableRow7">
-					<TableViewRow title="1"></TableViewRow>
-					<TableViewRow title="2"></TableViewRow>
-					<TableViewRow title="3"></TableViewRow>
-					<TableViewRow title="4"></TableViewRow>
-					<TableViewRow title="5"></TableViewRow>
-					<TableViewRow title="6"></TableViewRow>
-					<TableViewRow title="7"></TableViewRow>
-					<TableViewRow title="8"></TableViewRow>
-					<TableViewRow title="9"></TableViewRow>
-				</TableView>
-				<TableView id="sudoTableRow8">
-					<TableViewRow title="1"></TableViewRow>
-					<TableViewRow title="2"></TableViewRow>
-					<TableViewRow title="3"></TableViewRow>
-					<TableViewRow title="4"></TableViewRow>
-					<TableViewRow title="5"></TableViewRow>
-					<TableViewRow title="6"></TableViewRow>
-					<TableViewRow title="7"></TableViewRow>
-					<TableViewRow title="8"></TableViewRow>
-					<TableViewRow title="9"></TableViewRow>
-				</TableView>
-				<TableView id="sudoTableRow9">
-					<TableViewRow title="1"></TableViewRow>
-					<TableViewRow title="2"></TableViewRow>
-					<TableViewRow title="3"></TableViewRow>
-					<TableViewRow title="4"></TableViewRow>
-					<TableViewRow title="5"></TableViewRow>
-					<TableViewRow title="6"></TableViewRow>
-					<TableViewRow title="7"></TableViewRow>
-					<TableViewRow title="8"></TableViewRow>
-					<TableViewRow title="9"></TableViewRow>
-				</TableView>
-			-->
-			</View>
-		</View>
+			
+			 <TableView id="table">
+	           <TableViewRow id="row">
+	        		<Label id="labelInTable"> 1</Label>
+	        		<Label id="labelInTable"> 2</Label>
+	        		<Label id="labelInTable"> 3</Label>
+	        		<TextField id="labelInTable"></TextField>
+	        		<Label id="labelInTable"> 5</Label>
+	        		<Label id="labelInTable"> 6</Label>
+	        		<Label id="labelInTable"> 7</Label>
+	        		<Label id="labelInTable"> 8</Label>
+	        		<Label id="labelInTable"> 9</Label>	        		
+	    		</TableViewRow>
+	    		
+        		 <TableViewRow id="row">
+	        		<Label id="labelInTable"> 1</Label>
+	        		<Label id="labelInTable"> 2</Label>
+	        		<Label id="labelInTable"> 3</Label>
+	        		<Label id="labelInTable"> 4</Label>
+	        		<Label id="labelInTable"> 5</Label>
+	        		<Label id="labelInTable"> 6</Label>
+	        		<Label id="labelInTable"> 7</Label>
+	        		<Label id="labelInTable"> 8</Label>
+	        		<Label id="labelInTable"> 9</Label>	        		
+	    		</TableViewRow> 
+	    		
+	    		<TableViewRow id="row">
+	        		<Label id="labelInTable"> 1</Label>
+	        		<Label id="labelInTable"> 2</Label>
+	        		<Label id="labelInTable"> 3</Label>
+	        		<Label id="labelInTable"> 4</Label>
+	        		<Label id="labelInTable"> 5</Label>
+	        		<Label id="labelInTable"> 6</Label>
+	        		<Label id="labelInTable"> 7</Label>
+	        		<Label id="labelInTable"> 8</Label>
+	        		<Label id="labelInTable"> 9</Label>	        		
+	    		</TableViewRow>
+	    		 
+	    		<TableViewRow id="row">
+	        		<Label id="labelInTable"> 1</Label>
+	        		<Label id="labelInTable"> 2</Label>
+	        		<Label id="labelInTable"> 3</Label>
+	        		<Label id="labelInTable"> 4</Label>
+	        		<Label id="labelInTable"> 5</Label>
+	        		<Label id="labelInTable"> 6</Label>
+	        		<Label id="labelInTable"> 7</Label>
+	        		<Label id="labelInTable"> 8</Label>
+	        		<Label id="labelInTable"> 9</Label>	        		
+	    		</TableViewRow> 
+	    		
+	    		<TableViewRow id="row">
+	        		<Label id="labelInTable"> 1</Label>
+	        		<Label id="labelInTable"> 2</Label>
+	        		<Label id="labelInTable"> 3</Label>
+	        		<Label id="labelInTable"> 4</Label>
+	        		<Label id="labelInTable"> 5</Label>
+	        		<Label id="labelInTable"> 6</Label>
+	        		<Label id="labelInTable"> 7</Label>
+	        		<Label id="labelInTable"> 8</Label>
+	        		<Label id="labelInTable"> 9</Label>	        		
+	    		</TableViewRow> 
+	    		
+	    		<TableViewRow id="row">
+	        		<Label id="labelInTable"> 1</Label>
+	        		<Label id="labelInTable"> 2</Label>
+	        		<Label id="labelInTable"> 3</Label>
+	        		<Label id="labelInTable"> 4</Label>
+	        		<Label id="labelInTable"> 5</Label>
+	        		<Label id="labelInTable"> 6</Label>
+	        		<Label id="labelInTable"> 7</Label>
+	        		<Label id="labelInTable"> 8</Label>
+	        		<Label id="labelInTable"> 9</Label>	        		
+	    		</TableViewRow>
+	    		 
+	    		<TableViewRow id="row">
+	        		<Label id="labelInTable"> 1</Label>
+	        		<Label id="labelInTable"> 2</Label>
+	        		<Label id="labelInTable"> 3</Label>
+	        		<Label id="labelInTable"> 4</Label>
+	        		<Label id="labelInTable"> 5</Label>
+	        		<Label id="labelInTable"> 6</Label>
+	        		<Label id="labelInTable"> 7</Label>
+	        		<Label id="labelInTable"> 8</Label>
+	        		<Label id="labelInTable"> 9</Label>	        		
+	    		</TableViewRow>
+	    		
+	    		 <TableViewRow id="row">
+	        		<Label id="labelInTable"> 1</Label>
+	        		<Label id="labelInTable"> 2</Label>
+	        		<Label id="labelInTable"> 3</Label>
+	        		<Label id="labelInTable"> 4</Label>
+	        		<Label id="labelInTable"> 5</Label>
+	        		<Label id="labelInTable"> 6</Label>
+	        		<Label id="labelInTable"> 7</Label>
+	        		<Label id="labelInTable"> 8</Label>
+	        		<Label id="labelInTable"> 9</Label>	        		
+	    		</TableViewRow>
+	    		
+	    		 <TableViewRow id="row">
+	        		<Label id="labelInTable"> 1</Label>
+	        		<Label id="labelInTable"> 2</Label>
+	        		<Label id="labelInTable"> 3</Label>
+	        		<Label id="labelInTable"> 4</Label>
+	        		<Label id="labelInTable"> 5</Label>
+	        		<Label id="labelInTable"> 6</Label>
+	        		<Label id="labelInTable"> 7</Label>
+	        		<Label id="labelInTable"> 8</Label>
+	        		<Label id="labelInTable"> 9</Label>	        		
+	    		</TableViewRow>	
+     
+        </TableView>		
+	</View>
 	</Window>
 </Alloy>

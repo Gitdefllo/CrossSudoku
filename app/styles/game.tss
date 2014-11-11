@@ -6,6 +6,7 @@
 	layout: "vertical"
 }
 
+
 "#wrapper": {
 	top: 0,
 	width: Ti.UI.FILL,
@@ -17,6 +18,7 @@
 "#topWrapper": {
 	top: 10, left: 20, right: 20, // margins
 	height: Ti.UI.SIZE,
+	width:Titanium.UI.FILL,
 	layout: "horizontal"
 }
 
@@ -65,6 +67,35 @@
 
 "#timerMainLabel": {
 	layout: "horizontal"
+}
+
+
+//Sudoku table Modif ridley
+"#table": {
+	width:Titanium.UI.SIZE,
+	backgroundColor: "white",
+	top: 20, left: 20, right: 20, // margins
+	layout: "vertical"
+}
+
+"TableViewRow": {
+	left: 0, 
+	top: 0,
+	width: Titanium.UI.SIZE,
+	height: Ti.UI.SIZE,
+	borderWidth: 1,
+    borderColor: '#1b1b1b',
+    layout:"horizontal"
+}
+
+"#labelInTable": {
+	borderWidth: 1,
+	size:150,
+    borderColor: '#1b1b1b',
+    
+	font: {
+		fontSize: 30
+	}
 }
 
 // Sudoku table
