@@ -73,7 +73,8 @@
 	top: "40dp", bottom: "40dp", // padding
 	textAlign: "center",
 	width: Ti.UI.SIZE,
-	height: Ti.UI.SIZE
+	height: Ti.UI.SIZE,
+	layout:"horizontal"
 }
 
 // Fake Buttons
@@ -113,3 +114,22 @@
 "#btnRetrieve": { 
 	left: 0
 }
+
+"#bestHour": {
+	font:{
+		size:24
+	}
+}
+
+"#bestMinute": {
+	font:{
+		size:24
+	}
+}
+
+"#bestSecond": {
+	font:{
+		size:24
+	}
+}
+

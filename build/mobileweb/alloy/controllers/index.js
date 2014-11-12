@@ -8,6 +8,11 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+    function convertTime(h, m, s) {
+        var timeSeconds;
+        timeSeconds = parseInt(3600 * h) + parseInt(60 * m) + parseInt(s);
+        return timeSeconds;
+    }
     function playGame() {
         var game = Alloy.createController("game", {
             newGame: 1,
@@ -118,10 +123,44 @@ function Controller() {
         top: "40dp",
         bottom: "40dp",
         textAlign: "center",
-        text: "Best time:\n10'02''56",
+        layout: "horizontal",
+        text: "Best time:",
         id: "msgScore"
     });
     $.__views.contentView.add($.__views.msgScore);
+    $.__views.bestHour = Ti.UI.createLabel({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        color: "#000",
+        font: {
+            size: 24
+        },
+        text: "00",
+        id: "bestHour"
+    });
+    $.__views.msgScore.add($.__views.bestHour);
+    $.__views.bestMinute = Ti.UI.createLabel({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        color: "#000",
+        font: {
+            size: 24
+        },
+        text: "'00",
+        id: "bestMinute"
+    });
+    $.__views.msgScore.add($.__views.bestMinute);
+    $.__views.bestSecond = Ti.UI.createLabel({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        color: "#000",
+        font: {
+            size: 24
+        },
+        text: '"00',
+        id: "bestSecond"
+    });
+    $.__views.msgScore.add($.__views.bestSecond);
     $.__views.bottomWrapper = Ti.UI.createView({
         bottom: 20,
         left: 20,
@@ -194,15 +233,27 @@ function Controller() {
     playGame ? $.__views.__alloyId2.addEventListener("click", playGame) : __defers["$.__views.__alloyId2!click!playGame"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
-    var dataTableSudoku, secVal, minVal, hourVal;
+    var secVal, minVal, hourVal;
     $.btnRetrieve.hide();
     Ti.App.addEventListener("retrieveDatas", function(data) {
-        dataTableSudoku = data.tableValues;
-        alert(dataTableSudoku);
         secVal = data.secValues;
         minVal = data.minValues;
         hourVal = data.hourValues;
-        $.btnRetrieve.show();
+        if ("true" == data.pauseValues) {
+            $.btnRetrieve.show();
+            alert("Paused at " + hourVal + ":" + minVal + ":" + secVal);
+        } else {
+            $.btnRetrieve.hide();
+            alert("You spend " + hourVal + ":" + minVal + ":" + secVal + " to slove this Sudoku");
+            var myTime = convertTime(hourVal, minVal, secVal);
+            var bestTime = convertTime($.bestHour.getText(), $.bestMinute.getText(), $.bestSecond.getText());
+            if (bestTime > myTime) {
+                alert("CONGRATULATIONS !!!!! You beat the best time");
+                $.bestHour.setText(hourVal);
+                $.bestMinute.setText(minVal);
+                $.bestSecond.setText(secVal);
+            }
+        }
     });
     $.index.open();
     __defers["$.__views.__alloyId1!click!retrieveGame"] && $.__views.__alloyId1.addEventListener("click", retrieveGame);

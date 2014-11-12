@@ -21,15 +21,28 @@ function Controller() {
         s = s.replace(":", "");
         return s;
     }
-    function goBack() {
-        var sec = rewritetime($.timerSecond.getText());
-        var min = rewritetime($.timerMinute.getText());
-        var hr = rewritetime($.timerHour.getText());
+    function CheckSudoku() {
+        sec = rewritetime($.timerSecond.getText());
+        min = rewritetime($.timerMinute.getText());
+        hr = rewritetime($.timerHour.getText());
+        pause = "false";
         Ti.App.fireEvent("retrieveDatas", {
-            tableValues: "Paused at " + hr + ":" + min + ":" + sec,
             secValues: sec,
             minValues: min,
             hourValues: hr
+        });
+        $.game_container.close();
+    }
+    function goBack() {
+        sec = rewritetime($.timerSecond.getText());
+        min = rewritetime($.timerMinute.getText());
+        hr = rewritetime($.timerHour.getText());
+        pause = "true";
+        Ti.App.fireEvent("retrieveDatas", {
+            secValues: sec,
+            minValues: min,
+            hourValues: hr,
+            pauseValues: "true"
         });
         $.game_container.close();
     }
@@ -145,6 +158,13 @@ function Controller() {
         id: "timerSecond"
     });
     $.__views.timerMainLabel.add($.__views.timerSecond);
+    $.__views.btnValider = Ti.UI.createButton({
+        left: "0",
+        title: "Valider",
+        id: "btnValider"
+    });
+    $.__views.topWrapper.add($.__views.btnValider);
+    CheckSudoku ? $.__views.btnValider.addEventListener("click", CheckSudoku) : __defers["$.__views.btnValider!click!CheckSudoku"] = true;
     var __alloyId0 = [];
     $.__views.row = Ti.UI.createTableViewRow({
         left: 0,
@@ -1388,6 +1408,7 @@ function Controller() {
     $.__views.wrapper.add($.__views.table);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    var sec, min, hr, pause;
     var args = arguments[0] || {};
     if (1 == args.newGame) {
         var totalSeconds = 0;
@@ -1401,6 +1422,7 @@ function Controller() {
         setInterval(updateTime, 1e3);
     }
     __defers["$.__views.backView!click!goBack"] && $.__views.backView.addEventListener("click", goBack);
+    __defers["$.__views.btnValider!click!CheckSudoku"] && $.__views.btnValider.addEventListener("click", CheckSudoku);
     _.extend($, exports);
 }
 

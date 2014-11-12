@@ -9,7 +9,8 @@
 					<Label id="timerMainLabel">
 						Time: <Label id="timerHour">00</Label><Label id="timerMinute">00</Label><Label id="timerSecond">00</Label>
 					</Label>
-				</View>
+				</View>				
+				 <Button id="btnValider" onClick="CheckSudoku">Valider</Button>		
 			</View>
 			
 			 <TableView id="table">
@@ -119,9 +120,9 @@
 	        		<Label id="labelInTable"> 7</Label>
 	        		<Label id="labelInTable"> 8</Label>
 	        		<Label id="labelInTable"> 9</Label>	        		
-	    		</TableViewRow>	
-     
-        </TableView>		
+	    		</TableViewRow>	     
+        </TableView>
+       
 	</View>
 	</Window>
 </Alloy>

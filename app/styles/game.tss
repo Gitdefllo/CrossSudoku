@@ -98,6 +98,10 @@
 	}
 }
 
+"#btnValider":{
+	left:"0"
+}
+
 // Sudoku table
 "#sudoRowTable1": {
 	top: 0,

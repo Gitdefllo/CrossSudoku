@@ -7,7 +7,10 @@
 			</View>
 			<View id="contentWrapper"> <!-- global view with 20px left/right margins -->
 				<View id="contentView"> <!-- sub view with a width to FILL (to keep the 20px left/right margins from parent) -->
-					<Label id="msgScore">Best time:&#xD;10'02''56</Label>
+					<Label id="msgScore">
+						Best time:
+						<Label id="bestHour">00</Label><Label id="bestMinute">'00</Label><Label id="bestSecond">"00</Label>
+					</Label>
 				</View>
 			</View>
 			<View id="bottomWrapper"> <!-- global view at 20px from bottom and margins left/right to 20px -->

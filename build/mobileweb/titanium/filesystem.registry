@@ -1,4 +1,4 @@
-ts	1415710044000
+ts	1415805879000
 Default-Landscape.png	513333
 Default-Portrait.png	76153
 Default.png	110858
@@ -8,11 +8,11 @@ alloy
 	constants.js	6654
 	controllers
 		BaseController.js	7259
-		game.js	36708
-		index.js	6260
+		game.js	37536
+		index.js	7891
 	styles
-		game.js	2987
-		index.js	1966
+		game.js	3063
+		index.js	2232
 	sync
 		localStorage.js	1913
 		properties.js	1848
