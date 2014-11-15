@@ -77,6 +77,12 @@
 	layout:"horizontal"
 }
 
+"#bestHour": { }
+
+"#bestMinute": { }
+
+"#bestSecond": { }
+
 // Fake Buttons
 "#buttonContainer": {
 	bottom: 0,
@@ -115,21 +121,5 @@
 	left: 0
 }
 
-"#bestHour": {
-	font:{
-		size:24
-	}
-}
 
-"#bestMinute": {
-	font:{
-		size:24
-	}
-}
-
-"#bestSecond": {
-	font:{
-		size:24
-	}
-}
 

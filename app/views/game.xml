@@ -10,7 +10,7 @@
 						Time: <Label id="timerHour">00</Label><Label id="timerMinute">00</Label><Label id="timerSecond">00</Label>
 					</Label>
 				</View>				
-				 <Button id="btnValider" onClick="CheckSudoku">Valider</Button>		
+				 <Button id="btnValider" onClick="checkSudoku">Valider</Button>		
 			</View>
 			
 			 <TableView id="table">

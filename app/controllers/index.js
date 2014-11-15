@@ -15,34 +15,36 @@ Ti.App.addEventListener('retrieveDatas', function(data) {
 	minVal = data.minValues;
 	hourVal = data.hourValues;
 	
-	if(data.pauseValues=='true'){
+	if (data.pauseValues) {
 		// show "continue" button
 		$.btnRetrieve.show();
-		alert('Paused at ' + hourVal + ':' + minVal + ':' + secVal);
-	}
-	else{
-		// hide "continue" button when the game is slove
+		alert('You paused at ' + hourVal + ':' + minVal + ':' + secVal);
+	} else {
+		// hide "continue" button when the game is sloved
 		$.btnRetrieve.hide();
 		alert('You spend ' + hourVal + ':' + minVal + ':' + secVal +' to slove this Sudoku');
-		var myTime = convertTime(hourVal,minVal,secVal);
-		var bestTime = convertTime($.bestHour.getText(),$.bestMinute.getText(),$.bestSecond.getText()); //recover value in seconds of the bestTime
+		var myTime = convertTime(hourVal, minVal, secVal);
+		var bestTime = convertTime($.bestHour.getText(),
+									$.bestMinute.getText(),
+									$.bestSecond.getText()
+						); // recover value in seconds of the bestTime
 		
-		if(myTime < bestTime){
+		if (myTime > bestTime) {
 			alert("CONGRATULATIONS !!!!! You beat the best time" );
 			
-			//Does not update the label msgScore
-			$.bestHour.setText(hourVal);
-			$.bestMinute.setText(minVal);
+			// Does not update the label msgScore
+			$.bestHour.setText(hourVal + ':');
+			$.bestMinute.setText(minVal + ':');
 			$.bestSecond.setText(secVal);
 		}
 	}
 });
 
-//This function convert time(hours'minutes"seconds) in seconds 
-function convertTime(h,m,s){
+// This function converts time(hours'minutes"seconds) in seconds 
+function convertTime(h,m,s) {
 	var timeSeconds;
 	
-	timeSeconds= parseInt((h*3600)) + parseInt((m*60)) + parseInt(s);
+	timeSeconds = parseInt((h*3600)) + parseInt((m*60)) + parseInt(s);
 	
 	return timeSeconds;
 }

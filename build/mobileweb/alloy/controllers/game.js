@@ -21,15 +21,15 @@ function Controller() {
         s = s.replace(":", "");
         return s;
     }
-    function CheckSudoku() {
+    function checkSudoku() {
         sec = rewritetime($.timerSecond.getText());
         min = rewritetime($.timerMinute.getText());
         hr = rewritetime($.timerHour.getText());
-        pause = "false";
         Ti.App.fireEvent("retrieveDatas", {
             secValues: sec,
             minValues: min,
-            hourValues: hr
+            hourValues: hr,
+            pauseValues: false
         });
         $.game_container.close();
     }
@@ -37,12 +37,11 @@ function Controller() {
         sec = rewritetime($.timerSecond.getText());
         min = rewritetime($.timerMinute.getText());
         hr = rewritetime($.timerHour.getText());
-        pause = "true";
         Ti.App.fireEvent("retrieveDatas", {
             secValues: sec,
             minValues: min,
             hourValues: hr,
-            pauseValues: "true"
+            pauseValues: true
         });
         $.game_container.close();
     }
@@ -164,7 +163,7 @@ function Controller() {
         id: "btnValider"
     });
     $.__views.topWrapper.add($.__views.btnValider);
-    CheckSudoku ? $.__views.btnValider.addEventListener("click", CheckSudoku) : __defers["$.__views.btnValider!click!CheckSudoku"] = true;
+    checkSudoku ? $.__views.btnValider.addEventListener("click", checkSudoku) : __defers["$.__views.btnValider!click!checkSudoku"] = true;
     var __alloyId0 = [];
     $.__views.row = Ti.UI.createTableViewRow({
         left: 0,
@@ -1408,7 +1407,7 @@ function Controller() {
     $.__views.wrapper.add($.__views.table);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    var sec, min, hr, pause;
+    var sec, min, hr;
     var args = arguments[0] || {};
     if (1 == args.newGame) {
         var totalSeconds = 0;
@@ -1422,7 +1421,7 @@ function Controller() {
         setInterval(updateTime, 1e3);
     }
     __defers["$.__views.backView!click!goBack"] && $.__views.backView.addEventListener("click", goBack);
-    __defers["$.__views.btnValider!click!CheckSudoku"] && $.__views.btnValider.addEventListener("click", CheckSudoku);
+    __defers["$.__views.btnValider!click!checkSudoku"] && $.__views.btnValider.addEventListener("click", checkSudoku);
     _.extend($, exports);
 }
 

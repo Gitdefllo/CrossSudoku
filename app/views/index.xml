@@ -8,8 +8,8 @@
 			<View id="contentWrapper"> <!-- global view with 20px left/right margins -->
 				<View id="contentView"> <!-- sub view with a width to FILL (to keep the 20px left/right margins from parent) -->
 					<Label id="msgScore">
-						Best time:
-						<Label id="bestHour">00</Label><Label id="bestMinute">'00</Label><Label id="bestSecond">"00</Label>
+						Best time: 
+						<Label id="bestHour">00</Label><Label id="bestMinute">00</Label><Label id="bestSecond">00</Label>
 					</Label>
 				</View>
 			</View>

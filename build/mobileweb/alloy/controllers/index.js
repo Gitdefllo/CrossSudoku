@@ -132,9 +132,6 @@ function Controller() {
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
-        font: {
-            size: 24
-        },
         text: "00",
         id: "bestHour"
     });
@@ -143,10 +140,7 @@ function Controller() {
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
-        font: {
-            size: 24
-        },
-        text: "'00",
+        text: "00",
         id: "bestMinute"
     });
     $.__views.msgScore.add($.__views.bestMinute);
@@ -154,10 +148,7 @@ function Controller() {
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
-        font: {
-            size: 24
-        },
-        text: '"00',
+        text: "00",
         id: "bestSecond"
     });
     $.__views.msgScore.add($.__views.bestSecond);
@@ -239,18 +230,18 @@ function Controller() {
         secVal = data.secValues;
         minVal = data.minValues;
         hourVal = data.hourValues;
-        if ("true" == data.pauseValues) {
+        if (data.pauseValues) {
             $.btnRetrieve.show();
-            alert("Paused at " + hourVal + ":" + minVal + ":" + secVal);
+            alert("You paused at " + hourVal + ":" + minVal + ":" + secVal);
         } else {
             $.btnRetrieve.hide();
             alert("You spend " + hourVal + ":" + minVal + ":" + secVal + " to slove this Sudoku");
             var myTime = convertTime(hourVal, minVal, secVal);
             var bestTime = convertTime($.bestHour.getText(), $.bestMinute.getText(), $.bestSecond.getText());
-            if (bestTime > myTime) {
+            if (myTime > bestTime) {
                 alert("CONGRATULATIONS !!!!! You beat the best time");
-                $.bestHour.setText(hourVal);
-                $.bestMinute.setText(minVal);
+                $.bestHour.setText(hourVal + ":");
+                $.bestMinute.setText(minVal + ":");
                 $.bestSecond.setText(secVal);
             }
         }

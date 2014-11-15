@@ -1,5 +1,5 @@
 // init received arguments
-var sec,min, hr,pause;
+var sec, min, hr;
 var args = arguments[0] || {};
 
 // check if it's a new game
@@ -43,23 +43,21 @@ function rewritetime(s) {
 	return s;
 }
 
-//This function check if the sudoku is slove and send the time spend
-function CheckSudoku(e){
- /*Check if the sudoku is correct 
- .................................
- .................................
- .................................*/
-
+// This function checks if the sudoku is sloved and send the time spend
+function checkSudoku(e){
+	/*
+	 * Check if the sudoku is correct 
+	 */
 	//recover my Score at the end
-	 sec = rewritetime($.timerSecond.getText());
-	 min = rewritetime($.timerMinute.getText());
-	 hr = rewritetime($.timerHour.getText());
-	 pause = 'false';
+	sec = rewritetime($.timerSecond.getText());
+	min = rewritetime($.timerMinute.getText());
+	hr = rewritetime($.timerHour.getText());
 	 
-		Ti.App.fireEvent('retrieveDatas', {
+	Ti.App.fireEvent('retrieveDatas', {
 		secValues: sec,
 		minValues: min,
-		hourValues: hr
+		hourValues: hr,
+		pauseValues: false
 	});
 	
 	// close game view
@@ -69,17 +67,16 @@ function CheckSudoku(e){
 // click event on "back button"
 function goBack(e) {
 	
-	 sec = rewritetime($.timerSecond.getText());
-	 min = rewritetime($.timerMinute.getText());
-	 hr = rewritetime($.timerHour.getText());
-	 pause = 'true';
+	sec = rewritetime($.timerSecond.getText());
+	min = rewritetime($.timerMinute.getText());
+	hr = rewritetime($.timerHour.getText());
 	 
 	// pause the game and send the values to index
 	Ti.App.fireEvent('retrieveDatas', {
 		secValues: sec,
 		minValues: min,
 		hourValues: hr,
-		pauseValues:'true'
+		pauseValues: true
 	});
 	// close game view
 	$.game_container.close();
