@@ -31,6 +31,10 @@ function Controller() {
         }).getView();
         game.open();
     }
+    function rewritetime(s) {
+        s = s.replace(":", "");
+        return s;
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
     if (arguments[0]) {
@@ -237,8 +241,8 @@ function Controller() {
             $.btnRetrieve.hide();
             alert("You spend " + hourVal + ":" + minVal + ":" + secVal + " to slove this Sudoku");
             var myTime = convertTime(hourVal, minVal, secVal);
-            var bestTime = convertTime($.bestHour.getText(), $.bestMinute.getText(), $.bestSecond.getText());
-            if (myTime > bestTime) {
+            var bestTime = convertTime(rewritetime($.bestHour.getText()), rewritetime($.bestMinute.getText()), $.bestSecond.getText());
+            if (bestTime > myTime || 0 == bestTime) {
                 alert("CONGRATULATIONS !!!!! You beat the best time");
                 $.bestHour.setText(hourVal + ":");
                 $.bestMinute.setText(minVal + ":");

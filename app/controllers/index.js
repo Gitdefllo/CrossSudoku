@@ -24,12 +24,12 @@ Ti.App.addEventListener('retrieveDatas', function(data) {
 		$.btnRetrieve.hide();
 		alert('You spend ' + hourVal + ':' + minVal + ':' + secVal +' to slove this Sudoku');
 		var myTime = convertTime(hourVal, minVal, secVal);
-		var bestTime = convertTime($.bestHour.getText(),
-									$.bestMinute.getText(),
+		var bestTime = convertTime(rewritetime($.bestHour.getText()),
+									rewritetime($.bestMinute.getText()),
 									$.bestSecond.getText()
 						); // recover value in seconds of the bestTime
 		
-		if (myTime > bestTime) {
+		if (myTime < bestTime || bestTime == 0) {
 			alert("CONGRATULATIONS !!!!! You beat the best time" );
 			
 			// Does not update the label msgScore
@@ -72,6 +72,12 @@ function retrieveGame(e) {
 	}).getView();
 	// open the game view
     game.open();
+}
+
+// replace ":" by a null char
+function rewritetime(s) {
+	s = s.replace(':','');
+	return s;
 }
 
 // open the home view
