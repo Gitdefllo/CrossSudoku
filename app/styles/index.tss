@@ -14,8 +14,7 @@
 
 // Wrappers
 "#topWrapper": {
-	top: 0,
-	left: 20, right: 20, // margins
+	top: 0, left: 20, right: 20, // margins
 	width: Ti.UI.FILL,
 	height: 60,
 	layout: "horizontal"
@@ -77,11 +76,30 @@
 	layout:"horizontal"
 }
 
-"#bestHour": { }
+"#bestHour": {
+	font: {
+		fontSize: 25
+	},
+	left: 5,
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE
+}
 
-"#bestMinute": { }
+"#bestMinute": {
+	font: {
+		fontSize: 25
+	},
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE
+}
 
-"#bestSecond": { }
+"#bestSecond": {
+	font: {
+		fontSize: 25
+	},
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE
+}
 
 // Fake Buttons
 "#buttonContainer": {

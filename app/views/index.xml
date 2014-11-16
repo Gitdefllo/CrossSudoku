@@ -5,21 +5,28 @@
 				<ImageView id="logo" image="appicon.png" />
 				<Label id="title">CrossSudoku</Label>
 			</View>
-			<View id="contentWrapper"> <!-- global view with 20px left/right margins -->
-				<View id="contentView"> <!-- sub view with a width to FILL (to keep the 20px left/right margins from parent) -->
+			<View id="contentWrapper">
+				<!-- global view with 20px left/right margins -->
+				<View id="contentView">
+					<!-- sub view with a width to FILL (to keep the 20px left/right margins from parent) -->
 					<Label id="msgScore">
-						Best time: 
-						<Label id="bestHour">00</Label><Label id="bestMinute">00</Label><Label id="bestSecond">00</Label>
+						<Label id="bestHour"></Label>
+						<Label id="bestMinute"></Label>
+						<Label id="bestSecond"></Label>
 					</Label>
 				</View>
 			</View>
-			<View id="bottomWrapper"> <!-- global view at 20px from bottom and margins left/right to 20px -->
-				<View id="buttonContainer"> <!-- sub view with a width to FILL -->
-					<View class="buttonView" id="btnRetrieve"> <!-- left view (47% of the screen) -->
-						<Label class="fakeButton" onClick="retrieveGame">continue</Label>
+			<View id="bottomWrapper">
+				<!-- global view at 20px from bottom and margins left/right to 20px -->
+				<View id="buttonContainer">
+					<!-- sub view with a width to FILL -->
+					<View class="buttonView" id="btnRetrieve" onClick="retrieveGame">
+						<!-- left view (47% of the screen) -->
+						<Label class="fakeButton">continue</Label>
 					</View>
-					<View class="buttonView" id="btnPlay"> <!-- right view (47% of the screen) -->
-						<Label class="fakeButton" onClick="playGame">new game</Label>
+					<View class="buttonView" id="btnPlay" onClick="playGame">
+						<!-- right view (47% of the screen) -->
+						<Label class="fakeButton">new game</Label>
 					</View>
 				</View>
 			</View>

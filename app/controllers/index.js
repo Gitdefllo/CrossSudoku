@@ -4,6 +4,11 @@ var dataTableSudoku, secVal, minVal, hourVal, pausedVal;
 // hide "continue" button
 $.btnRetrieve.hide();
 
+// hide "bestTime" if it's equals to 0 (no game played yet)
+if ($.bestSecond.getText() == undefined) {
+	$.msgScore.setText("Select \"new game\" to play.");
+}
+
 // retrieve the values when the game is paused or end
 Ti.App.addEventListener('retrieveDatas', function(data) {
 	
@@ -23,6 +28,15 @@ Ti.App.addEventListener('retrieveDatas', function(data) {
 		// hide "continue" button when the game is sloved
 		$.btnRetrieve.hide();
 		alert('You spend ' + hourVal + ':' + minVal + ':' + secVal +' to slove this Sudoku');
+		
+		// check if "bestSecond" are empty or undefined
+		if ($.bestSecond.getText() == undefined) {
+			$.msgScore.setText("Best time:");
+			$.bestHour.setText('00:');
+			$.bestMinute.setText('00:');
+			$.bestSecond.setText('00');
+		}
+		
 		var myTime = convertTime(hourVal, minVal, secVal);
 		var bestTime = convertTime(rewritetime($.bestHour.getText()),
 									rewritetime($.bestMinute.getText()),

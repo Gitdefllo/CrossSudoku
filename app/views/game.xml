@@ -7,122 +7,121 @@
 				</View>
 				<View id="timerView">
 					<Label id="timerMainLabel">
-						Time: <Label id="timerHour">00</Label><Label id="timerMinute">00</Label><Label id="timerSecond">00</Label>
+						Time:
+						<Label id="timerHour"></Label>
+						<Label id="timerMinute"></Label>
+						<Label id="timerSecond"></Label>
 					</Label>
-				</View>				
-				 <Button id="btnValider" onClick="checkSudoku">Valider</Button>		
+				</View>
 			</View>
-			
-			 <TableView id="table">
-	           <TableViewRow id="row">
-	        		<Label id="labelInTable"> 1</Label>
-	        		<Label id="labelInTable"> 2</Label>
-	        		<Label id="labelInTable"> 3</Label>
-	        		<TextField id="labelInTable"></TextField>
-	        		<Label id="labelInTable"> 5</Label>
-	        		<Label id="labelInTable"> 6</Label>
-	        		<Label id="labelInTable"> 7</Label>
-	        		<Label id="labelInTable"> 8</Label>
-	        		<Label id="labelInTable"> 9</Label>	        		
-	    		</TableViewRow>
-	    		
-        		 <TableViewRow id="row">
-	        		<Label id="labelInTable"> 1</Label>
-	        		<Label id="labelInTable"> 2</Label>
-	        		<Label id="labelInTable"> 3</Label>
-	        		<Label id="labelInTable"> 4</Label>
-	        		<Label id="labelInTable"> 5</Label>
-	        		<Label id="labelInTable"> 6</Label>
-	        		<Label id="labelInTable"> 7</Label>
-	        		<Label id="labelInTable"> 8</Label>
-	        		<Label id="labelInTable"> 9</Label>	        		
-	    		</TableViewRow> 
-	    		
-	    		<TableViewRow id="row">
-	        		<Label id="labelInTable"> 1</Label>
-	        		<Label id="labelInTable"> 2</Label>
-	        		<Label id="labelInTable"> 3</Label>
-	        		<Label id="labelInTable"> 4</Label>
-	        		<Label id="labelInTable"> 5</Label>
-	        		<Label id="labelInTable"> 6</Label>
-	        		<Label id="labelInTable"> 7</Label>
-	        		<Label id="labelInTable"> 8</Label>
-	        		<Label id="labelInTable"> 9</Label>	        		
-	    		</TableViewRow>
-	    		 
-	    		<TableViewRow id="row">
-	        		<Label id="labelInTable"> 1</Label>
-	        		<Label id="labelInTable"> 2</Label>
-	        		<Label id="labelInTable"> 3</Label>
-	        		<Label id="labelInTable"> 4</Label>
-	        		<Label id="labelInTable"> 5</Label>
-	        		<Label id="labelInTable"> 6</Label>
-	        		<Label id="labelInTable"> 7</Label>
-	        		<Label id="labelInTable"> 8</Label>
-	        		<Label id="labelInTable"> 9</Label>	        		
-	    		</TableViewRow> 
-	    		
-	    		<TableViewRow id="row">
-	        		<Label id="labelInTable"> 1</Label>
-	        		<Label id="labelInTable"> 2</Label>
-	        		<Label id="labelInTable"> 3</Label>
-	        		<Label id="labelInTable"> 4</Label>
-	        		<Label id="labelInTable"> 5</Label>
-	        		<Label id="labelInTable"> 6</Label>
-	        		<Label id="labelInTable"> 7</Label>
-	        		<Label id="labelInTable"> 8</Label>
-	        		<Label id="labelInTable"> 9</Label>	        		
-	    		</TableViewRow> 
-	    		
-	    		<TableViewRow id="row">
-	        		<Label id="labelInTable"> 1</Label>
-	        		<Label id="labelInTable"> 2</Label>
-	        		<Label id="labelInTable"> 3</Label>
-	        		<Label id="labelInTable"> 4</Label>
-	        		<Label id="labelInTable"> 5</Label>
-	        		<Label id="labelInTable"> 6</Label>
-	        		<Label id="labelInTable"> 7</Label>
-	        		<Label id="labelInTable"> 8</Label>
-	        		<Label id="labelInTable"> 9</Label>	        		
-	    		</TableViewRow>
-	    		 
-	    		<TableViewRow id="row">
-	        		<Label id="labelInTable"> 1</Label>
-	        		<Label id="labelInTable"> 2</Label>
-	        		<Label id="labelInTable"> 3</Label>
-	        		<Label id="labelInTable"> 4</Label>
-	        		<Label id="labelInTable"> 5</Label>
-	        		<Label id="labelInTable"> 6</Label>
-	        		<Label id="labelInTable"> 7</Label>
-	        		<Label id="labelInTable"> 8</Label>
-	        		<Label id="labelInTable"> 9</Label>	        		
-	    		</TableViewRow>
-	    		
-	    		 <TableViewRow id="row">
-	        		<Label id="labelInTable"> 1</Label>
-	        		<Label id="labelInTable"> 2</Label>
-	        		<Label id="labelInTable"> 3</Label>
-	        		<Label id="labelInTable"> 4</Label>
-	        		<Label id="labelInTable"> 5</Label>
-	        		<Label id="labelInTable"> 6</Label>
-	        		<Label id="labelInTable"> 7</Label>
-	        		<Label id="labelInTable"> 8</Label>
-	        		<Label id="labelInTable"> 9</Label>	        		
-	    		</TableViewRow>
-	    		
-	    		 <TableViewRow id="row">
-	        		<Label id="labelInTable"> 1</Label>
-	        		<Label id="labelInTable"> 2</Label>
-	        		<Label id="labelInTable"> 3</Label>
-	        		<Label id="labelInTable"> 4</Label>
-	        		<Label id="labelInTable"> 5</Label>
-	        		<Label id="labelInTable"> 6</Label>
-	        		<Label id="labelInTable"> 7</Label>
-	        		<Label id="labelInTable"> 8</Label>
-	        		<Label id="labelInTable"> 9</Label>	        		
-	    		</TableViewRow>	     
-        </TableView>
-       
-	</View>
+			<View id="sudoWrapper">
+				<TableView id="table">
+					<TableViewRow class="row">
+						<Label class="labelInTable">5</Label>
+						<Label class="labelInTable">3</Label>
+						<Label class="labelInTable">4</Label>
+						<TextField class="labelInTable"></TextField><!-- 6 manquant -->
+						<Label class="labelInTable">7</Label>
+						<Label class="labelInTable">8</Label>
+						<Label class="labelInTable">9</Label>
+						<Label class="labelInTable">1</Label>
+						<Label class="labelInTable">2</Label>
+					</TableViewRow>
+					<TableViewRow class="row">
+						<Label class="labelInTable">6</Label>
+						<Label class="labelInTable">7</Label>
+						<Label class="labelInTable">2</Label>
+						<Label class="labelInTable">1</Label>
+						<Label class="labelInTable">9</Label>
+						<Label class="labelInTable">5</Label>
+						<Label class="labelInTable">3</Label>
+						<Label class="labelInTable">4</Label>
+						<Label class="labelInTable">8</Label>
+					</TableViewRow>
+					<TableViewRow class="row">
+						<Label class="labelInTable">1</Label>
+						<Label class="labelInTable">9</Label>
+						<Label class="labelInTable">8</Label>
+						<Label class="labelInTable">3</Label>
+						<Label class="labelInTable">4</Label>
+						<Label class="labelInTable">2</Label>
+						<Label class="labelInTable">5</Label>
+						<Label class="labelInTable">6</Label>
+						<Label class="labelInTable">7</Label>
+					</TableViewRow>
+					<TableViewRow class="row">
+						<Label class="labelInTable">8</Label>
+						<Label class="labelInTable">5</Label>
+						<Label class="labelInTable">9</Label>
+						<Label class="labelInTable">7</Label>
+						<Label class="labelInTable">6</Label>
+						<Label class="labelInTable">1</Label>
+						<Label class="labelInTable">4</Label>
+						<Label class="labelInTable">2</Label>
+						<Label class="labelInTable">3</Label>
+					</TableViewRow>
+					<TableViewRow class="row">
+						<Label class="labelInTable">4</Label>
+						<Label class="labelInTable">2</Label>
+						<Label class="labelInTable">6</Label>
+						<Label class="labelInTable">8</Label>
+						<Label class="labelInTable">5</Label>
+						<Label class="labelInTable">3</Label>
+						<Label class="labelInTable">7</Label>
+						<Label class="labelInTable">9</Label>
+						<Label class="labelInTable">1</Label>
+					</TableViewRow>
+					<TableViewRow class="row">
+						<Label class="labelInTable">7</Label>
+						<Label class="labelInTable">1</Label>
+						<Label class="labelInTable">3</Label>
+						<Label class="labelInTable">9</Label>
+						<Label class="labelInTable">2</Label>
+						<Label class="labelInTable">4</Label>
+						<Label class="labelInTable">8</Label>
+						<Label class="labelInTable">5</Label>
+						<Label class="labelInTable">6</Label>
+					</TableViewRow>
+					<TableViewRow class="row">
+						<Label class="labelInTable">9</Label>
+						<Label class="labelInTable">6</Label>
+						<Label class="labelInTable">1</Label>
+						<Label class="labelInTable">5</Label>
+						<Label class="labelInTable">3</Label>
+						<Label class="labelInTable">7</Label>
+						<Label class="labelInTable">2</Label>
+						<Label class="labelInTable">8</Label>
+						<Label class="labelInTable">4</Label>
+					</TableViewRow>
+					<TableViewRow class="row">
+						<Label class="labelInTable">2</Label>
+						<Label class="labelInTable">8</Label>
+						<Label class="labelInTable">7</Label>
+						<Label class="labelInTable">4</Label>
+						<Label class="labelInTable">1</Label>
+						<Label class="labelInTable">9</Label>
+						<Label class="labelInTable">6</Label>
+						<Label class="labelInTable">3</Label>
+						<Label class="labelInTable">5</Label>
+					</TableViewRow>
+					<TableViewRow class="row">
+						<Label class="labelInTable">3</Label>
+						<Label class="labelInTable">4</Label>
+						<Label class="labelInTable">5</Label>
+						<Label class="labelInTable">2</Label>
+						<Label class="labelInTable">8</Label>
+						<Label class="labelInTable">6</Label>
+						<Label class="labelInTable">1</Label>
+						<Label class="labelInTable">7</Label>
+						<Label class="labelInTable">9</Label>
+					</TableViewRow>
+				</TableView>
+			</View>
+			<View id="bottomWrapper">
+				<View id="confirmView" onClick="checkSudoku">
+					<Label id="btnConfirm">confirm</Label>
+				</View>
+			</View>
+		</View>
 	</Window>
 </Alloy>

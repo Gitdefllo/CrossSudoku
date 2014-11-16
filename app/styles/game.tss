@@ -6,7 +6,6 @@
 	layout: "vertical"
 }
 
-
 "#wrapper": {
 	top: 0,
 	width: Ti.UI.FILL,
@@ -17,13 +16,19 @@
 // Wrappers
 "#topWrapper": {
 	top: 10, left: 20, right: 20, // margins
-	height: Ti.UI.SIZE,
-	width:Titanium.UI.FILL,
+	width: Ti.UI.FILL,
+	height: 60,
 	layout: "horizontal"
 }
 
 "#sudoWrapper": {
 	top: 20, left: 20, right: 20, // margins
+	height: Ti.UI.SIZE
+}
+
+"#bottomWrapper": {
+	bottom: 0, left: 20, right: 20, // margins
+	height: Ti.UI.SIZE
 }
 
 // Label
@@ -62,124 +67,95 @@
 "#timerView": {
 	right: 0,
 	width: Ti.UI.SIZE,
-	height: Ti.UI.SIZE
-}
-
-"#timerMainLabel": {
+	height: Ti.UI.SIZE,
 	layout: "horizontal"
 }
 
+"#timerMainLabel": {
+	font: {
+		fontSize: 25
+	},
+	right: 0,
+	verticalAlign: "center",
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	layout: "horizontal"
+}
 
-//Sudoku table Modif ridley
+"#timerHour": {
+	font: {
+		fontSize: 25
+	},
+	left: 5,
+	verticalAlign: "center",
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE
+}
+
+"#timerMinute": {
+	font: {
+		fontSize: 25
+	},
+	verticalAlign: "center",
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE
+}
+
+"#timerSecond": {
+	font: {
+		fontSize: 25
+	},
+	verticalAlign: "center",
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE
+}
+
+//Sudoku table
 "#table": {
-	width:Titanium.UI.SIZE,
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
 	backgroundColor: "white",
-	top: 20, left: 20, right: 20, // margins
+	top: 20, bottom: 20, // margins
 	layout: "vertical"
 }
 
 "TableViewRow": {
-	left: 0, 
-	top: 0,
-	width: Titanium.UI.SIZE,
+	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
 	borderWidth: 1,
     borderColor: '#1b1b1b',
     layout:"horizontal"
 }
 
-"#labelInTable": {
+".labelInTable": {
 	borderWidth: 1,
-	size:150,
+	size: 150,
     borderColor: '#1b1b1b',
-    
 	font: {
 		fontSize: 30
 	}
 }
 
-"#btnValider":{
-	left:"0"
-}
-
-// Sudoku table
-"#sudoRowTable1": {
-	top: 0,
+// Confirm button (validate)
+"#confirmView": {
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
+	backgroundColor: "green",
+	color: "white",
 	borderWidth: 1,
     borderColor: '#1b1b1b',
-	layout: "horizontal"
+	// shadowColor: "#87cefa", shadowOffset: {x:-2,y:-2},
+	borderRadius: 6
 }
 
-"#sudoRowTable2": {
-	top: 56,
-	width: Ti.UI.SIZE,
-	height: Ti.UI.SIZE,
-	borderWidth: 1,
-    borderColor: '#1b1b1b',
-	layout: "horizontal"
+"#btnConfirm": {
+	font: {
+		fontSize: 20
+	},
+	backgroundColor: "none",
+	top: "10dp", bottom: "10dp", // padding
+  	color: "white",
+	textAlign: "center",
+	width: "47%",
+  	height: Ti.UI.SIZE
 }
-
-"#sudoRowTable3": {
-	top: 112,
-	width: Ti.UI.SIZE,
-	height: Ti.UI.SIZE,
-	borderWidth: 1,
-    borderColor: '#1b1b1b',
-	layout: "horizontal"
-}
-
-// Sudoku inner table
-".sudoMinTable": {
-	left: 0, 
-	top: 0,
-	width: Ti.UI.SIZE,
-	height: Ti.UI.SIZE,
-	borderWidth: 1,
-    borderColor: '#1b1b1b',
-	layout: "vertical"
-}
-
-// Sudoku row table
-".sudoHorizontalRow": {
-	width: Ti.UI.SIZE,
-	height: Ti.UI.SIZE,
-	layout: "horizontal"
-}
-
-// Sudoku case table
-".sudoCase": {
-	width: Ti.UI.SIZE,
-	height: Ti.UI.SIZE,
-	top: "10dp", bottom: "10dp", right: "10dp", left: "10dp", // padding
-	verticalAlign: "center"
-}
-
-// Sudoku case manual border table
-".borderCaseRight": { right: 0, borderWidth: 1, borderColor: '#a1a1a1', height: Ti.UI.FILL }
-".borderCaseBottom": { bottom: 0, borderWidth: 1, borderColor: '#a1a1a1', width: Ti.UI.FILL }
-
-/*
-"#sudoTable1Column1": {
-	borderWidth: 1,
-    borderColor: '#1b1b1b',
-	textAlign: "center"
-}
-
-"TableViewRow": {
-	borderWidth: 1,
-    borderColor: '#1b1b1b',
-	textAlign: "center"
-}
-
-"#sudoTableRow1": { width: "10%", left: 0 }
-"#sudoTableRow2": { width: "10%", left: "10%" }
-"#sudoTableRow3": { width: "10%", left: "20%" }
-"#sudoTableRow4": { width: "10%", left: "30%" }
-"#sudoTableRow5": { width: "10%", left: "40%" }
-"#sudoTableRow6": { width: "10%", left: "50%" }
-"#sudoTableRow7": { width: "10%", left: "60%" }
-"#sudoTableRow8": { width: "10%", left: "70%" }
-"#sudoTableRow9": { width: "10%", left: "80%" }
-*/

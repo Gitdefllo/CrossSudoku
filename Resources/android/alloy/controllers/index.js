@@ -31,6 +31,10 @@ function Controller() {
         }).getView();
         game.open();
     }
+    function rewritetime(s) {
+        s = s.replace(":", "");
+        return s;
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
     if (arguments[0]) {
@@ -124,7 +128,7 @@ function Controller() {
         bottom: "40dp",
         textAlign: "center",
         layout: "horizontal",
-        text: "Best time:",
+        text: "",
         id: "msgScore"
     });
     $.__views.contentView.add($.__views.msgScore);
@@ -133,9 +137,9 @@ function Controller() {
         height: Ti.UI.SIZE,
         color: "#000",
         font: {
-            size: 24
+            fontSize: 25
         },
-        text: "00",
+        left: 5,
         id: "bestHour"
     });
     $.__views.msgScore.add($.__views.bestHour);
@@ -144,9 +148,8 @@ function Controller() {
         height: Ti.UI.SIZE,
         color: "#000",
         font: {
-            size: 24
+            fontSize: 25
         },
-        text: "'00",
         id: "bestMinute"
     });
     $.__views.msgScore.add($.__views.bestMinute);
@@ -155,9 +158,8 @@ function Controller() {
         height: Ti.UI.SIZE,
         color: "#000",
         font: {
-            size: 24
+            fontSize: 25
         },
-        text: '"00',
         id: "bestSecond"
     });
     $.__views.msgScore.add($.__views.bestSecond);
@@ -235,22 +237,29 @@ function Controller() {
     _.extend($, $.__views);
     var secVal, minVal, hourVal;
     $.btnRetrieve.hide();
+    void 0 == $.bestSecond.getText() && $.msgScore.setText('Tap on "new game" below to play.');
     Ti.App.addEventListener("retrieveDatas", function(data) {
         secVal = data.secValues;
         minVal = data.minValues;
         hourVal = data.hourValues;
-        if ("true" == data.pauseValues) {
+        if (data.pauseValues) {
             $.btnRetrieve.show();
-            alert("Paused at " + hourVal + ":" + minVal + ":" + secVal);
+            alert("You paused at " + hourVal + ":" + minVal + ":" + secVal);
         } else {
             $.btnRetrieve.hide();
             alert("You spend " + hourVal + ":" + minVal + ":" + secVal + " to slove this Sudoku");
+            if (void 0 == $.bestSecond.getText()) {
+                $.msgScore.setText("Best time:");
+                $.bestHour.setText("00:");
+                $.bestMinute.setText("00:");
+                $.bestSecond.setText("00");
+            }
             var myTime = convertTime(hourVal, minVal, secVal);
-            var bestTime = convertTime($.bestHour.getText(), $.bestMinute.getText(), $.bestSecond.getText());
-            if (bestTime > myTime) {
+            var bestTime = convertTime(rewritetime($.bestHour.getText()), rewritetime($.bestMinute.getText()), $.bestSecond.getText());
+            if (bestTime > myTime || 0 == bestTime) {
                 alert("CONGRATULATIONS !!!!! You beat the best time");
-                $.bestHour.setText(hourVal);
-                $.bestMinute.setText(minVal);
+                $.bestHour.setText(hourVal + ":");
+                $.bestMinute.setText(minVal + ":");
                 $.bestSecond.setText(secVal);
             }
         }

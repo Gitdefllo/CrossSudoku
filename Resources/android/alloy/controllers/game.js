@@ -12,6 +12,7 @@ function Controller() {
         ++totalSeconds;
         $.timerSecond.setText(":" + writetime(totalSeconds % 60));
         $.timerMinute.setText(":" + writetime(parseInt(totalSeconds / 60)));
+        $.timerHour.setText(writetime(parseInt(totalSeconds / 3600)));
     }
     function writetime(s) {
         var time = s + "";
@@ -24,25 +25,24 @@ function Controller() {
     function checkSudoku() {
         sec = rewritetime($.timerSecond.getText());
         min = rewritetime($.timerMinute.getText());
-        hr = rewritetime($.timerHour.getText());
-        pause = "false";
+        hr = $.timerHour.getText();
         Ti.App.fireEvent("retrieveDatas", {
             secValues: sec,
             minValues: min,
-            hourValues: hr
+            hourValues: hr,
+            pauseValues: false
         });
         $.game_container.close();
     }
     function goBack() {
         sec = rewritetime($.timerSecond.getText());
         min = rewritetime($.timerMinute.getText());
-        hr = rewritetime($.timerHour.getText());
-        pause = "true";
+        hr = $.timerHour.getText();
         Ti.App.fireEvent("retrieveDatas", {
             secValues: sec,
             minValues: min,
             hourValues: hr,
-            pauseValues: "true"
+            pauseValues: true
         });
         $.game_container.close();
     }
@@ -119,7 +119,6 @@ function Controller() {
     });
     $.__views.backView.add($.__views.backLabel);
     $.__views.timerView = Ti.UI.createView({
-        right: 0,
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         id: "timerView"
@@ -138,7 +137,6 @@ function Controller() {
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
-        text: "00",
         id: "timerHour"
     });
     $.__views.timerMainLabel.add($.__views.timerHour);
@@ -146,7 +144,6 @@ function Controller() {
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
-        text: "00",
         id: "timerMinute"
     });
     $.__views.timerMainLabel.add($.__views.timerMinute);
@@ -154,17 +151,16 @@ function Controller() {
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
-        text: "00",
         id: "timerSecond"
     });
     $.__views.timerMainLabel.add($.__views.timerSecond);
-    $.__views.btnValider = Ti.UI.createButton({
-        left: "0",
+    $.__views.btnConfirm = Ti.UI.createButton({
+        right: "0",
         title: "Valider",
-        id: "btnValider"
+        id: "btnConfirm"
     });
-    $.__views.topWrapper.add($.__views.btnValider);
-    checkSudoku ? $.__views.btnValider.addEventListener("click", checkSudoku) : __defers["$.__views.btnValider!click!checkSudoku"] = true;
+    $.__views.topWrapper.add($.__views.btnConfirm);
+    checkSudoku ? $.__views.btnConfirm.addEventListener("click", checkSudoku) : __defers["$.__views.btnConfirm!click!checkSudoku"] = true;
     var __alloyId0 = [];
     $.__views.row = Ti.UI.createTableViewRow({
         left: 0,
@@ -1408,7 +1404,7 @@ function Controller() {
     $.__views.wrapper.add($.__views.table);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    var sec, min, hr, pause;
+    var sec, min, hr;
     var args = arguments[0] || {};
     if (1 == args.newGame) {
         var totalSeconds = 0;
@@ -1418,11 +1414,11 @@ function Controller() {
         var totalSeconds = args.timeSecondSudoku;
         $.timerSecond.setText(":" + args.timeSecondSudoku);
         $.timerMinute.setText(":" + args.timeMinuteSudoku);
-        $.timerHour.setText(":" + args.timeHourSudoku);
+        $.timerHour.setText(args.timeHourSudoku);
         setInterval(updateTime, 1e3);
     }
     __defers["$.__views.backView!click!goBack"] && $.__views.backView.addEventListener("click", goBack);
-    __defers["$.__views.btnValider!click!checkSudoku"] && $.__views.btnValider.addEventListener("click", checkSudoku);
+    __defers["$.__views.btnConfirm!click!checkSudoku"] && $.__views.btnConfirm.addEventListener("click", checkSudoku);
     _.extend($, exports);
 }
 

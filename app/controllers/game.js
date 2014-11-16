@@ -14,7 +14,7 @@ if(args.timeHourSudoku != 00 || args.timeMinuteSudoku != 00 || args.timeSecondSu
 	var totalSeconds = args.timeSecondSudoku;
 	$.timerSecond.setText(':' + args.timeSecondSudoku);
 	$.timerMinute.setText(':' + args.timeMinuteSudoku);
-	$.timerHour.setText(':' + args.timeHourSudoku);
+	$.timerHour.setText(args.timeHourSudoku);
 	setInterval(updateTime, 1000);
 }
 
@@ -23,7 +23,7 @@ function updateTime() {
 	++totalSeconds;
 	$.timerSecond.setText(':' + writetime(totalSeconds%60));
 	$.timerMinute.setText(':' + writetime(parseInt(totalSeconds/60))); //  -- check the minute, it's wrong when minutes aren't 0
-	// $.timerHour.setText(':' + writetime(parseInt(totalSeconds/60*60))); -- check the hour, it's wrong
+	$.timerHour.setText(writetime(parseInt(totalSeconds/3600))); // -- check the hour?
 }
 
 // to write time with "0" in first position
@@ -46,12 +46,12 @@ function rewritetime(s) {
 // This function checks if the sudoku is sloved and send the time spend
 function checkSudoku(e){
 	/*
-	 * Check if the sudoku is correct 
+	 * TODO: Check if the sudoku is correct 
 	 */
 	//recover my Score at the end
 	sec = rewritetime($.timerSecond.getText());
 	min = rewritetime($.timerMinute.getText());
-	hr = rewritetime($.timerHour.getText());
+	hr = $.timerHour.getText();
 	 
 	Ti.App.fireEvent('retrieveDatas', {
 		secValues: sec,
@@ -69,7 +69,7 @@ function goBack(e) {
 	
 	sec = rewritetime($.timerSecond.getText());
 	min = rewritetime($.timerMinute.getText());
-	hr = rewritetime($.timerHour.getText());
+	hr = $.timerHour.getText();
 	 
 	// pause the game and send the values to index
 	Ti.App.fireEvent('retrieveDatas', {
