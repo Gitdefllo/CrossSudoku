@@ -23,18 +23,26 @@
 
 "#sudoWrapper": {
 	top: 20, left: 20, right: 20, // margins
-	height: Ti.UI.SIZE
+	height: Ti.UI.SIZE,
+	width: Titanium.UI.FILL
 }
 
 "#bottomWrapper": {
 	bottom: 0, left: 20, right: 20, // margins
 	height: Ti.UI.SIZE
 }
+//TextField
+"TextField": {
+	width: Titanium.UI.SIZE,
+	height: Titanium.UI.SIZE,
+	color: "#000"
+}
+
 
 // Label
 "Label": {
-	width: Ti.UI.SIZE,
-	height: Ti.UI.SIZE,
+	width: Titanium.UI.SIZE,
+	height: Titanium.UI.SIZE,
 	color: "#000"
 }
 
@@ -129,11 +137,13 @@
 
 ".labelInTable": {
 	borderWidth: 1,
-	size: 150,
+	width: 50,
+	height: 50,
     borderColor: '#1b1b1b',
 	font: {
 		fontSize: 30
-	}
+	},
+	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
 }
 
 // Confirm button (validate)

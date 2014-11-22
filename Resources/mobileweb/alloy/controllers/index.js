@@ -190,7 +190,7 @@ function Controller() {
     });
     $.__views.buttonContainer.add($.__views.btnRetrieve);
     retrieveGame ? $.__views.btnRetrieve.addEventListener("click", retrieveGame) : __defers["$.__views.btnRetrieve!click!retrieveGame"] = true;
-    $.__views.__alloyId91 = Ti.UI.createLabel({
+    $.__views.__alloyId0 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "white",
@@ -202,9 +202,9 @@ function Controller() {
         bottom: "10dp",
         textAlign: "center",
         text: "continue",
-        id: "__alloyId91"
+        id: "__alloyId0"
     });
-    $.__views.btnRetrieve.add($.__views.__alloyId91);
+    $.__views.btnRetrieve.add($.__views.__alloyId0);
     $.__views.btnPlay = Ti.UI.createView({
         width: "47%",
         height: Ti.UI.SIZE,
@@ -218,7 +218,7 @@ function Controller() {
     });
     $.__views.buttonContainer.add($.__views.btnPlay);
     playGame ? $.__views.btnPlay.addEventListener("click", playGame) : __defers["$.__views.btnPlay!click!playGame"] = true;
-    $.__views.__alloyId92 = Ti.UI.createLabel({
+    $.__views.__alloyId1 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "white",
@@ -230,9 +230,9 @@ function Controller() {
         bottom: "10dp",
         textAlign: "center",
         text: "new game",
-        id: "__alloyId92"
+        id: "__alloyId1"
     });
-    $.__views.btnPlay.add($.__views.__alloyId92);
+    $.__views.btnPlay.add($.__views.__alloyId1);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var secVal, minVal, hourVal;
