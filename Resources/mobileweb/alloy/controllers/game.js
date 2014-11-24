@@ -42,7 +42,8 @@ function Controller() {
                     width: 50,
                     textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
                     borderWidth: 1,
-                    borderColor: "#1b1b1b"
+                    borderColor: "#1b1b1b",
+                    maxLength: 1
                 });
                 row.add(tf);
                 array[cpt] = tf;
@@ -54,11 +55,11 @@ function Controller() {
             array[j].setValue(arrayStart[j]);
             null != arrayStart[j] ? array[j].setEnabled(false) : array[j].addEventListener("blur", function(e) {
                 if ("" != e.source.value) if (e.source.value != arraySolution[e.source.pos]) {
-                    alert("t'es nul !!! ta valeur:" + e.source.value + " (reponse:" + arraySolution[e.source.pos] + ")");
+                    alert("You suck! You wrote: " + e.source.value + " (It should be:" + arraySolution[e.source.pos] + ")");
                     e.source.backgroundColor = "red";
                     e.source.color = "white";
                 } else {
-                    alert("t'es trop fort !!!");
+                    alert("You rock!!!");
                     arrayStart[e.source.pos] = e.source.value;
                     e.source.backgroundColor = "green";
                     e.source.color = "white";
@@ -127,12 +128,18 @@ function Controller() {
         top: 10,
         left: 20,
         right: 20,
-        width: Ti.UI.FILL,
         height: 60,
         layout: "horizontal",
         id: "topWrapper"
     });
     $.__views.wrapper.add($.__views.topWrapper);
+    $.__views.leftCorner = Ti.UI.createView({
+        left: 0,
+        width: "50%",
+        height: Ti.UI.SIZE,
+        id: "leftCorner"
+    });
+    $.__views.topWrapper.add($.__views.leftCorner);
     $.__views.backView = Ti.UI.createView({
         left: 0,
         width: Ti.UI.SIZE,
@@ -144,7 +151,7 @@ function Controller() {
         borderRadius: 6,
         id: "backView"
     });
-    $.__views.topWrapper.add($.__views.backView);
+    $.__views.leftCorner.add($.__views.backView);
     goBack ? $.__views.backView.addEventListener("click", goBack) : __defers["$.__views.backView!click!goBack"] = true;
     $.__views.backLabel = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
@@ -163,6 +170,13 @@ function Controller() {
         id: "backLabel"
     });
     $.__views.backView.add($.__views.backLabel);
+    $.__views.rightCorner = Ti.UI.createView({
+        right: 0,
+        width: "50%",
+        height: Ti.UI.SIZE,
+        id: "rightCorner"
+    });
+    $.__views.topWrapper.add($.__views.rightCorner);
     $.__views.timerView = Ti.UI.createView({
         right: 0,
         width: Ti.UI.SIZE,
@@ -170,13 +184,13 @@ function Controller() {
         layout: "horizontal",
         id: "timerView"
     });
-    $.__views.topWrapper.add($.__views.timerView);
+    $.__views.rightCorner.add($.__views.timerView);
     $.__views.timerMainLabel = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
         font: {
-            fontSize: 25
+            fontSize: 20
         },
         right: 0,
         verticalAlign: "center",
@@ -190,7 +204,7 @@ function Controller() {
         height: Ti.UI.SIZE,
         color: "#000",
         font: {
-            fontSize: 25
+            fontSize: 20
         },
         left: 5,
         verticalAlign: "center",
@@ -202,7 +216,7 @@ function Controller() {
         height: Ti.UI.SIZE,
         color: "#000",
         font: {
-            fontSize: 25
+            fontSize: 20
         },
         verticalAlign: "center",
         id: "timerMinute"
@@ -213,7 +227,7 @@ function Controller() {
         height: Ti.UI.SIZE,
         color: "#000",
         font: {
-            fontSize: 25
+            fontSize: 20
         },
         verticalAlign: "center",
         id: "timerSecond"
@@ -269,7 +283,7 @@ function Controller() {
         top: "10dp",
         bottom: "10dp",
         textAlign: "center",
-        text: "confirm",
+        text: "validate",
         id: "btnConfirm"
     });
     $.__views.confirmView.add($.__views.btnConfirm);

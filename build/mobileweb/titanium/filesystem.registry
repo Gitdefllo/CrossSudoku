@@ -1,4 +1,4 @@
-ts	1416658090000
+ts	1416797245000
 Default-Landscape.png	513333
 Default-Portrait.png	76153
 Default.png	110858
@@ -8,10 +8,10 @@ alloy
 	constants.js	6654
 	controllers
 		BaseController.js	7259
-		game.js	9821
-		index.js	8313
+		game.js	10226
+		index.js	8113
 	styles
-		game.js	2990
+		game.js	2993
 		index.js	2357
 	sync
 		localStorage.js	1913
@@ -21,7 +21,7 @@ alloy
 	widget.js	1455
 	widgets
 alloy.js	10406
-app.js	103
+app.js	105
 appicon.png	18020
 appicon144.png	20987
 apple-touch-icon-114x114-precomposed.png	14012

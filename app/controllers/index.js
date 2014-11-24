@@ -23,11 +23,11 @@ Ti.App.addEventListener('retrieveDatas', function(data) {
 	if (data.pauseValues) {
 		// show "continue" button
 		$.btnRetrieve.show();
-		alert('You paused at ' + hourVal + ':' + minVal + ':' + secVal);
+		//alert('You paused at ' + hourVal + ':' + minVal + ':' + secVal);
 	} else {
 		// hide "continue" button when the game is sloved
 		$.btnRetrieve.hide();
-		alert('You spend ' + hourVal + ':' + minVal + ':' + secVal +' to slove this Sudoku');
+		//alert('You spend ' + hourVal + ':' + minVal + ':' + secVal +' to slove this Sudoku');
 		
 		// check if "bestSecond" are empty or undefined
 		if ($.bestSecond.getText() == undefined) {

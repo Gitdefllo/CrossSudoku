@@ -2,9 +2,9 @@
 var sec, min, hr;
 var args = arguments[0] || {};
 
-//table with all TextFields (81)
+// table with all TextFields (81)
 var array = [];
-//table with solution
+// table with solution
 var arraySolution = 	[2, 9, 4, 1, 7, 3, 5, 8, 6,
 						 1, 5, 6, 2, 8, 9, 3, 4, 7, 
 						 3, 8, 7, 4, 6, 5, 1, 9, 2, 
@@ -14,7 +14,7 @@ var arraySolution = 	[2, 9, 4, 1, 7, 3, 5, 8, 6,
 						 9, 4, 2, 8, 5, 1, 6, 7, 3, 
 						 6, 1, 8, 7, 3, 4, 9, 2, 5, 
 						 7, 3, 5, 9, 2, 6, 8, 1, 4];
-//table with start value						 
+// table with start value						 
 var arrayStart = 		[2, , , 1, , , , , 6,
 						 , , 6, , 8, , 3, , 7, 
 						 3, , , , 6, , , , , 
@@ -67,16 +67,32 @@ function rewritetime(s) {
 	return s;
 }
 
-//initialize the grid
+// initialize the grid
 function initGrid(){
-
 	var cpt = 0;
 	var row;
 	var tf;
 	for(i = 1; i<= 9; i++){
-		row = Ti.UI.createTableViewRow({className:"row" ,height:51, width:460,backgroundColor:000000, layout:"horizontal"});
+		row = Ti.UI.createTableViewRow({
+			className: "row",
+			height: 51, 
+			width: 460,
+			backgroundColor: 000000, 
+			layout: "horizontal"
+		});
+		
 		for(j = 1; j<=9; j++){
-			tf = Ti.UI.createTextField({id:"case"+j*i , pos:j*i-1,height:50,width:50,textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER, borderWidth: 1, borderColor: '#1b1b1b'});
+			tf = Ti.UI.createTextField({
+				id: "case"+j*i, 
+				pos: j*i-1,
+				height: 50,
+				width: 50,
+				textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER, 
+				borderWidth: 1, 
+				borderColor: '#1b1b1b',
+				maxLength: 1
+			});
+			
 			row.add(tf);
 			array[cpt] = tf;
 			cpt++;
@@ -86,17 +102,17 @@ function initGrid(){
 	
 	for(j = 0; j <= 80; j++){
 		array[j].setValue(arrayStart[j]);
-		if(arrayStart[j] != null){
+		if (arrayStart[j] != null) {
 			array[j].setEnabled(false);
-		}else{
+		} else {
 			array[j].addEventListener('blur', function(e){
 				if(e.source.value != ""){
 					if(e.source.value != arraySolution[e.source.pos]){
-						alert("t'es nul !!! ta valeur:"+e.source.value+" (reponse:"+arraySolution[e.source.pos]+")");
+						alert("You suck! You wrote: "+e.source.value+" (It should be:"+arraySolution[e.source.pos]+")");
 						e.source.backgroundColor = 'red';
 						e.source.color = 'white';
 					}else{
-						alert("t'es trop fort !!!");
+						alert("Well done!!!");
 						arrayStart[e.source.pos] = e.source.value;
 						e.source.backgroundColor = 'green';
 						e.source.color = 'white';
@@ -109,13 +125,13 @@ function initGrid(){
 }
 
 	
-// This function checks if the sudoku is sloved and send the time spend
+// checks if the sudoku is sloved and send the time spend
 function checkSudoku(e){
 	/*
-	 * TODO: Check if the sudoku is correct 
+	 * TODO: check the sudoku
 	 */
 	
-	//recover my Score at the end
+	// recover my Score at the end
 	sec = rewritetime($.timerSecond.getText());
 	min = rewritetime($.timerMinute.getText());
 	hr = $.timerHour.getText();

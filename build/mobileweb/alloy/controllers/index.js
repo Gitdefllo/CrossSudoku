@@ -242,12 +242,8 @@ function Controller() {
         secVal = data.secValues;
         minVal = data.minValues;
         hourVal = data.hourValues;
-        if (data.pauseValues) {
-            $.btnRetrieve.show();
-            alert("You paused at " + hourVal + ":" + minVal + ":" + secVal);
-        } else {
+        if (data.pauseValues) $.btnRetrieve.show(); else {
             $.btnRetrieve.hide();
-            alert("You spend " + hourVal + ":" + minVal + ":" + secVal + " to slove this Sudoku");
             if (void 0 == $.bestSecond.getText()) {
                 $.msgScore.setText("Best time:");
                 $.bestHour.setText("00:");

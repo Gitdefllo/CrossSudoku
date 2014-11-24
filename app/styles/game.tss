@@ -16,7 +16,6 @@
 // Wrappers
 "#topWrapper": {
 	top: 10, left: 20, right: 20, // margins
-	width: Ti.UI.FILL,
 	height: 60,
 	layout: "horizontal"
 }
@@ -31,13 +30,26 @@
 	bottom: 0, left: 20, right: 20, // margins
 	height: Ti.UI.SIZE
 }
-//TextField
+
+/** PATCH TIMERVIEW TO RIGHT CORNER **/
+"#leftCorner": {
+	left: 0,
+	width: "50%",
+	height: Ti.UI.SIZE
+}
+"#rightCorner": {
+	right: 0,
+	width: "50%",
+	height: Ti.UI.SIZE
+}
+/** END PATCH **/
+
+// TextField
 "TextField": {
 	width: Titanium.UI.SIZE,
 	height: Titanium.UI.SIZE,
 	color: "#000"
 }
-
 
 // Label
 "Label": {
@@ -81,7 +93,7 @@
 
 "#timerMainLabel": {
 	font: {
-		fontSize: 25
+		fontSize: 20
 	},
 	right: 0,
 	verticalAlign: "center",
@@ -92,7 +104,7 @@
 
 "#timerHour": {
 	font: {
-		fontSize: 25
+		fontSize: 20
 	},
 	left: 5,
 	verticalAlign: "center",
@@ -102,7 +114,7 @@
 
 "#timerMinute": {
 	font: {
-		fontSize: 25
+		fontSize: 20
 	},
 	verticalAlign: "center",
 	width: Ti.UI.SIZE,
@@ -111,7 +123,7 @@
 
 "#timerSecond": {
 	font: {
-		fontSize: 25
+		fontSize: 20
 	},
 	verticalAlign: "center",
 	width: Ti.UI.SIZE,
@@ -133,17 +145,6 @@
 	borderWidth: 1,
     borderColor: '#1b1b1b',
     layout:"horizontal"
-}
-
-".labelInTable": {
-	borderWidth: 1,
-	width: 50,
-	height: 50,
-    borderColor: '#1b1b1b',
-	font: {
-		fontSize: 30
-	},
-	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
 }
 
 // Confirm button (validate)
