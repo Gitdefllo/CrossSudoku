@@ -189,7 +189,8 @@ function Controller() {
         id: "btnRetrieve"
     });
     $.__views.buttonContainer.add($.__views.btnRetrieve);
-    $.__views.__alloyId1 = Ti.UI.createLabel({
+    retrieveGame ? $.__views.btnRetrieve.addEventListener("click", retrieveGame) : __defers["$.__views.btnRetrieve!click!retrieveGame"] = true;
+    $.__views.__alloyId0 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "white",
@@ -201,10 +202,9 @@ function Controller() {
         bottom: "10dp",
         textAlign: "center",
         text: "continue",
-        id: "__alloyId1"
+        id: "__alloyId0"
     });
-    $.__views.btnRetrieve.add($.__views.__alloyId1);
-    retrieveGame ? $.__views.__alloyId1.addEventListener("click", retrieveGame) : __defers["$.__views.__alloyId1!click!retrieveGame"] = true;
+    $.__views.btnRetrieve.add($.__views.__alloyId0);
     $.__views.btnPlay = Ti.UI.createView({
         width: "47%",
         height: Ti.UI.SIZE,
@@ -217,7 +217,8 @@ function Controller() {
         id: "btnPlay"
     });
     $.__views.buttonContainer.add($.__views.btnPlay);
-    $.__views.__alloyId2 = Ti.UI.createLabel({
+    playGame ? $.__views.btnPlay.addEventListener("click", playGame) : __defers["$.__views.btnPlay!click!playGame"] = true;
+    $.__views.__alloyId1 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "white",
@@ -229,26 +230,26 @@ function Controller() {
         bottom: "10dp",
         textAlign: "center",
         text: "new game",
-        id: "__alloyId2"
+        id: "__alloyId1"
     });
-    $.__views.btnPlay.add($.__views.__alloyId2);
-    playGame ? $.__views.__alloyId2.addEventListener("click", playGame) : __defers["$.__views.__alloyId2!click!playGame"] = true;
+    $.__views.btnPlay.add($.__views.__alloyId1);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var secVal, minVal, hourVal;
     $.btnRetrieve.hide();
-    void 0 == $.bestSecond.getText() && $.msgScore.setText('Tap on "new game" below to play.');
+    $.btnRetrieve.visible = false;
+    (void 0 == $.bestSecond.getText() || "" == $.bestSecond.getText()) && $.msgScore.setText('Select "new game" to play.');
     Ti.App.addEventListener("retrieveDatas", function(data) {
         secVal = data.secValues;
         minVal = data.minValues;
         hourVal = data.hourValues;
         if (data.pauseValues) {
             $.btnRetrieve.show();
-            alert("You paused at " + hourVal + ":" + minVal + ":" + secVal);
+            $.btnRetrieve.visible = true;
         } else {
             $.btnRetrieve.hide();
-            alert("You spend " + hourVal + ":" + minVal + ":" + secVal + " to slove this Sudoku");
-            if (void 0 == $.bestSecond.getText()) {
+            $.btnRetrieve.visible = false;
+            if (void 0 == $.bestSecond.getText() || "" == $.bestSecond.getText()) {
                 $.msgScore.setText("Best time:");
                 $.bestHour.setText("00:");
                 $.bestMinute.setText("00:");
@@ -265,8 +266,8 @@ function Controller() {
         }
     });
     $.index.open();
-    __defers["$.__views.__alloyId1!click!retrieveGame"] && $.__views.__alloyId1.addEventListener("click", retrieveGame);
-    __defers["$.__views.__alloyId2!click!playGame"] && $.__views.__alloyId2.addEventListener("click", playGame);
+    __defers["$.__views.btnRetrieve!click!retrieveGame"] && $.__views.btnRetrieve.addEventListener("click", retrieveGame);
+    __defers["$.__views.btnPlay!click!playGame"] && $.__views.btnPlay.addEventListener("click", playGame);
     _.extend($, exports);
 }
 

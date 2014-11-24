@@ -22,6 +22,68 @@ function Controller() {
         s = s.replace(":", "");
         return s;
     }
+    function initGrid() {
+        var row, tf, sf, cpt = 0;
+        for (i = 1; 9 >= i; i++) {
+            row = Ti.UI.createTableViewRow({
+                className: "row",
+                height: 50,
+                width: 452,
+                layout: "horizontal"
+            });
+            if (4 == i || 7 == i) {
+                sf = Ti.UI.createView({
+                    id: "separator" + i,
+                    height: 1,
+                    width: Titanium.UI.FILL,
+                    backgroundColor: "#1b1b1b"
+                });
+                row.add(sf);
+            }
+            for (j = 1; 9 >= j; j++) {
+                tf = Ti.UI.createTextField({
+                    id: "case" + j * i,
+                    pos: j * i - 1,
+                    height: 50,
+                    width: 50,
+                    textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+                    borderWidth: 1,
+                    borderColor: "#c4c4c4",
+                    maxLength: 1
+                });
+                if (4 == j || 7 == j) {
+                    sf = Ti.UI.createView({
+                        id: "separator" + j * i,
+                        pos: j * i - 1,
+                        height: Titanium.UI.FILL,
+                        width: 1,
+                        backgroundColor: "#1b1b1b"
+                    });
+                    row.add(sf);
+                }
+                row.add(tf);
+                array[cpt] = tf;
+                cpt++;
+            }
+            $.table.add(row);
+        }
+        for (j = 0; 80 >= j; j++) {
+            array[j].setValue(arrayStart[j]);
+            null != arrayStart[j] ? array[j].setEnabled(false) : array[j].addEventListener("blur", function(e) {
+                if ("" != e.source.value) if (e.source.value != arraySolution[e.source.pos]) {
+                    alert("You suck! You wrote: " + e.source.value + " (It should be: " + arraySolution[e.source.pos] + ")");
+                    e.source.backgroundColor = "red";
+                    e.source.color = "white";
+                } else {
+                    alert("Well done!!!");
+                    arrayStart[e.source.pos] = e.source.value;
+                    e.source.backgroundColor = "green";
+                    e.source.color = "white";
+                    e.source.setEnabled(false);
+                }
+            });
+        }
+    }
     function checkSudoku() {
         sec = rewritetime($.timerSecond.getText());
         min = rewritetime($.timerMinute.getText());
@@ -82,12 +144,18 @@ function Controller() {
         top: 10,
         left: 20,
         right: 20,
-        height: Ti.UI.SIZE,
-        width: Titanium.UI.FILL,
+        height: 60,
         layout: "horizontal",
         id: "topWrapper"
     });
     $.__views.wrapper.add($.__views.topWrapper);
+    $.__views.leftCorner = Ti.UI.createView({
+        left: 0,
+        width: "50%",
+        height: Ti.UI.SIZE,
+        id: "leftCorner"
+    });
+    $.__views.topWrapper.add($.__views.leftCorner);
     $.__views.backView = Ti.UI.createView({
         left: 0,
         width: Ti.UI.SIZE,
@@ -99,7 +167,7 @@ function Controller() {
         borderRadius: 6,
         id: "backView"
     });
-    $.__views.topWrapper.add($.__views.backView);
+    $.__views.leftCorner.add($.__views.backView);
     goBack ? $.__views.backView.addEventListener("click", goBack) : __defers["$.__views.backView!click!goBack"] = true;
     $.__views.backLabel = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
@@ -118,16 +186,30 @@ function Controller() {
         id: "backLabel"
     });
     $.__views.backView.add($.__views.backLabel);
+    $.__views.rightCorner = Ti.UI.createView({
+        right: 0,
+        width: "50%",
+        height: Ti.UI.SIZE,
+        id: "rightCorner"
+    });
+    $.__views.topWrapper.add($.__views.rightCorner);
     $.__views.timerView = Ti.UI.createView({
+        right: 0,
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
+        layout: "horizontal",
         id: "timerView"
     });
-    $.__views.topWrapper.add($.__views.timerView);
+    $.__views.rightCorner.add($.__views.timerView);
     $.__views.timerMainLabel = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
+        font: {
+            fontSize: 20
+        },
+        right: 0,
+        verticalAlign: "center",
         layout: "horizontal",
         text: "Time:",
         id: "timerMainLabel"
@@ -137,6 +219,11 @@ function Controller() {
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
+        font: {
+            fontSize: 20
+        },
+        left: 5,
+        verticalAlign: "center",
         id: "timerHour"
     });
     $.__views.timerMainLabel.add($.__views.timerHour);
@@ -144,6 +231,10 @@ function Controller() {
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
+        font: {
+            fontSize: 20
+        },
+        verticalAlign: "center",
         id: "timerMinute"
     });
     $.__views.timerMainLabel.add($.__views.timerMinute);
@@ -151,1274 +242,89 @@ function Controller() {
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
+        font: {
+            fontSize: 20
+        },
+        verticalAlign: "center",
         id: "timerSecond"
     });
     $.__views.timerMainLabel.add($.__views.timerSecond);
-    $.__views.btnConfirm = Ti.UI.createButton({
-        right: "0",
-        title: "Valider",
-        id: "btnConfirm"
-    });
-    $.__views.topWrapper.add($.__views.btnConfirm);
-    checkSudoku ? $.__views.btnConfirm.addEventListener("click", checkSudoku) : __defers["$.__views.btnConfirm!click!checkSudoku"] = true;
-    var __alloyId0 = [];
-    $.__views.row = Ti.UI.createTableViewRow({
-        left: 0,
-        top: 0,
-        width: Titanium.UI.SIZE,
-        height: Ti.UI.SIZE,
-        borderWidth: 1,
-        borderColor: "#1b1b1b",
-        layout: "horizontal",
-        id: "row"
-    });
-    __alloyId0.push($.__views.row);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "1",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "2",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "3",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createTextField({
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "5",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "6",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "7",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "8",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "9",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.row = Ti.UI.createTableViewRow({
-        left: 0,
-        top: 0,
-        width: Titanium.UI.SIZE,
-        height: Ti.UI.SIZE,
-        borderWidth: 1,
-        borderColor: "#1b1b1b",
-        layout: "horizontal",
-        id: "row"
-    });
-    __alloyId0.push($.__views.row);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "1",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "2",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "3",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "4",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "5",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "6",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "7",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "8",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "9",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.row = Ti.UI.createTableViewRow({
-        left: 0,
-        top: 0,
-        width: Titanium.UI.SIZE,
-        height: Ti.UI.SIZE,
-        borderWidth: 1,
-        borderColor: "#1b1b1b",
-        layout: "horizontal",
-        id: "row"
-    });
-    __alloyId0.push($.__views.row);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "1",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "2",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "3",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "4",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "5",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "6",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "7",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "8",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "9",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.row = Ti.UI.createTableViewRow({
-        left: 0,
-        top: 0,
-        width: Titanium.UI.SIZE,
-        height: Ti.UI.SIZE,
-        borderWidth: 1,
-        borderColor: "#1b1b1b",
-        layout: "horizontal",
-        id: "row"
-    });
-    __alloyId0.push($.__views.row);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "1",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "2",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "3",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "4",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "5",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "6",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "7",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "8",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "9",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.row = Ti.UI.createTableViewRow({
-        left: 0,
-        top: 0,
-        width: Titanium.UI.SIZE,
-        height: Ti.UI.SIZE,
-        borderWidth: 1,
-        borderColor: "#1b1b1b",
-        layout: "horizontal",
-        id: "row"
-    });
-    __alloyId0.push($.__views.row);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "1",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "2",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "3",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "4",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "5",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "6",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "7",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "8",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "9",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.row = Ti.UI.createTableViewRow({
-        left: 0,
-        top: 0,
-        width: Titanium.UI.SIZE,
-        height: Ti.UI.SIZE,
-        borderWidth: 1,
-        borderColor: "#1b1b1b",
-        layout: "horizontal",
-        id: "row"
-    });
-    __alloyId0.push($.__views.row);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "1",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "2",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "3",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "4",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "5",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "6",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "7",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "8",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "9",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.row = Ti.UI.createTableViewRow({
-        left: 0,
-        top: 0,
-        width: Titanium.UI.SIZE,
-        height: Ti.UI.SIZE,
-        borderWidth: 1,
-        borderColor: "#1b1b1b",
-        layout: "horizontal",
-        id: "row"
-    });
-    __alloyId0.push($.__views.row);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "1",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "2",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "3",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "4",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "5",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "6",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "7",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "8",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "9",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.row = Ti.UI.createTableViewRow({
-        left: 0,
-        top: 0,
-        width: Titanium.UI.SIZE,
-        height: Ti.UI.SIZE,
-        borderWidth: 1,
-        borderColor: "#1b1b1b",
-        layout: "horizontal",
-        id: "row"
-    });
-    __alloyId0.push($.__views.row);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "1",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "2",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "3",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "4",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "5",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "6",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "7",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "8",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "9",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.row = Ti.UI.createTableViewRow({
-        left: 0,
-        top: 0,
-        width: Titanium.UI.SIZE,
-        height: Ti.UI.SIZE,
-        borderWidth: 1,
-        borderColor: "#1b1b1b",
-        layout: "horizontal",
-        id: "row"
-    });
-    __alloyId0.push($.__views.row);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "1",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "2",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "3",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "4",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "5",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "6",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "7",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "8",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.labelInTable = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        borderWidth: 1,
-        size: 150,
-        borderColor: "#1b1b1b",
-        font: {
-            fontSize: 30
-        },
-        text: "9",
-        id: "labelInTable"
-    });
-    $.__views.row.add($.__views.labelInTable);
-    $.__views.table = Ti.UI.createTableView({
-        width: Titanium.UI.SIZE,
-        backgroundColor: "white",
+    $.__views.sudoWrapper = Ti.UI.createView({
         top: 20,
         left: 20,
         right: 20,
+        height: Ti.UI.SIZE,
+        id: "sudoWrapper"
+    });
+    $.__views.wrapper.add($.__views.sudoWrapper);
+    $.__views.table = Ti.UI.createTableView({
+        height: Ti.UI.SIZE,
+        backgroundColor: "white",
+        top: 20,
+        bottom: 20,
         layout: "vertical",
-        data: __alloyId0,
         id: "table"
     });
-    $.__views.wrapper.add($.__views.table);
+    $.__views.sudoWrapper.add($.__views.table);
+    $.__views.bottomWrapper = Ti.UI.createView({
+        bottom: 0,
+        left: 20,
+        right: 20,
+        height: Ti.UI.SIZE,
+        id: "bottomWrapper"
+    });
+    $.__views.wrapper.add($.__views.bottomWrapper);
+    $.__views.confirmView = Ti.UI.createView({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        backgroundColor: "green",
+        color: "white",
+        borderWidth: 1,
+        borderColor: "#1b1b1b",
+        borderRadius: 6,
+        id: "confirmView"
+    });
+    $.__views.bottomWrapper.add($.__views.confirmView);
+    checkSudoku ? $.__views.confirmView.addEventListener("click", checkSudoku) : __defers["$.__views.confirmView!click!checkSudoku"] = true;
+    $.__views.btnConfirm = Ti.UI.createLabel({
+        width: "47%",
+        height: Ti.UI.SIZE,
+        color: "white",
+        font: {
+            fontSize: 20
+        },
+        backgroundColor: "none",
+        top: "10dp",
+        bottom: "10dp",
+        textAlign: "center",
+        text: "validate",
+        id: "btnConfirm"
+    });
+    $.__views.confirmView.add($.__views.btnConfirm);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var sec, min, hr;
     var args = arguments[0] || {};
+    var totalSeconds, totalHours;
+    var array = [];
+    var arraySolution = [ 2, 9, 4, 1, 7, 3, 5, 8, 6, 1, 5, 6, 2, 8, 9, 3, 4, 7, 3, 8, 7, 4, 6, 5, 1, 9, 2, 5, 7, 1, 3, 9, 2, 4, 6, 8, 4, 2, 3, 6, 1, 8, 7, 5, 9, 8, 6, 9, 5, 4, 7, 2, 3, 1, 9, 4, 2, 8, 5, 1, 6, 7, 3, 6, 1, 8, 7, 3, 4, 9, 2, 5, 7, 3, 5, 9, 2, 6, 8, 1, 4 ];
+    var arrayStart = [ 2, , , 1, , , , , 6, , , 6, , 8, , 3, , 7, 3, , , , 6, , , , , , , , , 9, , , , , , , , 6, , , , , , , , , , 4, 7, , , 1, 9, , , 8, , , , , 3, , , , 7, , , 9, , , , , 5, 9, , 6, 8, 1 ];
     if (1 == args.newGame) {
-        var totalSeconds = 0;
+        totalSeconds = 0;
         setInterval(updateTime, 1e3);
     }
+    initGrid();
     if (0 != args.timeHourSudoku || 0 != args.timeMinuteSudoku || 0 != args.timeSecondSudoku) {
-        var totalSeconds = args.timeSecondSudoku;
-        $.timerSecond.setText(":" + args.timeSecondSudoku);
-        $.timerMinute.setText(":" + args.timeMinuteSudoku);
-        $.timerHour.setText(args.timeHourSudoku);
+        totalSeconds = args.timeSecondSudoku;
+        totalMinutes = args.timeMinuteSudoku;
+        totalHours = args.timeHourSudoku;
+        $.timerSecond.setText(":" + totalSeconds);
+        $.timerMinute.setText(":" + totalMinutes);
+        $.timerHour.setText(totalHours);
         setInterval(updateTime, 1e3);
     }
     __defers["$.__views.backView!click!goBack"] && $.__views.backView.addEventListener("click", goBack);
-    __defers["$.__views.btnConfirm!click!checkSudoku"] && $.__views.btnConfirm.addEventListener("click", checkSudoku);
+    __defers["$.__views.confirmView!click!checkSudoku"] && $.__views.confirmView.addEventListener("click", checkSudoku);
     _.extend($, exports);
 }
 

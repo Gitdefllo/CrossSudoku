@@ -1,8 +1,0 @@
-"C:/Users/Florent/Documents/Development/Titanium-workspace/CrossSudoku/build/android/gen/android/support/v7/appcompat/R.java"
-"C:/Users/Florent/Documents/Development/Titanium-workspace/CrossSudoku/build/android/gen/com/esgi/crosssudoku/ApplicationStylesheet.java"
-"C:/Users/Florent/Documents/Development/Titanium-workspace/CrossSudoku/build/android/gen/com/esgi/crosssudoku/AssetCryptImpl.java"
-"C:/Users/Florent/Documents/Development/Titanium-workspace/CrossSudoku/build/android/gen/com/esgi/crosssudoku/CrosssudokuActivity.java"
-"C:/Users/Florent/Documents/Development/Titanium-workspace/CrossSudoku/build/android/gen/com/esgi/crosssudoku/CrosssudokuAppInfo.java"
-"C:/Users/Florent/Documents/Development/Titanium-workspace/CrossSudoku/build/android/gen/com/esgi/crosssudoku/CrosssudokuApplication.java"
-"C:/Users/Florent/Documents/Development/Titanium-workspace/CrossSudoku/build/android/gen/com/esgi/crosssudoku/R.java"
-"C:/Users/Florent/Documents/Development/Titanium-workspace/CrossSudoku/build/android/gen/ti/modules/titanium/ui/R.java"

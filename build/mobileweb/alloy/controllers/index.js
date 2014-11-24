@@ -237,14 +237,19 @@ function Controller() {
     _.extend($, $.__views);
     var secVal, minVal, hourVal;
     $.btnRetrieve.hide();
-    void 0 == $.bestSecond.getText() && $.msgScore.setText('Select "new game" to play.');
+    $.btnRetrieve.visible = false;
+    (void 0 == $.bestSecond.getText() || "" == $.bestSecond.getText()) && $.msgScore.setText('Select "new game" to play.');
     Ti.App.addEventListener("retrieveDatas", function(data) {
         secVal = data.secValues;
         minVal = data.minValues;
         hourVal = data.hourValues;
-        if (data.pauseValues) $.btnRetrieve.show(); else {
+        if (data.pauseValues) {
+            $.btnRetrieve.show();
+            $.btnRetrieve.visible = true;
+        } else {
             $.btnRetrieve.hide();
-            if (void 0 == $.bestSecond.getText()) {
+            $.btnRetrieve.visible = false;
+            if (void 0 == $.bestSecond.getText() || "" == $.bestSecond.getText()) {
                 $.msgScore.setText("Best time:");
                 $.bestHour.setText("00:");
                 $.bestMinute.setText("00:");
