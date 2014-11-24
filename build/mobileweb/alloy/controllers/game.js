@@ -72,13 +72,13 @@ function Controller() {
             null != arrayStart[j] ? array[j].setEnabled(false) : array[j].addEventListener("blur", function(e) {
                 if ("" != e.source.value) if (e.source.value != arraySolution[e.source.pos]) {
                     alert("You suck! You wrote: " + e.source.value + " (It should be: " + arraySolution[e.source.pos] + ")");
-                    e.source.backgroundColor = "red";
-                    e.source.color = "white";
+                    e.source.backgroundColor = "#ff0000";
+                    e.source.color = "#ffffff";
                 } else {
                     alert("Well done!!!");
                     arrayStart[e.source.pos] = e.source.value;
-                    e.source.backgroundColor = "green";
-                    e.source.color = "white";
+                    e.source.backgroundColor = "#00cc00";
+                    e.source.color = "#ffffff";
                     e.source.setEnabled(false);
                 }
             });
@@ -125,7 +125,7 @@ function Controller() {
     var exports = {};
     var __defers = {};
     $.__views.game_container = Ti.UI.createWindow({
-        backgroundColor: "white",
+        backgroundColor: "#ffffff",
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
         layout: "vertical",
@@ -161,7 +161,7 @@ function Controller() {
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         backgroundColor: "#e2e2e2",
-        color: "black",
+        color: "#000",
         borderWidth: 1,
         borderColor: "#1b1b1b",
         borderRadius: 6,
@@ -259,7 +259,7 @@ function Controller() {
     $.__views.wrapper.add($.__views.sudoWrapper);
     $.__views.table = Ti.UI.createTableView({
         height: Ti.UI.SIZE,
-        backgroundColor: "white",
+        backgroundColor: "#ffffff",
         top: 20,
         bottom: 20,
         layout: "vertical",
@@ -277,8 +277,8 @@ function Controller() {
     $.__views.confirmView = Ti.UI.createView({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
-        backgroundColor: "green",
-        color: "white",
+        backgroundColor: "#00cc00",
+        color: "#ffffff",
         borderWidth: 1,
         borderColor: "#1b1b1b",
         borderRadius: 6,
@@ -289,7 +289,7 @@ function Controller() {
     $.__views.btnConfirm = Ti.UI.createLabel({
         width: "47%",
         height: Ti.UI.SIZE,
-        color: "white",
+        color: "#ffffff",
         font: {
             fontSize: 20
         },

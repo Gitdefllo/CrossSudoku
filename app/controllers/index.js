@@ -3,7 +3,9 @@ var dataTableSudoku, secVal, minVal, hourVal, pausedVal;
 
 // hide "continue" button
 $.btnRetrieve.hide();
-$.btnRetrieve.visible = false;
+if (Titanium.Platform.name == 'android') { 
+	$.btnRetrieve.visible = false;
+}
 
 // hide "bestTime" if it's equals to 0 (no game played yet)
 if ($.bestSecond.getText() == undefined || $.bestSecond.getText() == '') {
@@ -24,12 +26,16 @@ Ti.App.addEventListener('retrieveDatas', function(data) {
 	if (data.pauseValues) {
 		// show "continue" button
 		$.btnRetrieve.show();
-		$.btnRetrieve.visible = true;
+		if (Titanium.Platform.name == 'android') { 
+			$.btnRetrieve.visible = true;
+		}
 		//alert('You paused at ' + hourVal + ':' + minVal + ':' + secVal);
 	} else {
 		// hide "continue" button when the game is sloved
 		$.btnRetrieve.hide();
-		$.btnRetrieve.visible = false;
+		if (Titanium.Platform.name == 'android') { 
+			$.btnRetrieve.visible = false;
+		}
 		//alert('You spend ' + hourVal + ':' + minVal + ':' + secVal +' to slove this Sudoku');
 		
 		// check if "bestSecond" are empty or undefined

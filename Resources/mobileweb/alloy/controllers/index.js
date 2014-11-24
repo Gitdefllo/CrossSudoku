@@ -52,7 +52,7 @@ function Controller() {
     var exports = {};
     var __defers = {};
     $.__views.index = Ti.UI.createWindow({
-        backgroundColor: "white",
+        backgroundColor: "#ffffff",
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
         layout: "vertical",
@@ -180,8 +180,8 @@ function Controller() {
     $.__views.btnRetrieve = Ti.UI.createView({
         width: "47%",
         height: Ti.UI.SIZE,
-        backgroundColor: "green",
-        color: "white",
+        backgroundColor: "#00cc00",
+        color: "#ffffff",
         borderWidth: 1,
         borderColor: "#1b1b1b",
         borderRadius: 6,
@@ -193,7 +193,7 @@ function Controller() {
     $.__views.__alloyId0 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
-        color: "white",
+        color: "#ffffff",
         font: {
             fontSize: 20
         },
@@ -208,8 +208,8 @@ function Controller() {
     $.__views.btnPlay = Ti.UI.createView({
         width: "47%",
         height: Ti.UI.SIZE,
-        backgroundColor: "green",
-        color: "white",
+        backgroundColor: "#00cc00",
+        color: "#ffffff",
         borderWidth: 1,
         borderColor: "#1b1b1b",
         borderRadius: 6,
@@ -221,7 +221,7 @@ function Controller() {
     $.__views.__alloyId1 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
-        color: "white",
+        color: "#ffffff",
         font: {
             fontSize: 20
         },
@@ -237,18 +237,13 @@ function Controller() {
     _.extend($, $.__views);
     var secVal, minVal, hourVal;
     $.btnRetrieve.hide();
-    $.btnRetrieve.visible = false;
     (void 0 == $.bestSecond.getText() || "" == $.bestSecond.getText()) && $.msgScore.setText('Select "new game" to play.');
     Ti.App.addEventListener("retrieveDatas", function(data) {
         secVal = data.secValues;
         minVal = data.minValues;
         hourVal = data.hourValues;
-        if (data.pauseValues) {
-            $.btnRetrieve.show();
-            $.btnRetrieve.visible = true;
-        } else {
+        if (data.pauseValues) $.btnRetrieve.show(); else {
             $.btnRetrieve.hide();
-            $.btnRetrieve.visible = false;
             if (void 0 == $.bestSecond.getText() || "" == $.bestSecond.getText()) {
                 $.msgScore.setText("Best time:");
                 $.bestHour.setText("00:");

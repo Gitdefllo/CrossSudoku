@@ -72,13 +72,13 @@ function Controller() {
             null != arrayStart[j] ? array[j].setEnabled(false) : array[j].addEventListener("blur", function(e) {
                 if ("" != e.source.value) if (e.source.value != arraySolution[e.source.pos]) {
                     alert("You suck! You wrote: " + e.source.value + " (It should be: " + arraySolution[e.source.pos] + ")");
-                    e.source.backgroundColor = "red";
-                    e.source.color = "white";
+                    e.source.backgroundColor = "#ff0000";
+                    e.source.color = "#ffffff";
                 } else {
                     alert("Well done!!!");
                     arrayStart[e.source.pos] = e.source.value;
-                    e.source.backgroundColor = "green";
-                    e.source.color = "white";
+                    e.source.backgroundColor = "#00cc00";
+                    e.source.color = "#ffffff";
                     e.source.setEnabled(false);
                 }
             });
