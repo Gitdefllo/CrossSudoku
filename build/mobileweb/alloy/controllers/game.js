@@ -23,17 +23,23 @@ function Controller() {
         return s;
     }
     function initGrid() {
-        var cpt = 0;
-        var row;
-        var tf;
+        var row, tf, sf, cpt = 0;
         for (i = 1; 9 >= i; i++) {
             row = Ti.UI.createTableViewRow({
                 className: "row",
-                height: 51,
-                width: 460,
-                backgroundColor: 0,
+                height: 50,
+                width: 452,
                 layout: "horizontal"
             });
+            if (4 == i || 7 == i) {
+                sf = Ti.UI.createView({
+                    id: "separator" + i,
+                    height: 1,
+                    width: Titanium.UI.FILL,
+                    backgroundColor: "#1b1b1b"
+                });
+                row.add(sf);
+            }
             for (j = 1; 9 >= j; j++) {
                 tf = Ti.UI.createTextField({
                     id: "case" + j * i,
@@ -42,9 +48,19 @@ function Controller() {
                     width: 50,
                     textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
                     borderWidth: 1,
-                    borderColor: "#1b1b1b",
+                    borderColor: "#c4c4c4",
                     maxLength: 1
                 });
+                if (4 == j || 7 == j) {
+                    sf = Ti.UI.createView({
+                        id: "separator" + j * i,
+                        pos: j * i - 1,
+                        height: Titanium.UI.FILL,
+                        width: 1,
+                        backgroundColor: "#1b1b1b"
+                    });
+                    row.add(sf);
+                }
                 row.add(tf);
                 array[cpt] = tf;
                 cpt++;
@@ -55,11 +71,11 @@ function Controller() {
             array[j].setValue(arrayStart[j]);
             null != arrayStart[j] ? array[j].setEnabled(false) : array[j].addEventListener("blur", function(e) {
                 if ("" != e.source.value) if (e.source.value != arraySolution[e.source.pos]) {
-                    alert("You suck! You wrote: " + e.source.value + " (It should be:" + arraySolution[e.source.pos] + ")");
+                    alert("You suck! You wrote: " + e.source.value + " (It should be: " + arraySolution[e.source.pos] + ")");
                     e.source.backgroundColor = "red";
                     e.source.color = "white";
                 } else {
-                    alert("You rock!!!");
+                    alert("Well done!!!");
                     arrayStart[e.source.pos] = e.source.value;
                     e.source.backgroundColor = "green";
                     e.source.color = "white";
@@ -238,12 +254,10 @@ function Controller() {
         left: 20,
         right: 20,
         height: Ti.UI.SIZE,
-        width: Titanium.UI.FILL,
         id: "sudoWrapper"
     });
     $.__views.wrapper.add($.__views.sudoWrapper);
     $.__views.table = Ti.UI.createTableView({
-        width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         backgroundColor: "white",
         top: 20,
@@ -291,19 +305,22 @@ function Controller() {
     _.extend($, $.__views);
     var sec, min, hr;
     var args = arguments[0] || {};
+    var totalSeconds, totalHours;
     var array = [];
     var arraySolution = [ 2, 9, 4, 1, 7, 3, 5, 8, 6, 1, 5, 6, 2, 8, 9, 3, 4, 7, 3, 8, 7, 4, 6, 5, 1, 9, 2, 5, 7, 1, 3, 9, 2, 4, 6, 8, 4, 2, 3, 6, 1, 8, 7, 5, 9, 8, 6, 9, 5, 4, 7, 2, 3, 1, 9, 4, 2, 8, 5, 1, 6, 7, 3, 6, 1, 8, 7, 3, 4, 9, 2, 5, 7, 3, 5, 9, 2, 6, 8, 1, 4 ];
     var arrayStart = [ 2, , , 1, , , , , 6, , , 6, , 8, , 3, , 7, 3, , , , 6, , , , , , , , , 9, , , , , , , , 6, , , , , , , , , , 4, 7, , , 1, 9, , , 8, , , , , 3, , , , 7, , , 9, , , , , 5, 9, , 6, 8, 1 ];
     if (1 == args.newGame) {
-        var totalSeconds = 0;
+        totalSeconds = 0;
         setInterval(updateTime, 1e3);
     }
     initGrid();
     if (0 != args.timeHourSudoku || 0 != args.timeMinuteSudoku || 0 != args.timeSecondSudoku) {
-        var totalSeconds = args.timeSecondSudoku;
-        $.timerSecond.setText(":" + args.timeSecondSudoku);
-        $.timerMinute.setText(":" + args.timeMinuteSudoku);
-        $.timerHour.setText(args.timeHourSudoku);
+        totalSeconds = args.timeSecondSudoku;
+        totalMinutes = args.timeMinuteSudoku;
+        totalHours = args.timeHourSudoku;
+        $.timerSecond.setText(":" + totalSeconds);
+        $.timerMinute.setText(":" + totalMinutes);
+        $.timerHour.setText(totalHours);
         setInterval(updateTime, 1e3);
     }
     __defers["$.__views.backView!click!goBack"] && $.__views.backView.addEventListener("click", goBack);

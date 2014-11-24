@@ -1,6 +1,7 @@
 // init received arguments
 var sec, min, hr;
 var args = arguments[0] || {};
+var totalSeconds, totalMiutes, totalHours;
 
 // table with all TextFields (81)
 var array = [];
@@ -28,17 +29,21 @@ var arrayStart = 		[2, , , 1, , , , , 6,
 // check if it's a new game
 if(args.newGame == 1) {
 	// init the timer and interval time
-	var totalSeconds = 0;
+	totalSeconds = 0;
 	setInterval(updateTime, 1000);
 }
 
+// initialize Sudoku
 initGrid();
+
 // check the time
 if(args.timeHourSudoku != 00 || args.timeMinuteSudoku != 00 || args.timeSecondSudoku != 00) {
-	var totalSeconds = args.timeSecondSudoku;
-	$.timerSecond.setText(':' + args.timeSecondSudoku);
-	$.timerMinute.setText(':' + args.timeMinuteSudoku);
-	$.timerHour.setText(args.timeHourSudoku);
+	totalSeconds = args.timeSecondSudoku;
+	totalMinutes = args.timeMinuteSudoku;
+	totalHours = args.timeHourSudoku;
+	$.timerSecond.setText(':' + totalSeconds);
+	$.timerMinute.setText(':' + totalMinutes);
+	$.timerHour.setText(totalHours);
 	setInterval(updateTime, 1000);
 }
 
@@ -47,7 +52,7 @@ function updateTime() {
 	++totalSeconds;
 	$.timerSecond.setText(':' + writetime(totalSeconds%60));
 	$.timerMinute.setText(':' + writetime(parseInt(totalSeconds/60))); //  -- check the minute, it's wrong when minutes aren't 0
-	$.timerHour.setText(writetime(parseInt(totalSeconds/3600))); // -- check the hour?
+	$.timerHour.setText(writetime(parseInt(totalSeconds/3600))); // -- check the hour? same here.
 }
 
 // to write time with "0" in first position
@@ -69,17 +74,24 @@ function rewritetime(s) {
 
 // initialize the grid
 function initGrid(){
-	var cpt = 0;
-	var row;
-	var tf;
-	for(i = 1; i<= 9; i++){
+	var cpt = 0, row, tf, sf;
+	
+	for(i = 1; i<=9; i++){
 		row = Ti.UI.createTableViewRow({
 			className: "row",
-			height: 51, 
-			width: 460,
-			backgroundColor: 000000, 
+			height: 50, 
+			width: 452,
 			layout: "horizontal"
 		});
+		if (i==4 || i==7) {
+			sf = Ti.UI.createView({
+				id: "separator"+i, 
+				height: 1,
+				width: Titanium.UI.FILL,
+				backgroundColor: '#1b1b1b'
+			});
+			row.add(sf);
+		}
 		
 		for(j = 1; j<=9; j++){
 			tf = Ti.UI.createTextField({
@@ -89,9 +101,19 @@ function initGrid(){
 				width: 50,
 				textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER, 
 				borderWidth: 1, 
-				borderColor: '#1b1b1b',
+				borderColor: '#c4c4c4',
 				maxLength: 1
 			});
+			if (j==4 || j==7) {
+				sf = Ti.UI.createView({
+					id: "separator"+j*i, 
+					pos: j*i-1,
+					height: Titanium.UI.FILL,
+					width: 1,
+					backgroundColor: '#1b1b1b'
+				});
+				row.add(sf);
+			}
 			
 			row.add(tf);
 			array[cpt] = tf;
@@ -108,7 +130,7 @@ function initGrid(){
 			array[j].addEventListener('blur', function(e){
 				if(e.source.value != ""){
 					if(e.source.value != arraySolution[e.source.pos]){
-						alert("You suck! You wrote: "+e.source.value+" (It should be:"+arraySolution[e.source.pos]+")");
+						alert("You suck! You wrote: "+e.source.value+" (It should be: "+arraySolution[e.source.pos]+")");
 						e.source.backgroundColor = 'red';
 						e.source.color = 'white';
 					}else{

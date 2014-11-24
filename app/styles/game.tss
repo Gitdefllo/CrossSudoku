@@ -22,8 +22,7 @@
 
 "#sudoWrapper": {
 	top: 20, left: 20, right: 20, // margins
-	height: Ti.UI.SIZE,
-	width: Titanium.UI.FILL
+	height: Ti.UI.SIZE
 }
 
 "#bottomWrapper": {
@@ -132,7 +131,6 @@
 
 //Sudoku table
 "#table": {
-	width: Ti.UI.FILL,
 	height: Ti.UI.SIZE,
 	backgroundColor: "white",
 	top: 20, bottom: 20, // margins
@@ -140,10 +138,6 @@
 }
 
 "TableViewRow": {
-	width: Ti.UI.SIZE,
-	height: Ti.UI.SIZE,
-	borderWidth: 1,
-    borderColor: '#1b1b1b',
     layout:"horizontal"
 }
 
