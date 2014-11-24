@@ -65,7 +65,6 @@ function Controller() {
                 array[cpt] = tf;
                 cpt++;
             }
-            $.table.add(row);
         }
         for (j = 0; 80 >= j; j++) {
             array[j].setValue(arrayStart[j]);
@@ -125,7 +124,7 @@ function Controller() {
     var exports = {};
     var __defers = {};
     $.__views.game_container = Ti.UI.createWindow({
-        backgroundColor: "white",
+        backgroundColor: "#ffffff",
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
         layout: "vertical",
@@ -161,7 +160,7 @@ function Controller() {
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         backgroundColor: "#e2e2e2",
-        color: "black",
+        color: "#000",
         borderWidth: 1,
         borderColor: "#1b1b1b",
         borderRadius: 6,
@@ -172,16 +171,16 @@ function Controller() {
     $.__views.backLabel = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
-        color: "black",
+        color: "#000",
         font: {
             fontSize: 25
         },
-        backgroundColor: "none",
+        backgroundColor: "transparent",
         top: "5dp",
         bottom: "5dp",
         right: "20dp",
         left: "20dp",
-        verticalAlign: "center",
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         text: "&lt; back",
         id: "backLabel"
     });
@@ -209,7 +208,7 @@ function Controller() {
             fontSize: 20
         },
         right: 0,
-        verticalAlign: "center",
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         layout: "horizontal",
         text: "Time:",
         id: "timerMainLabel"
@@ -223,7 +222,7 @@ function Controller() {
             fontSize: 20
         },
         left: 5,
-        verticalAlign: "center",
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         id: "timerHour"
     });
     $.__views.timerMainLabel.add($.__views.timerHour);
@@ -234,7 +233,7 @@ function Controller() {
         font: {
             fontSize: 20
         },
-        verticalAlign: "center",
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         id: "timerMinute"
     });
     $.__views.timerMainLabel.add($.__views.timerMinute);
@@ -245,7 +244,7 @@ function Controller() {
         font: {
             fontSize: 20
         },
-        verticalAlign: "center",
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         id: "timerSecond"
     });
     $.__views.timerMainLabel.add($.__views.timerSecond);
@@ -259,7 +258,7 @@ function Controller() {
     $.__views.wrapper.add($.__views.sudoWrapper);
     $.__views.table = Ti.UI.createTableView({
         height: Ti.UI.SIZE,
-        backgroundColor: "white",
+        backgroundColor: "#ffffff",
         top: 20,
         bottom: 20,
         layout: "vertical",
@@ -277,8 +276,8 @@ function Controller() {
     $.__views.confirmView = Ti.UI.createView({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
-        backgroundColor: "green",
-        color: "white",
+        backgroundColor: "#00cc00",
+        color: "#ffffff",
         borderWidth: 1,
         borderColor: "#1b1b1b",
         borderRadius: 6,
@@ -289,14 +288,14 @@ function Controller() {
     $.__views.btnConfirm = Ti.UI.createLabel({
         width: "47%",
         height: Ti.UI.SIZE,
-        color: "white",
+        color: "#ffffff",
         font: {
             fontSize: 20
         },
-        backgroundColor: "none",
+        backgroundColor: "transparent",
         top: "10dp",
         bottom: "10dp",
-        textAlign: "center",
+        textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
         text: "validate",
         id: "btnConfirm"
     });

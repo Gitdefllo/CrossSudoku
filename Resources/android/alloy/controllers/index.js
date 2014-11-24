@@ -52,7 +52,7 @@ function Controller() {
     var exports = {};
     var __defers = {};
     $.__views.index = Ti.UI.createWindow({
-        backgroundColor: "white",
+        backgroundColor: "#ffffff",
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
         layout: "vertical",
@@ -94,7 +94,7 @@ function Controller() {
             fontSize: 28,
             fontWeight: "bold"
         },
-        verticalAlign: "center",
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         text: "CrossSudoku",
         id: "title"
     });
@@ -126,7 +126,7 @@ function Controller() {
         },
         top: "40dp",
         bottom: "40dp",
-        textAlign: "center",
+        textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
         layout: "horizontal",
         text: "",
         id: "msgScore"
@@ -180,8 +180,8 @@ function Controller() {
     $.__views.btnRetrieve = Ti.UI.createView({
         width: "47%",
         height: Ti.UI.SIZE,
-        backgroundColor: "green",
-        color: "white",
+        backgroundColor: "#00cc00",
+        color: "#ffffff",
         borderWidth: 1,
         borderColor: "#1b1b1b",
         borderRadius: 6,
@@ -193,14 +193,14 @@ function Controller() {
     $.__views.__alloyId0 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
-        color: "white",
+        color: "#ffffff",
         font: {
             fontSize: 20
         },
-        backgroundColor: "none",
+        backgroundColor: "transparent",
         top: "10dp",
         bottom: "10dp",
-        textAlign: "center",
+        textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
         text: "continue",
         id: "__alloyId0"
     });
@@ -208,8 +208,8 @@ function Controller() {
     $.__views.btnPlay = Ti.UI.createView({
         width: "47%",
         height: Ti.UI.SIZE,
-        backgroundColor: "green",
-        color: "white",
+        backgroundColor: "#00cc00",
+        color: "#ffffff",
         borderWidth: 1,
         borderColor: "#1b1b1b",
         borderRadius: 6,
@@ -221,14 +221,14 @@ function Controller() {
     $.__views.__alloyId1 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
-        color: "white",
+        color: "#ffffff",
         font: {
             fontSize: 20
         },
-        backgroundColor: "none",
+        backgroundColor: "transparent",
         top: "10dp",
         bottom: "10dp",
-        textAlign: "center",
+        textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
         text: "new game",
         id: "__alloyId1"
     });
