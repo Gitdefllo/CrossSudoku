@@ -23,7 +23,7 @@ function Controller() {
         return s;
     }
     function initGrid() {
-        var row, tf, sf, cpt = 0;
+        var row, tf, sf, cpt = 0, count = 0;
         for (i = 1; 9 >= i; i++) {
             row = Ti.UI.createTableViewRow({
                 className: "row",
@@ -33,7 +33,7 @@ function Controller() {
             });
             if (4 == i || 7 == i) {
                 sf = Ti.UI.createView({
-                    id: "separator" + i,
+                    className: "separator",
                     height: 1,
                     width: Titanium.UI.FILL,
                     backgroundColor: "#1b1b1b"
@@ -43,7 +43,7 @@ function Controller() {
             for (j = 1; 9 >= j; j++) {
                 tf = Ti.UI.createTextField({
                     id: "case" + j * i,
-                    pos: j * i - 1,
+                    pos: count,
                     height: 50,
                     width: 50,
                     textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
@@ -53,8 +53,7 @@ function Controller() {
                 });
                 if (4 == j || 7 == j) {
                     sf = Ti.UI.createView({
-                        id: "separator" + j * i,
-                        pos: j * i - 1,
+                        className: "separator",
                         height: Titanium.UI.FILL,
                         width: 1,
                         backgroundColor: "#1b1b1b"
@@ -64,6 +63,7 @@ function Controller() {
                 row.add(tf);
                 array[cpt] = tf;
                 cpt++;
+                count++;
             }
             $.table.add(row);
         }
@@ -71,7 +71,7 @@ function Controller() {
             array[j].setValue(arrayStart[j]);
             null != arrayStart[j] ? array[j].setEnabled(false) : array[j].addEventListener("blur", function(e) {
                 if ("" != e.source.value) if (e.source.value != arraySolution[e.source.pos]) {
-                    alert("You suck! You wrote: " + e.source.value + " (It should be: " + arraySolution[e.source.pos] + ")");
+                    alert("You suck! You wrote: " + e.source.value + " AND pos: " + e.source.pos + " (It should be: " + arraySolution[e.source.pos] + ")");
                     e.source.backgroundColor = "#ff0000";
                     e.source.color = "#ffffff";
                 } else {
@@ -172,16 +172,16 @@ function Controller() {
     $.__views.backLabel = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
-        color: "black",
+        color: "#000",
         font: {
             fontSize: 25
         },
-        backgroundColor: "none",
+        backgroundColor: "transparent",
         top: "5dp",
         bottom: "5dp",
         right: "20dp",
         left: "20dp",
-        verticalAlign: "center",
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         text: "&lt; back",
         id: "backLabel"
     });
@@ -209,7 +209,7 @@ function Controller() {
             fontSize: 20
         },
         right: 0,
-        verticalAlign: "center",
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         layout: "horizontal",
         text: "Time:",
         id: "timerMainLabel"
@@ -223,7 +223,7 @@ function Controller() {
             fontSize: 20
         },
         left: 5,
-        verticalAlign: "center",
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         id: "timerHour"
     });
     $.__views.timerMainLabel.add($.__views.timerHour);
@@ -234,7 +234,7 @@ function Controller() {
         font: {
             fontSize: 20
         },
-        verticalAlign: "center",
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         id: "timerMinute"
     });
     $.__views.timerMainLabel.add($.__views.timerMinute);
@@ -245,7 +245,7 @@ function Controller() {
         font: {
             fontSize: 20
         },
-        verticalAlign: "center",
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         id: "timerSecond"
     });
     $.__views.timerMainLabel.add($.__views.timerSecond);
@@ -293,10 +293,10 @@ function Controller() {
         font: {
             fontSize: 20
         },
-        backgroundColor: "none",
+        backgroundColor: "transparent",
         top: "10dp",
         bottom: "10dp",
-        textAlign: "center",
+        textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
         text: "validate",
         id: "btnConfirm"
     });

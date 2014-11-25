@@ -94,7 +94,7 @@ function Controller() {
             fontSize: 28,
             fontWeight: "bold"
         },
-        verticalAlign: "center",
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         text: "CrossSudoku",
         id: "title"
     });
@@ -126,7 +126,7 @@ function Controller() {
         },
         top: "40dp",
         bottom: "40dp",
-        textAlign: "center",
+        textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
         layout: "horizontal",
         text: "",
         id: "msgScore"
@@ -197,10 +197,10 @@ function Controller() {
         font: {
             fontSize: 20
         },
-        backgroundColor: "none",
+        backgroundColor: "transparent",
         top: "10dp",
         bottom: "10dp",
-        textAlign: "center",
+        textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
         text: "continue",
         id: "__alloyId0"
     });
@@ -225,10 +225,10 @@ function Controller() {
         font: {
             fontSize: 20
         },
-        backgroundColor: "none",
+        backgroundColor: "transparent",
         top: "10dp",
         bottom: "10dp",
-        textAlign: "center",
+        textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
         text: "new game",
         id: "__alloyId1"
     });

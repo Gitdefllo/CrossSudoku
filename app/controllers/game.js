@@ -74,7 +74,7 @@ function rewritetime(s) {
 
 // initialize the grid
 function initGrid(){
-	var cpt = 0, row, tf, sf;
+	var cpt = 0, row, tf, sf, count = 0;
 	
 	for(i = 1; i<=9; i++){
 		row = Ti.UI.createTableViewRow({
@@ -85,7 +85,7 @@ function initGrid(){
 		});
 		if (i==4 || i==7) {
 			sf = Ti.UI.createView({
-				id: "separator"+i, 
+				className: "separator", 
 				height: 1,
 				width: Titanium.UI.FILL,
 				backgroundColor: '#1b1b1b'
@@ -96,7 +96,7 @@ function initGrid(){
 		for(j = 1; j<=9; j++){
 			tf = Ti.UI.createTextField({
 				id: "case"+j*i, 
-				pos: j*i-1,
+				pos: count,
 				height: 50,
 				width: 50,
 				textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER, 
@@ -106,8 +106,7 @@ function initGrid(){
 			});
 			if (j==4 || j==7) {
 				sf = Ti.UI.createView({
-					id: "separator"+j*i, 
-					pos: j*i-1,
+					className: "separator",
 					height: Titanium.UI.FILL,
 					width: 1,
 					backgroundColor: '#1b1b1b'
@@ -118,6 +117,7 @@ function initGrid(){
 			row.add(tf);
 			array[cpt] = tf;
 			cpt++;
+			count++;
 		}
 		$.table.add(row);
 	}
