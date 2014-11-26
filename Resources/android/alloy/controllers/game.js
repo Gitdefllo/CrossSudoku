@@ -23,7 +23,7 @@ function Controller() {
         return s;
     }
     function initGrid() {
-        var row, tf, sf, cpt = 0;
+        var row, tf, sf, cpt = 0, count = 0;
         for (i = 1; 9 >= i; i++) {
             row = Ti.UI.createTableViewRow({
                 className: "row",
@@ -33,7 +33,7 @@ function Controller() {
             });
             if (4 == i || 7 == i) {
                 sf = Ti.UI.createView({
-                    id: "separator" + i,
+                    className: "separator",
                     height: 1,
                     width: Titanium.UI.FILL,
                     backgroundColor: "#1b1b1b"
@@ -43,7 +43,7 @@ function Controller() {
             for (j = 1; 9 >= j; j++) {
                 tf = Ti.UI.createTextField({
                     id: "case" + j * i,
-                    pos: j * i - 1,
+                    pos: count,
                     height: 50,
                     width: 50,
                     textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
@@ -53,8 +53,7 @@ function Controller() {
                 });
                 if (4 == j || 7 == j) {
                     sf = Ti.UI.createView({
-                        id: "separator" + j * i,
-                        pos: j * i - 1,
+                        className: "separator",
                         height: Titanium.UI.FILL,
                         width: 1,
                         backgroundColor: "#1b1b1b"
@@ -64,7 +63,9 @@ function Controller() {
                 row.add(tf);
                 array[cpt] = tf;
                 cpt++;
+                count++;
             }
+            $.tableView.appendRow(row);
         }
         for (j = 0; 80 >= j; j++) {
             array[j].setValue(arrayStart[j]);
@@ -181,7 +182,6 @@ function Controller() {
         right: "20dp",
         left: "20dp",
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
-        text: "&lt; back",
         id: "backLabel"
     });
     $.__views.backView.add($.__views.backLabel);
@@ -256,15 +256,10 @@ function Controller() {
         id: "sudoWrapper"
     });
     $.__views.wrapper.add($.__views.sudoWrapper);
-    $.__views.table = Ti.UI.createTableView({
-        height: Ti.UI.SIZE,
-        backgroundColor: "#ffffff",
-        top: 20,
-        bottom: 20,
-        layout: "vertical",
-        id: "table"
+    $.__views.tableView = Ti.UI.createTableView({
+        id: "tableView"
     });
-    $.__views.sudoWrapper.add($.__views.table);
+    $.__views.sudoWrapper.add($.__views.tableView);
     $.__views.bottomWrapper = Ti.UI.createView({
         bottom: 0,
         left: 20,
@@ -305,6 +300,7 @@ function Controller() {
     var sec, min, hr;
     var args = arguments[0] || {};
     var totalSeconds, totalHours;
+    $.backLabel.setText("< back");
     var array = [];
     var arraySolution = [ 2, 9, 4, 1, 7, 3, 5, 8, 6, 1, 5, 6, 2, 8, 9, 3, 4, 7, 3, 8, 7, 4, 6, 5, 1, 9, 2, 5, 7, 1, 3, 9, 2, 4, 6, 8, 4, 2, 3, 6, 1, 8, 7, 5, 9, 8, 6, 9, 5, 4, 7, 2, 3, 1, 9, 4, 2, 8, 5, 1, 6, 7, 3, 6, 1, 8, 7, 3, 4, 9, 2, 5, 7, 3, 5, 9, 2, 6, 8, 1, 4 ];
     var arrayStart = [ 2, , , 1, , , , , 6, , , 6, , 8, , 3, , 7, 3, , , , 6, , , , , , , , , 9, , , , , , , , 6, , , , , , , , , , 4, 7, , , 1, 9, , , 8, , , , , 3, , , , 7, , , 9, , , , , 5, 9, , 6, 8, 1 ];

@@ -24,6 +24,15 @@ function Controller() {
     }
     function initGrid() {
         var row, tf, sf, cpt = 0, count = 0;
+        tableView = Ti.UI.createTableViewRow({
+            id: "table",
+            height: Ti.UI.SIZE,
+            backgroundColor: "#ffffff",
+            top: 20,
+            bottom: 20,
+            layout: "vertical"
+        });
+        $.sudoWrapper.add(tableView);
         for (i = 1; 9 >= i; i++) {
             row = Ti.UI.createTableViewRow({
                 className: "row",
@@ -65,13 +74,13 @@ function Controller() {
                 cpt++;
                 count++;
             }
-            $.table.add(row);
+            tableView.add(row);
         }
         for (j = 0; 80 >= j; j++) {
             array[j].setValue(arrayStart[j]);
             null != arrayStart[j] ? array[j].setEnabled(false) : array[j].addEventListener("blur", function(e) {
                 if ("" != e.source.value) if (e.source.value != arraySolution[e.source.pos]) {
-                    alert("You suck! You wrote: " + e.source.value + " AND pos: " + e.source.pos + " (It should be: " + arraySolution[e.source.pos] + ")");
+                    alert("You suck! You wrote: " + e.source.value + " (It should be: " + arraySolution[e.source.pos] + ")");
                     e.source.backgroundColor = "#ff0000";
                     e.source.color = "#ffffff";
                 } else {
@@ -257,15 +266,6 @@ function Controller() {
         id: "sudoWrapper"
     });
     $.__views.wrapper.add($.__views.sudoWrapper);
-    $.__views.table = Ti.UI.createTableView({
-        height: Ti.UI.SIZE,
-        backgroundColor: "#ffffff",
-        top: 20,
-        bottom: 20,
-        layout: "vertical",
-        id: "table"
-    });
-    $.__views.sudoWrapper.add($.__views.table);
     $.__views.bottomWrapper = Ti.UI.createView({
         bottom: 0,
         left: 20,

@@ -4,7 +4,7 @@
 			<View id="topWrapper">
 				<View id="leftCorner">
 					<View id="backView" onClick="goBack">
-						<Label id="backLabel">&lt; back</Label>
+						<Label id="backLabel" />
 					</View>
 				</View>
 				<View id="rightCorner">
@@ -19,7 +19,7 @@
 				</View>
 			</View>
 			<View id="sudoWrapper">
-				<TableView id="table" />
+				<TableView id="tableView" />
 			</View>
 			<View id="bottomWrapper">
 				<View id="confirmView" onClick="checkSudoku">

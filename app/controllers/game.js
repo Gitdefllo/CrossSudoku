@@ -3,6 +3,9 @@ var sec, min, hr;
 var args = arguments[0] || {};
 var totalSeconds, totalMiutes, totalHours;
 
+// set text to back button
+$.backLabel.setText("< back");
+
 // table with all TextFields (81)
 var array = [];
 // table with solution
@@ -119,7 +122,7 @@ function initGrid(){
 			cpt++;
 			count++;
 		}
-		$.table.add(row);
+		$.tableView.appendRow(row);
 	}
 	
 	for(j = 0; j <= 80; j++){
