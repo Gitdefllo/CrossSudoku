@@ -130,9 +130,10 @@
 }
 
 //Sudoku table
-"#table": {
+"#tableView": {
 	height: Ti.UI.SIZE,
 	backgroundColor: "#ffffff",
+	separatorColor: 'transparent',
 	top: 20, bottom: 20, // margins
 	layout: "vertical"
 }

@@ -257,6 +257,12 @@ function Controller() {
     });
     $.__views.wrapper.add($.__views.sudoWrapper);
     $.__views.tableView = Ti.UI.createTableView({
+        height: Ti.UI.SIZE,
+        backgroundColor: "#ffffff",
+        separatorColor: "transparent",
+        top: 20,
+        bottom: 20,
+        layout: "vertical",
         id: "tableView"
     });
     $.__views.sudoWrapper.add($.__views.tableView);

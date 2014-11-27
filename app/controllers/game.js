@@ -103,6 +103,7 @@ function initGrid(){
 				height: 50,
 				width: 50,
 				textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER, 
+				keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
 				borderWidth: 1, 
 				borderColor: '#c4c4c4',
 				maxLength: 1
