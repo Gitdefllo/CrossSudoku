@@ -235,10 +235,12 @@ function Controller() {
     $.__views.btnPlay.add($.__views.__alloyId1);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    var secVal, minVal, hourVal;
+    var dataTableSudoku, secVal, minVal, hourVal;
     $.btnRetrieve.hide();
     (void 0 == $.bestSecond.getText() || "" == $.bestSecond.getText()) && $.msgScore.setText('Select "new game" to play.');
     Ti.App.addEventListener("retrieveDatas", function(data) {
+        dataTableSudoku = data.sudokuValues;
+        alert(dataTableSudoku);
         secVal = data.secValues;
         minVal = data.minValues;
         hourVal = data.hourValues;

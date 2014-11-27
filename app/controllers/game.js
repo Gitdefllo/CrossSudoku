@@ -102,17 +102,33 @@ function initGrid(){
 		}
 		
 		for(j = 1; j<=9; j++){
-			tf = Ti.UI.createTextField({
-				id: "case"+j*i, 
-				pos: count,
-				height: 50,
-				width: 50,
-				textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER, 
-				keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
-				borderWidth: 1, 
-				borderColor: '#c4c4c4',
-				maxLength: 1
-			});
+			 
+			if (Titanium.Platform.name != 'mobileweb') { 
+				// Number pad for mobile
+				tf = Ti.UI.createTextField({
+					id: "case"+j*i, 
+					pos: count,
+					height: 50,
+					width: 50,
+					textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+					keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
+					borderWidth: 1, 
+					borderColor: '#c4c4c4',
+					maxLength: 1
+				});
+			} else {
+				// No number pad
+				tf = Ti.UI.createTextField({
+					id: "case"+j*i, 
+					pos: count,
+					height: 50,
+					width: 50,
+					textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+					borderWidth: 1, 
+					borderColor: '#c4c4c4',
+					maxLength: 1
+				});
+			}
 			if (j==4 || j==7) {
 				sf = Ti.UI.createView({
 					className: "separator",

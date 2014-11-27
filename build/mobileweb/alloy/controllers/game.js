@@ -50,7 +50,6 @@ function Controller() {
                     height: 50,
                     width: 50,
                     textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
-                    keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
                     borderWidth: 1,
                     borderColor: "#c4c4c4",
                     maxLength: 1
@@ -89,6 +88,11 @@ function Controller() {
         }
     }
     function checkSudoku() {
+        var arrayCheck = [];
+        for (i = 1; 9 >= i; i++) {
+            rowState = $.tableView.children[i];
+            for (i = 0; 9 > i; i++) arrayCheck.add(rowState.children[i]);
+        }
         sec = rewritetime($.timerSecond.getText());
         min = rewritetime($.timerMinute.getText());
         hr = $.timerHour.getText();
@@ -96,7 +100,8 @@ function Controller() {
             secValues: sec,
             minValues: min,
             hourValues: hr,
-            pauseValues: false
+            pauseValues: false,
+            sudokuValues: arrayCheck
         });
         $.game_container.close();
     }
