@@ -259,10 +259,17 @@ function Controller() {
     $.__views.tableView = Ti.UI.createTableView({
         height: Ti.UI.SIZE,
         backgroundColor: "#ffffff",
+<<<<<<< HEAD
         separatorColor: "transparent",
         top: 20,
         bottom: 20,
         layout: "vertical",
+=======
+        top: 20,
+        bottom: 20,
+        layout: "vertical",
+        separatorColor: "#ffffff",
+>>>>>>> 511ed07f8fa15758b97e5162aaaf6e7b7998efae
         id: "tableView"
     });
     $.__views.sudoWrapper.add($.__views.tableView);
