@@ -44,10 +44,15 @@ if(args.timeHourSudoku != 00 || args.timeMinuteSudoku != 00 || args.timeSecondSu
 	totalSeconds = args.timeSecondSudoku;
 	totalMinutes = args.timeMinuteSudoku;
 	totalHours = args.timeHourSudoku;
-	$.timerSecond.setText(':' + totalSeconds);
-	$.timerMinute.setText(':' + totalMinutes);
-	$.timerHour.setText(totalHours);
+	totalSeconds = convertTime(args.timeHourSudoku, 
+		args.timeMinuteSudoku,
+		args.timeSecondSudoku);
 	setInterval(updateTime, 1000);
+}
+
+// convert time (hours'minutes"seconds) in seconds 
+function convertTime(h,m,s) {
+	return timeSeconds = parseInt((h*3600)) + parseInt((m*60)) + parseInt(s);
 }
 
 // update timer every 1sec

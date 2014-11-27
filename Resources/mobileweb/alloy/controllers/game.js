@@ -8,6 +8,9 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+    function convertTime(h, m, s) {
+        return timeSeconds = parseInt(3600 * h) + parseInt(60 * m) + parseInt(s);
+    }
     function updateTime() {
         ++totalSeconds;
         $.timerSecond.setText(":" + writetime(totalSeconds % 60));
@@ -47,6 +50,7 @@ function Controller() {
                     height: 50,
                     width: 50,
                     textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+                    keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
                     borderWidth: 1,
                     borderColor: "#c4c4c4",
                     maxLength: 1
@@ -259,17 +263,10 @@ function Controller() {
     $.__views.tableView = Ti.UI.createTableView({
         height: Ti.UI.SIZE,
         backgroundColor: "#ffffff",
-<<<<<<< HEAD
         separatorColor: "transparent",
         top: 20,
         bottom: 20,
         layout: "vertical",
-=======
-        top: 20,
-        bottom: 20,
-        layout: "vertical",
-        separatorColor: "#ffffff",
->>>>>>> 511ed07f8fa15758b97e5162aaaf6e7b7998efae
         id: "tableView"
     });
     $.__views.sudoWrapper.add($.__views.tableView);
@@ -326,9 +323,7 @@ function Controller() {
         totalSeconds = args.timeSecondSudoku;
         totalMinutes = args.timeMinuteSudoku;
         totalHours = args.timeHourSudoku;
-        $.timerSecond.setText(":" + totalSeconds);
-        $.timerMinute.setText(":" + totalMinutes);
-        $.timerHour.setText(totalHours);
+        totalSeconds = convertTime(args.timeHourSudoku, args.timeMinuteSudoku, args.timeSecondSudoku);
         setInterval(updateTime, 1e3);
     }
     __defers["$.__views.backView!click!goBack"] && $.__views.backView.addEventListener("click", goBack);
