@@ -1,9 +1,21 @@
 // General container
 ".container": {
-	backgroundColor: "#ffffff",
 	width: Ti.UI.FILL,
 	height: Ti.UI.FILL,
 	layout: "vertical"
+}
+
+"#topWrapper": {
+	top: 0,
+	width: Ti.UI.FILL,
+	height: 150
+}
+
+"#topImage": {
+	top: 20,
+	verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+	width: '40.0%',
+	height: 100
 }
 
 "#wrapper": {
@@ -39,6 +51,9 @@
 
 // Label
 "Label": {
+	font: {
+		fontFamily: "Arial"
+	},
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
 	color: "#000"
@@ -56,10 +71,12 @@
 
 // Score content
 "#contentView": {
-	top: 0, // margins
-	backgroundColor: "#e8e8e8",
+	top: 50, // margins
+	backgroundColor: "#404040",
+	color: "#ffffff",
 	borderWidth: 1,
     borderColor: '#1b1b1b',
+	// shadowColor: "#87cefa", shadowOffset: {x:-2,y:-2},
 	borderRadius: 6,
 	width: Ti.UI.FILL,
 	height: Ti.UI.SIZE
@@ -69,6 +86,7 @@
 	font: {
 		fontSize: 25
 	},
+	color: "#ffffff",
 	top: "40dp", bottom: "40dp", // padding
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
 	width: Ti.UI.SIZE,
@@ -109,9 +127,9 @@
 }
 
 ".buttonView": {
-	width: "47%",
+	width: Ti.UI.FILL,,
   	height: Ti.UI.SIZE,
-	backgroundColor: "#00cc00",
+	backgroundColor: "#bb2828",
 	color: "#ffffff",
 	borderWidth: 1,
     borderColor: '#1b1b1b',
@@ -136,7 +154,8 @@
 }
 
 "#btnRetrieve": { 
-	left: 0
+	left: 0,
+	bottom: 110,
 }
 
 

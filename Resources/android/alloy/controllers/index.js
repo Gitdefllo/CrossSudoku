@@ -20,6 +20,7 @@ function Controller() {
             timeMinuteSudoku: 0,
             timeHourSudoku: 0
         }).getView();
+        game.backgroundImage = "hq_dragon.jpg";
         game.open();
     }
     function retrieveGame() {
@@ -27,8 +28,10 @@ function Controller() {
             newGame: 0,
             timeSecondSudoku: secVal,
             timeMinuteSudoku: minVal,
-            timeHourSudoku: hourVal
+            timeHourSudoku: hourVal,
+            savedGameValue: currentGameValue
         }).getView();
+        game.backgroundImage = "hq_dragon.jpg";
         game.open();
     }
     function rewritetime(s) {
@@ -52,7 +55,6 @@ function Controller() {
     var exports = {};
     var __defers = {};
     $.__views.index = Ti.UI.createWindow({
-        backgroundColor: "#ffffff",
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
         layout: "vertical",
@@ -76,29 +78,15 @@ function Controller() {
         id: "topWrapper"
     });
     $.__views.wrapper.add($.__views.topWrapper);
-    $.__views.logo = Ti.UI.createImageView({
-        top: 10,
-        left: 0,
-        right: 10,
-        width: 60,
-        height: 60,
-        id: "logo",
-        image: "appicon.png"
-    });
-    $.__views.topWrapper.add($.__views.logo);
-    $.__views.title = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: 60,
-        color: "#000",
-        font: {
-            fontSize: 28,
-            fontWeight: "bold"
-        },
+    $.__views.topImage = Ti.UI.createImageView({
+        top: 20,
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
-        text: "CrossSudoku",
-        id: "title"
+        width: "40.0%",
+        height: 100,
+        id: "topImage",
+        image: "logo.png"
     });
-    $.__views.topWrapper.add($.__views.title);
+    $.__views.wrapper.add($.__views.topImage);
     $.__views.contentWrapper = Ti.UI.createView({
         right: 20,
         left: 20,
@@ -107,8 +95,9 @@ function Controller() {
     });
     $.__views.wrapper.add($.__views.contentWrapper);
     $.__views.contentView = Ti.UI.createView({
-        top: 0,
-        backgroundColor: "#e8e8e8",
+        top: 50,
+        backgroundColor: "#404040",
+        color: "#ffffff",
         borderWidth: 1,
         borderColor: "#1b1b1b",
         borderRadius: 6,
@@ -118,12 +107,13 @@ function Controller() {
     });
     $.__views.contentWrapper.add($.__views.contentView);
     $.__views.msgScore = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
         font: {
+            fontFamily: "Arial",
             fontSize: 25
         },
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        color: "#ffffff",
         top: "40dp",
         bottom: "40dp",
         textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
@@ -133,33 +123,36 @@ function Controller() {
     });
     $.__views.contentView.add($.__views.msgScore);
     $.__views.bestHour = Ti.UI.createLabel({
+        font: {
+            fontFamily: "Arial",
+            fontSize: 25
+        },
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
-        font: {
-            fontSize: 25
-        },
         left: 5,
         id: "bestHour"
     });
     $.__views.msgScore.add($.__views.bestHour);
     $.__views.bestMinute = Ti.UI.createLabel({
+        font: {
+            fontFamily: "Arial",
+            fontSize: 25
+        },
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
-        font: {
-            fontSize: 25
-        },
         id: "bestMinute"
     });
     $.__views.msgScore.add($.__views.bestMinute);
     $.__views.bestSecond = Ti.UI.createLabel({
+        font: {
+            fontFamily: "Arial",
+            fontSize: 25
+        },
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
-        font: {
-            fontSize: 25
-        },
         id: "bestSecond"
     });
     $.__views.msgScore.add($.__views.bestSecond);
@@ -178,25 +171,27 @@ function Controller() {
     });
     $.__views.bottomWrapper.add($.__views.buttonContainer);
     $.__views.btnRetrieve = Ti.UI.createView({
-        width: "47%",
+        width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
-        backgroundColor: "#00cc00",
+        backgroundColor: "#bb2828",
         color: "#ffffff",
         borderWidth: 1,
         borderColor: "#1b1b1b",
         borderRadius: 6,
         left: 0,
+        bottom: 110,
         id: "btnRetrieve"
     });
     $.__views.buttonContainer.add($.__views.btnRetrieve);
     retrieveGame ? $.__views.btnRetrieve.addEventListener("click", retrieveGame) : __defers["$.__views.btnRetrieve!click!retrieveGame"] = true;
     $.__views.__alloyId0 = Ti.UI.createLabel({
+        font: {
+            fontFamily: "Arial",
+            fontSize: 20
+        },
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "#ffffff",
-        font: {
-            fontSize: 20
-        },
         backgroundColor: "transparent",
         top: "10dp",
         bottom: "10dp",
@@ -206,9 +201,9 @@ function Controller() {
     });
     $.__views.btnRetrieve.add($.__views.__alloyId0);
     $.__views.btnPlay = Ti.UI.createView({
-        width: "47%",
+        width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
-        backgroundColor: "#00cc00",
+        backgroundColor: "#bb2828",
         color: "#ffffff",
         borderWidth: 1,
         borderColor: "#1b1b1b",
@@ -219,12 +214,13 @@ function Controller() {
     $.__views.buttonContainer.add($.__views.btnPlay);
     playGame ? $.__views.btnPlay.addEventListener("click", playGame) : __defers["$.__views.btnPlay!click!playGame"] = true;
     $.__views.__alloyId1 = Ti.UI.createLabel({
+        font: {
+            fontFamily: "Arial",
+            fontSize: 20
+        },
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "#ffffff",
-        font: {
-            fontSize: 20
-        },
         backgroundColor: "transparent",
         top: "10dp",
         bottom: "10dp",
@@ -243,6 +239,7 @@ function Controller() {
         secVal = data.secValues;
         minVal = data.minValues;
         hourVal = data.hourValues;
+        currentGameValue = data.curentGameValue;
         if (data.pauseValues) {
             $.btnRetrieve.show();
             $.btnRetrieve.visible = true;
@@ -257,6 +254,7 @@ function Controller() {
             }
             var myTime = convertTime(hourVal, minVal, secVal);
             var bestTime = convertTime(rewritetime($.bestHour.getText()), rewritetime($.bestMinute.getText()), $.bestSecond.getText());
+            alert("Your best time is: " + bestTime + ".");
             if (bestTime > myTime || 0 == bestTime) {
                 alert("CONGRATULATIONS !!!!! You beat the best time");
                 $.bestHour.setText(hourVal + ":");
@@ -265,6 +263,7 @@ function Controller() {
             }
         }
     });
+    $.index.backgroundImage = "hq_dragon.jpg";
     $.index.open();
     __defers["$.__views.btnRetrieve!click!retrieveGame"] && $.__views.btnRetrieve.addEventListener("click", retrieveGame);
     __defers["$.__views.btnPlay!click!playGame"] && $.__views.btnPlay.addEventListener("click", playGame);

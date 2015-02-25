@@ -1,5 +1,7 @@
+// init background image
+
 // init variables
-var dataTableSudoku, secVal, minVal, hourVal, pausedVal;
+var dataTableSudoku, secVal, minVal, hourVal, pausedVal, bestTime;
 
 // hide "continue" button
 $.btnRetrieve.hide();
@@ -22,6 +24,7 @@ Ti.App.addEventListener('retrieveDatas', function(data) {
 	secVal = data.secValues;
 	minVal = data.minValues;
 	hourVal = data.hourValues;
+	currentGameValue = data.curentGameValue;
 	
 	if (data.pauseValues) {
 		// show "continue" button
@@ -51,6 +54,7 @@ Ti.App.addEventListener('retrieveDatas', function(data) {
 									rewritetime($.bestMinute.getText()),
 									$.bestSecond.getText()
 						); // recover value in seconds of the bestTime
+		alert("Your best time is: "+bestTime+".");
 		
 		if (myTime < bestTime || bestTime == 0) {
 			alert("CONGRATULATIONS !!!!! You beat the best time" );
@@ -82,6 +86,7 @@ function playGame(e) {
 		timeHourSudoku: 00
 	}).getView();
 	// open the game view
+	game.backgroundImage = "hq_dragon.jpg";
     game.open();
 }
 
@@ -91,9 +96,11 @@ function retrieveGame(e) {
 		newGame: 0,  // 1: new game, 0: no
 		timeSecondSudoku: secVal,
 		timeMinuteSudoku: minVal,
-		timeHourSudoku: hourVal
+		timeHourSudoku: hourVal,
+		savedGameValue: currentGameValue
 	}).getView();
 	// open the game view
+	game.backgroundImage = "hq_dragon.jpg";
     game.open();
 }
 
@@ -104,4 +111,5 @@ function rewritetime(s) {
 }
 
 // open the home view
+$.index.backgroundImage = "hq_dragon.jpg";
 $.index.open();

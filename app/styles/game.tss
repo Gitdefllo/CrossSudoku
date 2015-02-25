@@ -1,6 +1,6 @@
 // General container
 "#game_container": {
-	backgroundColor: "#ffffff",
+	backgroundColor: "transparent",
 	width: Ti.UI.FILL,
 	height: Ti.UI.FILL,
 	layout: "vertical"
@@ -8,6 +8,7 @@
 
 "#wrapper": {
 	top: 0,
+	backgroundColor: "transparent",
 	width: Ti.UI.FILL,
 	height: Ti.UI.FILL,
 	layout: "vertical"
@@ -18,6 +19,13 @@
 	top: 10, left: 20, right: 20, // margins
 	height: 60,
 	layout: "horizontal"
+}
+
+"#topImage": {
+	top: 20,
+	verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+	width: '40.0%',
+	height: 100
 }
 
 "#sudoWrapper": {
@@ -62,8 +70,8 @@
 	left: 0,
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
-	backgroundColor: "#e2e2e2",
-	color: "#000",
+	backgroundColor: "#bb2828",
+	color: "#ffffff",
 	borderWidth: 1,
     borderColor: '#1b1b1b',
 	// shadowColor: "#87cefa", shadowOffset: {x:-2,y:-2},
@@ -74,7 +82,7 @@
 	font: {
 		fontSize: 25
 	},
-	color: "#000",
+	color: "#transparent",
 	backgroundColor: "transparent",
 	top: "5dp", bottom: "5dp", right: "20dp", left: "20dp", // padding
 	verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
@@ -85,8 +93,13 @@
 // Timer view
 "#timerView": {
 	right: 0,
-	width: Ti.UI.SIZE,
+	width: 170,
 	height: Ti.UI.SIZE,
+	backgroundColor: "#bb2828",
+	color: "#ffffff",
+	borderWidth: 1,
+    borderColor: '#1b1b1b',
+    borderRadius: 6,
 	layout: "horizontal"
 }
 
@@ -94,7 +107,9 @@
 	font: {
 		fontSize: 20
 	},
+	color: "#ffffff",
 	right: 0,
+	top: "10dp", right: "10dp", bottom: "10dp", left: "10dp",
 	verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
@@ -105,6 +120,7 @@
 	font: {
 		fontSize: 20
 	},
+	color: "#ffffff",
 	left: 5,
 	verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
 	width: Ti.UI.SIZE,
@@ -115,6 +131,7 @@
 	font: {
 		fontSize: 20
 	},
+	color: "#ffffff",
 	verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE
@@ -124,6 +141,7 @@
 	font: {
 		fontSize: 20
 	},
+	color: "#ffffff",
 	verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE
@@ -132,7 +150,8 @@
 //Sudoku table
 "#tableView": {
 	height: Ti.UI.SIZE,
-	backgroundColor: "#ffffff",
+	backgroundColor: "transparent",
+	borderColor: "transparent",
 	separatorColor: 'transparent',
 	top: 20, bottom: 20, // margins
 	layout: "vertical"
@@ -143,7 +162,7 @@
 }
 
 // Confirm button (validate)
-"#confirmView": {
+/*"#confirmView": {
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
 	backgroundColor: "#00cc00",
@@ -164,4 +183,4 @@
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
 	width: "47%",
   	height: Ti.UI.SIZE
-}
+}*/

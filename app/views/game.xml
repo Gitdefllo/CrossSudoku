@@ -1,11 +1,10 @@
 <Alloy>
 	<Window id="game_container">
-		<View id="wrapper">
 			<View id="topWrapper">
 				<View id="leftCorner">
 					<View id="backView" onClick="goBack">
-						<Label id="backLabel" />
-					</View>
+						<Label class="backLabel" id="backLabel" />
+					</View>					
 				</View>
 				<View id="rightCorner">
 					<View id="timerView">
@@ -18,14 +17,10 @@
 					</View>
 				</View>
 			</View>
-			<View id="sudoWrapper">
+			<ImageView id="topImage" image="logo.png"></ImageView>
 				<TableView id="tableView" />
-			</View>
-			<View id="bottomWrapper">
-				<View id="confirmView" onClick="checkSudoku">
-					<Label id="btnConfirm">validate</Label>
-				</View>
-			</View>
-		</View>
+			<!--<View id="bottomWrapper">
+
+		</View> -->
 	</Window>
 </Alloy>

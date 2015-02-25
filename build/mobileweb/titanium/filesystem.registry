@@ -1,4 +1,4 @@
-ts	1417075664000
+ts	1424903058000
 Default-Landscape.png	513333
 Default-Portrait.png	76153
 Default.png	110858
@@ -8,11 +8,11 @@ alloy
 	constants.js	6654
 	controllers
 		BaseController.js	7259
-		game.js	11493
-		index.js	8410
+		game.js	10582
+		index.js	8512
 	styles
-		game.js	3132
-		index.js	2456
+		game.js	3125
+		index.js	2660
 	sync
 		localStorage.js	1913
 		properties.js	1848
@@ -29,6 +29,8 @@ apple-touch-icon-57x57-precomposed.png	5449
 apple-touch-icon-72x72-precomposed.png	7641
 apple-touch-icon-precomposed.png	5449
 favicon.ico	849
+hq_dragon.jpg	4178648
+logo.png	28414
 themes
 	common.css	7631
 	default

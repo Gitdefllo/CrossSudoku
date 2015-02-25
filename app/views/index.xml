@@ -2,9 +2,9 @@
 	<Window class="container">
 		<View id="wrapper">
 			<View id="topWrapper">
-				<ImageView id="logo" image="appicon.png" />
-				<Label id="title">CrossSudoku</Label>
+				
 			</View>
+			<ImageView id="topImage" image="logo.png"></ImageView>
 			<View id="contentWrapper">
 				<!-- global view with 20px left/right margins -->
 				<View id="contentView">

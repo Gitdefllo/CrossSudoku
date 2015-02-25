@@ -4,7 +4,7 @@ var args = arguments[0] || {};
 var totalSeconds, totalMiutes, totalHours;
 
 // set text to back button
-$.backLabel.setText("< back");
+$.backLabel.setText("Back");
 
 // table with all TextFields (81)
 var array = [];
@@ -29,15 +29,36 @@ var arrayStart = 		[2, , , 1, , , , , 6,
 						 , , , 7, , , 9, , , 
 						 , , 5, 9, , 6, 8, 1, ];
 
+
+//test
+/*var arrayStart = 	[2, 9, 4, 1, 7, 3, 5, 8, 6,
+						 1, 5, 6, 2, 8, 9, 3, 4, 7, 
+						 3, 8, 7, 4, 6, 5, 1, 9, 2, 
+						 5, 7, 1, 3, 9,	2, 4, 6, 8, 
+						 4, 2, 3, 6, 1, 8, 7, 5, 9, 
+						 8, 6, 9, 5, 4, 7, 2, 3, 1, 
+						 9, 4, 2, 8, 5, 1, 6, 7, 3, 
+						 6, 1, 8, 7, 3, 4, 9, 2, 5, 
+						 7, 3, 5, 9, 2, 6, 8, 1,  ];*/
+						 
 // check if it's a new game
 if(args.newGame == 1) {
 	// init the timer and interval time
 	totalSeconds = 0;
 	setInterval(updateTime, 1000);
-}
+	// initialize Sudoku
+	initGrid();
+}else {
+	// init the timer and interval time
+	totalSeconds = 0;
+	setInterval(updateTime, 1000);
+	// add saved value to arrayStart
+	arrayStart = args.savedGameValue;
+	// initialize Sudoku
+	initGrid();
+};
 
-// initialize Sudoku
-initGrid();
+
 
 // check the time
 if(args.timeHourSudoku != 00 || args.timeMinuteSudoku != 00 || args.timeSecondSudoku != 00) {
@@ -96,7 +117,7 @@ function initGrid(){
 				className: "separator", 
 				height: 1,
 				width: Titanium.UI.FILL,
-				backgroundColor: '#1b1b1b'
+				backgroundColor: '#bb2828'
 			});
 			row.add(sf);
 		}
@@ -113,6 +134,8 @@ function initGrid(){
 					textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
 					keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
 					borderWidth: 1, 
+					color: "#fff",
+					backgroundColor: "#aa2828",
 					borderColor: '#c4c4c4',
 					maxLength: 1
 				});
@@ -125,6 +148,8 @@ function initGrid(){
 					width: 50,
 					textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
 					borderWidth: 1, 
+					color: "#fff",
+					backgroundColor: "#404040",
 					borderColor: '#c4c4c4',
 					maxLength: 1
 				});
@@ -134,7 +159,7 @@ function initGrid(){
 					className: "separator",
 					height: Titanium.UI.FILL,
 					width: 1,
-					backgroundColor: '#1b1b1b'
+					backgroundColor: '#bb2828'
 				});
 				row.add(sf);
 			}
@@ -153,33 +178,59 @@ function initGrid(){
 			array[j].setEnabled(false);
 		} else {
 			array[j].addEventListener('blur', function(e){
-				if(e.source.value != ""){
-					if(e.source.value != arraySolution[e.source.pos]){
-						alert("You suck! You wrote: "+e.source.value+" (It should be: "+arraySolution[e.source.pos]+")");
-						e.source.backgroundColor = '#ff0000';
-						e.source.color = '#ffffff';
-					}else{
-						alert("Well done!!!");
-						arrayStart[e.source.pos] = e.source.value;
-						e.source.backgroundColor = '#00cc00';
-						e.source.color = '#ffffff';
-						e.source.setEnabled(false);
-					};
-				}	
+				checkCase(e);
 			});
 		}
 	}
 }
 
+// checks if case's value is right
+function checkCase(e){
+	
+	if(e.source.value != ""){
+		if(e.source.value != arraySolution[e.source.pos]){
+			//alert("You suck! You wrote: "+e.source.value+" (It should be: "+arraySolution[e.source.pos]+")");
+			e.source.backgroundColor = '#bb2828';
+			e.source.color = '#ffffff';
+		}else{
+			//alert("Well done!!!");
+			arrayStart[e.source.pos] = e.source.value;
+			e.source.backgroundColor = '#28bb28';
+			e.source.color = '#ffffff';
+			e.source.setEnabled(false);
+		};
+	}	
+	checkSudoku();
+}
+
 	
 // checks if the sudoku is sloved and send the time spend
-function checkSudoku(e){
+function checkSudoku(){
 	/*
 	 * TODO: check the sudoku
 	 */
+
+	if(arrayStart.toString() == arraySolution.toString()){
+		sec = rewritetime($.timerSecond.getText());
+		min = rewritetime($.timerMinute.getText());
+		hr = $.timerHour.getText();
+		
+		alert("Well done!!!  Yout time is: "+hr+":"+min+":"+sec+".");
+		
+		Ti.App.fireEvent('retrieveDatas', {
+			secValues: sec,
+			minValues: min,
+			hourValues: hr,
+			pauseValues: false
+		});
+		
+		// close game view
+		$.game_container.close();
+	}
 	
 	// recover my Score at the end
-	sec = rewritetime($.timerSecond.getText());
+	
+	/*sec = rewritetime($.timerSecond.getText());
 	min = rewritetime($.timerMinute.getText());
 	hr = $.timerHour.getText();
 	 
@@ -188,10 +239,8 @@ function checkSudoku(e){
 		minValues: min,
 		hourValues: hr,
 		pauseValues: false
-	});
-	
-	// close game view
-	$.game_container.close();
+	});*/	
+
 }
 
 // click event on "back button"
@@ -206,6 +255,7 @@ function goBack(e) {
 		secValues: sec,
 		minValues: min,
 		hourValues: hr,
+		curentGameValue: arrayStart,
 		pauseValues: true
 	});
 	// close game view
