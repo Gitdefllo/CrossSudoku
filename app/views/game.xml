@@ -9,7 +9,6 @@
 				<View id="rightCorner">
 					<View id="timerView">
 						<Label id="timerMainLabel">
-							Time:
 							<Label id="timerHour"></Label>
 							<Label id="timerMinute"></Label>
 							<Label id="timerSecond"></Label>

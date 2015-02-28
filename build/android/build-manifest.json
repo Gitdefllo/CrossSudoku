@@ -2,7 +2,7 @@
 	"target": "device",
 	"deployType": "test",
 	"classname": "Crosssudoku",
-	"platformPath": "C:\\ProgramData\\Titanium\\mobilesdk\\win32\\3.4.0.GA\\android",
+	"platformPath": "/Users/Ridley/Library/Application Support/Titanium/mobilesdk/osx/3.4.0.GA/android",
 	"modulesHash": "d41d8cd98f00b204e9800998ecf8427e",
 	"modulesManifestHash": "d41d8cd98f00b204e9800998ecf8427e",
 	"modulesNativeHash": "d41d8cd98f00b204e9800998ecf8427e",
@@ -28,5 +28,5 @@
 	"activitiesHash": "d41d8cd98f00b204e9800998ecf8427e",
 	"servicesHash": "d41d8cd98f00b204e9800998ecf8427e",
 	"jssFilesHash": "d41d8cd98f00b204e9800998ecf8427e",
-	"jarLibHash": "a2e9b325b0db9f9e24e80f99d800ea90"
+	"jarLibHash": "29278d0c0d4f7d531f79600a5a65cc5e"
 }

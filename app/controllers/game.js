@@ -137,8 +137,8 @@ function initGrid(){
 	for(i = 1; i<=9; i++){
 		row = Ti.UI.createTableViewRow({
 			className: "row",
-			height: 50, 
-			width: 452,
+			height: "43dp", 
+			width: Titanium.UI.SIZE,
 			layout: "horizontal"
 		});
 		if (i==4 || i==7) {
@@ -152,29 +152,13 @@ function initGrid(){
 		}
 		
 		for(j = 1; j<=9; j++){
-			 
-			if (Titanium.Platform.name != 'mobileweb') { 
-				// Number pad for mobile
-				tf = Ti.UI.createTextField({
-					id: "case"+j*i, 
-					pos: count,
-					height: 50,
-					width: 50,
-					textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
-					keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
-					borderWidth: 1, 
-					color: "#fff",
-					backgroundColor: "#aa2828",
-					borderColor: '#c4c4c4',
-					maxLength: 1
-				});
-			} else {
+			
 				// No number pad
 				tf = Ti.UI.createTextField({
 					id: "case"+j*i, 
 					pos: count,
-					height: 50,
-					width: 50,
+					height: Titanium.UI.FILL,
+					width: "30dp",
 					textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
 					borderWidth: 1, 
 					color: "#fff",
@@ -182,7 +166,6 @@ function initGrid(){
 					borderColor: '#c4c4c4',
 					maxLength: 1
 				});
-			}
 			if (j==4 || j==7) {
 				sf = Ti.UI.createView({
 					className: "separator",
@@ -226,7 +209,7 @@ function initGridAndroid(){
 		
 		row = Ti.UI.createTableViewRow({
 			className: "row",
-			height: Titanium.Platform.displayCaps.dpi/9, 
+			height:"45dp", //Titanium.Platform.displayCaps.dpi/9, 
 			width: Titanium.Platform.displayCaps.dpi,
 			layout: "horizontal"
 		});

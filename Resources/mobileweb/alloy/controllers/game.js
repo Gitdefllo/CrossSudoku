@@ -30,8 +30,8 @@ function Controller() {
         for (i = 1; 9 >= i; i++) {
             row = Ti.UI.createTableViewRow({
                 className: "row",
-                height: 50,
-                width: 452,
+                height: "50dp",
+                width: Titanium.UI.FILL,
                 layout: "horizontal"
             });
             if (4 == i || 7 == i) {
@@ -47,8 +47,8 @@ function Controller() {
                 tf = Ti.UI.createTextField({
                     id: "case" + j * i,
                     pos: count,
-                    height: 50,
-                    width: 50,
+                    height: Titanium.UI.FILL,
+                    width: "30dp",
                     textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
                     borderWidth: 1,
                     color: "#fff",
@@ -144,7 +144,7 @@ function Controller() {
     });
     $.__views.game_container && $.addTopLevelView($.__views.game_container);
     $.__views.topWrapper = Ti.UI.createView({
-        top: 10,
+        top: "5%",
         left: 20,
         right: 20,
         height: 60,
@@ -221,7 +221,7 @@ function Controller() {
         left: "10dp",
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         layout: "horizontal",
-        text: "Time:",
+        text: "",
         id: "timerMainLabel"
     });
     $.__views.timerView.add($.__views.timerMainLabel);
@@ -260,9 +260,12 @@ function Controller() {
     });
     $.__views.timerMainLabel.add($.__views.timerSecond);
     $.__views.sudoWrapper = Ti.UI.createView({
-        top: 20,
+        top: "0%",
+        bottom: "50dp",
+        right: "0%",
+        left: "0%",
         width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
+        height: Titanium.UI.FILL,
         layout: "horizontal",
         id: "sudoWrapper"
     });
@@ -270,13 +273,13 @@ function Controller() {
     $.__views.tableView = Ti.UI.createTableView({
         height: Ti.UI.SIZE,
         width: Ti.UI.FILL,
-        backgroundColor: "transparent",
+        backgroundColor: "red",
         borderColor: "transparent",
         separatorColor: "transparent",
-        top: 20,
-        bottom: 5,
-        right: 5,
-        left: 10,
+        top: "5dp",
+        bottom: "5dp",
+        right: "5dp",
+        left: "5dp",
         layout: "vertical",
         id: "tableView"
     });
@@ -289,7 +292,7 @@ function Controller() {
     $.backLabel.setText("Back");
     var array = [];
     var arraySolution = [ 2, 9, 4, 1, 7, 3, 5, 8, 6, 1, 5, 6, 2, 8, 9, 3, 4, 7, 3, 8, 7, 4, 6, 5, 1, 9, 2, 5, 7, 1, 3, 9, 2, 4, 6, 8, 4, 2, 3, 6, 1, 8, 7, 5, 9, 8, 6, 9, 5, 4, 7, 2, 3, 1, 9, 4, 2, 8, 5, 1, 6, 7, 3, 6, 1, 8, 7, 3, 4, 9, 2, 5, 7, 3, 5, 9, 2, 6, 8, 1, 4 ];
-    var arrayStart = [ 2, 9, 4, 1, 7, 3, 5, 8, 6, 1, 5, 6, 2, 8, 9, 3, 4, 7, 3, 8, 7, 4, 6, 5, 1, 9, 2, 5, 7, 1, 3, 9, 2, 4, 6, 8, 4, 2, 3, 6, 1, 8, 7, 5, 9, 8, 6, 9, 5, 4, 7, 2, 3, 1, 9, 4, 2, 8, 5, 1, 6, 7, 3, 6, 1, 8, 7, 3, 4, 9, 2, 5, 7, 3, 5, 9, 2, 6, 8, 1 ];
+    var arrayStart = [ 2, , , 1, , , , , 6, , , 6, , 8, , 3, , 7, 3, , , , 6, , , , , , , , , 9, , , , , , , , 6, , , , , , , , , , 4, 7, , , 1, 9, , , 8, , , , , 3, , , , 7, , , 9, , , , , 5, 9, , 6, 8, 1 ];
     if (1 == args.newGame) {
         totalSeconds = 0;
         initGrid();

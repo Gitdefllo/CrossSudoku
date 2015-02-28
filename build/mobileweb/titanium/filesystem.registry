@@ -1,4 +1,4 @@
-ts	1425084895000
+ts	1425158788000
 Default-Landscape.png	513333
 Default-Portrait.png	76153
 Default.png	110858
@@ -8,10 +8,10 @@ alloy
 	constants.js	6654
 	controllers
 		BaseController.js	7259
-		game.js	10533
+		game.js	10588
 		index.js	8515
 	styles
-		game.js	2914
+		game.js	2812
 		index.js	2659
 	sync
 		localStorage.js	1913
@@ -31,6 +31,7 @@ apple-touch-icon-precomposed.png	5449
 background.jpg	4178648
 favicon.ico	849
 logo.png	28414
+soundGame.mp3	18203421
 themes
 	common.css	7631
 	default
@@ -185,5 +186,5 @@ titanium
 	Ti.js	6758
 	dependencies.json	10476
 	package.json	660
-titanium.css	39894
+titanium.css	39835
 titanium.js	481241

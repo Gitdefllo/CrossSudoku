@@ -6,32 +6,21 @@
 	layout: "vertical"
 }
 
-"#wrapper": {
-	top: 0,
-	backgroundColor: "transparent",
-	width: Ti.UI.FILL,
-	height: Ti.UI.FILL,
-	layout: "vertical"
-}
 
 // Wrappers
 "#topWrapper": {
-	top: 10, left: 20, right: 20, // margins
+	top: "5%", left: 20, right: 20, // margins
 	height: 60,
 	layout: "horizontal"
 }
 
-/*"#topImage": {
-	top: 20,
-	verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
-	width: '40.0%',
-	height: 100
-}*/
-
 "#sudoWrapper": {
-	top: 20, // margins
-	width: Ti.UI.FILL,
-	height: Ti.UI.SIZE,
+	top: "0%", // margins
+	bottom:"50dp",
+	right:"0%",
+	left:"0%",
+	width: Titanium.UI.SIZE,
+	height: Titanium.UI.FILL,
 	layout: "horizontal"
 }
 
@@ -150,10 +139,10 @@
 "#tableView": {
 	height: Ti.UI.SIZE,
 	width: Ti.UI.FILL,
-	backgroundColor: "transparent",
+	backgroundColor:"transparent",
 	borderColor: "transparent",
 	separatorColor: 'transparent',
-	top: 20, bottom: 5, right: 5, left:10, // margins
+	top: "5dp", bottom: "5dp", right: "5dp", left:"5dp", // margins
 	layout: "vertical"
 }
 
