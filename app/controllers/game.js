@@ -29,18 +29,6 @@ var arrayStart = 		[2, , , 1, , , , , 6,
 						 9, , , 8, , , , , 3, 
 						 , , , 7, , , 9, , , 
 						 , , 5, 9, , 6, 8, 1, ];
-
-
-//test
-/*var arrayStart = 	[2, 9, 4, 1, 7, 3, 5, 8, 6,
-						 1, 5, 6, 2, 8, 9, 3, 4, 7, 
-						 3, 8, 7, 4, 6, 5, 1, 9, 2, 
-						 5, 7, 1, 3, 9,	2, 4, 6, 8, 
-						 4, 2, 3, 6, 1, 8, 7, 5, 9, 
-						 8, 6, 9, 5, 4, 7, 2, 3, 1, 
-						 9, 4, 2, 8, 5, 1, 6, 7, 3, 
-						 6, 1, 8, 7, 3, 4, 9, 2, 5, 
-						 7, 3, 5, 9, 2, 6, 8, 1,  ];*/
 						 
 // check if it's a new game
 if(args.newGame == 1) {
@@ -56,8 +44,7 @@ if(args.newGame == 1) {
 		initGrid();
 		setInterval(updateTime, 1000);	
 	}
-
-}else {
+}else{
 	// init the timer and interval time
 	totalSeconds = 0;
 	// add saved value to arrayStart
@@ -73,8 +60,6 @@ if(args.newGame == 1) {
 		setInterval(updateTime, 1000);	
 	}
 };
-
-
 
 // check the time
 if(args.timeHourSudoku != 00 || args.timeMinuteSudoku != 00 || args.timeSecondSudoku != 00) {
@@ -107,9 +92,6 @@ function updateTimeAndroid() {
 	andHour = parseInt(totalSeconds/3600);
 	andMin = parseInt(totalSeconds/60);
 	andSec = totalSeconds%60;
-	/*$.timerSecond.setText(': toto' + writetime(totalSeconds%60));
-	$.timerMinute.setText(': toto' + writetime(parseInt(totalSeconds/60))); //  -- check the minute, it's wrong when minutes aren't 0
-	$.timerHour.setText('toto'+writetime(parseInt(totalSeconds/3600))); // -- check the hour? same here.*/
 }
 
 
@@ -205,6 +187,7 @@ function initGrid(){
 		array[j].setValue(arrayStart[j]);
 		if (arrayStart[j] != null) {
 			array[j].setEnabled(false);
+			array[j].backgroundColor = '#383838';
 		} else {
 			array[j].addEventListener('blur', function(e){
 				checkCase(e);
@@ -215,15 +198,12 @@ function initGrid(){
 
 
 function initGridAndroid(){
-	
-	
 	var cpt = 0, row, tf, sf, count = 0;
 	
 	$.tableView.height = Titanium.Platform.displayCaps.dpi+9;
 	$.tableView.width = Ti.UI.SIZE;
 	
-	for(i = 1; i<=9; i++){			 
-		
+	for(i = 1; i<=9; i++){
 		row = Ti.UI.createTableViewRow({
 			className: "row",
 			height: Titanium.Platform.displayCaps.dpi/9, 
@@ -242,39 +222,21 @@ function initGridAndroid(){
 		}
 	
 		for(j = 1; j<=9; j++){
-						 
-			if (Titanium.Platform.name != 'mobileweb') { 
-				// Number pad for mobile
-				tf = Ti.UI.createTextField({
-					id: "case"+j*i, 
-					pos: count,
-					height: Titanium.Platform.displayCaps.dpi/9,
-					width: Titanium.Platform.displayCaps.dpi/9,
-					textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
-					keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
-					borderWidth: 1, 
-					color: "#fff",
-					top:1, bottom: 1, right: 1, left: 1,
-					backgroundColor: "#404040",
-					borderColor: '#c4c4c4',
-					maxLength: 1
-				});
-			} else {
-				// No number pad
-				tf = Ti.UI.createTextField({
-					id: "case"+j*i, 
-					pos: count,
-					height: Titanium.Platform.displayCaps.dpi/9,
-					width: Titanium.Platform.displayCaps.dpi/9,
-					textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
-					borderWidth: 1, 
-					color: "#fff",
-					top:1, bottom: 1, right: 1, left: 1,
-					backgroundColor: "#404040",
-					borderColor: '#c4c4c4',
-					maxLength: 1
-				});
-			}
+			tf = Ti.UI.createTextField({
+				id: "case"+j*i, 
+				pos: count,
+				height: Titanium.Platform.displayCaps.dpi/9,
+				width: Titanium.Platform.displayCaps.dpi/9,
+				textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+				keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
+				borderWidth: 1, 
+				color: "#fff",
+				top:1, bottom: 1, right: 1, left: 1,
+				backgroundColor: "#404040",
+				borderColor: '#c4c4c4',
+				maxLength: 1
+			});
+			
 			if (j==4 || j==7) {
 				sf = Ti.UI.createView({
 					className: "separator",
@@ -304,9 +266,9 @@ function initGridAndroid(){
 		}
 	}
 }
+
 // checks if case's value is right
 function checkCase(e){
-	
 	if(e.source.value != ""){
 		if(e.source.value != arraySolution[e.source.pos]){
 			//alert("You suck! You wrote: "+e.source.value+" (It should be: "+arraySolution[e.source.pos]+")");
@@ -326,10 +288,7 @@ function checkCase(e){
 	
 // checks if the sudoku is sloved and send the time spend
 function checkSudoku(){
-	/*
-	 * TODO: check the sudoku
-	 */
-
+	// check the sudoku submitted
 	if(arrayStart.toString() == arraySolution.toString()){
 		if (Titanium.Platform.name == 'android') {
 			sec = andSec;
@@ -340,7 +299,6 @@ function checkSudoku(){
 			min = rewritetime($.timerMinute.getText());
 			hr = $.timerHour.getText();
 		}
-
 		
 		alert("Well done!!!  Yout time is: "+hr+":"+min+":"+sec+".");
 		
@@ -353,27 +311,11 @@ function checkSudoku(){
 		
 		// close game view
 		$.game_container.close();
-		
 	}
-	
-	// recover my Score at the end
-	
-	/*sec = rewritetime($.timerSecond.getText());
-	min = rewritetime($.timerMinute.getText());
-	hr = $.timerHour.getText();
-	 
-	Ti.App.fireEvent('retrieveDatas', {
-		secValues: sec,
-		minValues: min,
-		hourValues: hr,
-		pauseValues: false
-	});*/	
-
 }
 
 // click event on "back button"
 function goBack(e) {
-	
 	if (Titanium.Platform.name == 'android') {
 			sec = andSec;
 			min = andMin;

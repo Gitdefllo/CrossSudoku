@@ -1,5 +1,3 @@
-// init background image
-
 // init variables
 var dataTableSudoku, secVal, minVal, hourVal, pausedVal, bestTime;
 
@@ -16,16 +14,12 @@ if ($.bestSecond.getText() == undefined || $.bestSecond.getText() == '') {
 
 // retrieve the values when the game is paused or end
 Ti.App.addEventListener('retrieveDatas', function(data) {
-	
-	
 	if (Titanium.Platform.name == 'android') { 
 		setTimeout(function(evt){
 			$.btnPlay.visible = true;
 			$.contentView.visible = true;
 	    },500);
-	} 
-	//dataTableSudoku = data.tableValues;
-	//alert(dataTableSudoku);
+	}
 	
 	// retrieve the time
 	secVal = data.secValues;
@@ -73,15 +67,17 @@ Ti.App.addEventListener('retrieveDatas', function(data) {
 		
 		if (myTime < bestTime || bestTime == 0) {
 			alert("CONGRATULATIONS !!!!! You beat the best time" );
-
-			
 			if (Titanium.Platform.name == 'android') { 
 				$.msgScore.setText("Best time: "+hourVal + ":" + minVal +":" + secVal);
+				$.msgScore.color = '#ffffff';
 			}else{
 				// Does not update the label msgScore
 				$.bestHour.setText(hourVal + ':');
+				$.bestHour.color = '#ffffff';
 				$.bestMinute.setText(minVal + ':');
+				$.bestMinute.color = '#ffffff';
 				$.bestSecond.setText(secVal);
+				$.bestSecond.color = '#ffffff';
 			}
 		}
 	}

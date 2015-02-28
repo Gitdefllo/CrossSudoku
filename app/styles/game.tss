@@ -21,21 +21,12 @@
 	layout: "horizontal"
 }
 
-/*"#topImage": {
-	top: 20,
-	verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
-	width: '40.0%',
-	height: 100
-}*/
-
 "#sudoWrapper": {
 	top: 20, // margins
 	width: Ti.UI.FILL,
 	height: Ti.UI.SIZE,
 	layout: "horizontal"
 }
-
-
 
 /** PATCH TIMERVIEW TO RIGHT CORNER **/
 "#leftCorner": {
@@ -160,27 +151,3 @@
 "TableViewRow": {
     layout:"horizontal"
 }
-
-// Confirm button (validate)
-/*"#confirmView": {
-	width: Ti.UI.SIZE,
-	height: Ti.UI.SIZE,
-	backgroundColor: "#00cc00",
-	color: "#ffffff",
-	borderWidth: 1,
-    borderColor: '#1b1b1b',
-	// shadowColor: "#87cefa", shadowOffset: {x:-2,y:-2},
-	borderRadius: 6
-}
-
-"#btnConfirm": {
-	font: {
-		fontSize: 20
-	},
-	backgroundColor: "transparent",
-	top: "10dp", bottom: "10dp", // padding
-  	color: "#ffffff",
-	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
-	width: "47%",
-  	height: Ti.UI.SIZE
-}*/

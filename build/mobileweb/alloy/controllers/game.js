@@ -74,7 +74,10 @@ function Controller() {
         }
         for (j = 0; 80 >= j; j++) {
             array[j].setValue(arrayStart[j]);
-            null != arrayStart[j] ? array[j].setEnabled(false) : array[j].addEventListener("blur", function(e) {
+            if (null != arrayStart[j]) {
+                array[j].setEnabled(false);
+                array[j].backgroundColor = "#383838";
+            } else array[j].addEventListener("blur", function(e) {
                 checkCase(e);
             });
         }
@@ -289,7 +292,7 @@ function Controller() {
     $.backLabel.setText("Back");
     var array = [];
     var arraySolution = [ 2, 9, 4, 1, 7, 3, 5, 8, 6, 1, 5, 6, 2, 8, 9, 3, 4, 7, 3, 8, 7, 4, 6, 5, 1, 9, 2, 5, 7, 1, 3, 9, 2, 4, 6, 8, 4, 2, 3, 6, 1, 8, 7, 5, 9, 8, 6, 9, 5, 4, 7, 2, 3, 1, 9, 4, 2, 8, 5, 1, 6, 7, 3, 6, 1, 8, 7, 3, 4, 9, 2, 5, 7, 3, 5, 9, 2, 6, 8, 1, 4 ];
-    var arrayStart = [ 2, 9, 4, 1, 7, 3, 5, 8, 6, 1, 5, 6, 2, 8, 9, 3, 4, 7, 3, 8, 7, 4, 6, 5, 1, 9, 2, 5, 7, 1, 3, 9, 2, 4, 6, 8, 4, 2, 3, 6, 1, 8, 7, 5, 9, 8, 6, 9, 5, 4, 7, 2, 3, 1, 9, 4, 2, 8, 5, 1, 6, 7, 3, 6, 1, 8, 7, 3, 4, 9, 2, 5, 7, 3, 5, 9, 2, 6, 8, 1 ];
+    var arrayStart = [ 2, , , 1, , , , , 6, , , 6, , 8, , 3, , 7, 3, , , , 6, , , , , , , , , 9, , , , , , , , 6, , , , , , , , , , 4, 7, , , 1, 9, , , 8, , , , , 3, , , , 7, , , 9, , , , , 5, 9, , 6, 8, 1 ];
     if (1 == args.newGame) {
         totalSeconds = 0;
         initGrid();
