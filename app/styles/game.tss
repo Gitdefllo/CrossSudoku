@@ -21,22 +21,21 @@
 	layout: "horizontal"
 }
 
-"#topImage": {
+/*"#topImage": {
 	top: 20,
 	verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
 	width: '40.0%',
 	height: 100
-}
+}*/
 
 "#sudoWrapper": {
-	top: 20, left: 20, right: 20, // margins
-	height: Ti.UI.SIZE
+	top: 20, // margins
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
+	layout: "horizontal"
 }
 
-"#bottomWrapper": {
-	bottom: 0, left: 20, right: 20, // margins
-	height: Ti.UI.SIZE
-}
+
 
 /** PATCH TIMERVIEW TO RIGHT CORNER **/
 "#leftCorner": {
@@ -80,11 +79,11 @@
 
 "#backLabel": {
 	font: {
-		fontSize: 25
+		fontSize: 15
 	},
-	color: "#transparent",
+	color: "#ffffff",
 	backgroundColor: "transparent",
-	top: "5dp", bottom: "5dp", right: "20dp", left: "20dp", // padding
+	top: "10dp", right: "10dp", bottom: "10dp", left: "10dp", // padding
 	verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE
@@ -93,7 +92,7 @@
 // Timer view
 "#timerView": {
 	right: 0,
-	width: 170,
+	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
 	backgroundColor: "#bb2828",
 	color: "#ffffff",
@@ -105,7 +104,7 @@
 
 "#timerMainLabel": {
 	font: {
-		fontSize: 20
+		fontSize: 15
 	},
 	color: "#ffffff",
 	right: 0,
@@ -118,7 +117,7 @@
 
 "#timerHour": {
 	font: {
-		fontSize: 20
+		fontSize: 15
 	},
 	color: "#ffffff",
 	left: 5,
@@ -129,7 +128,7 @@
 
 "#timerMinute": {
 	font: {
-		fontSize: 20
+		fontSize: 15
 	},
 	color: "#ffffff",
 	verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
@@ -139,7 +138,7 @@
 
 "#timerSecond": {
 	font: {
-		fontSize: 20
+		fontSize: 15
 	},
 	color: "#ffffff",
 	verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
@@ -150,10 +149,11 @@
 //Sudoku table
 "#tableView": {
 	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
 	backgroundColor: "transparent",
 	borderColor: "transparent",
 	separatorColor: 'transparent',
-	top: 20, bottom: 20, // margins
+	top: 20, bottom: 5, right: 5, left:10, // margins
 	layout: "vertical"
 }
 

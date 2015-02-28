@@ -10,7 +10,7 @@
 	"gitHash": "b54c467",
 	"name": "CrossSudoku",
 	"id": "com.esgi.crosssudoku",
-	"analytics": true,
+	"analytics": false,
 	"publisher": "Ridley, Mathieu, Florent",
 	"url": "http://",
 	"version": "1.0",

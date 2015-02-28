@@ -4,7 +4,7 @@
  */
 var require = {
 	app: {
-		analytics: true,
+		analytics: false,
 		copyright: "2014 by Ridley, Mathieu, Florent",
 		deployType: "development",
 		description: "",

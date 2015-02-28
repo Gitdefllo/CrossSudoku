@@ -20,7 +20,9 @@ function Controller() {
             timeMinuteSudoku: 0,
             timeHourSudoku: 0
         }).getView();
-        game.backgroundImage = "hq_dragon.jpg";
+        $.btnRetrieve.visible = false;
+        $.btnPlay.visible = false;
+        $.contentView.visible = false;
         game.open();
     }
     function retrieveGame() {
@@ -31,7 +33,9 @@ function Controller() {
             timeHourSudoku: hourVal,
             savedGameValue: currentGameValue
         }).getView();
-        game.backgroundImage = "hq_dragon.jpg";
+        $.btnRetrieve.visible = false;
+        $.btnPlay.visible = false;
+        $.contentView.visible = false;
         game.open();
     }
     function rewritetime(s) {
@@ -236,16 +240,20 @@ function Controller() {
     $.btnRetrieve.visible = false;
     (void 0 == $.bestSecond.getText() || "" == $.bestSecond.getText()) && $.msgScore.setText('Select "new game" to play.');
     Ti.App.addEventListener("retrieveDatas", function(data) {
+        setTimeout(function() {
+            $.btnPlay.visible = true;
+            $.contentView.visible = true;
+        }, 500);
         secVal = data.secValues;
         minVal = data.minValues;
         hourVal = data.hourValues;
         currentGameValue = data.curentGameValue;
-        if (data.pauseValues) {
-            $.btnRetrieve.show();
+        if (data.pauseValues) setTimeout(function() {
             $.btnRetrieve.visible = true;
-        } else {
-            $.btnRetrieve.hide();
-            $.btnRetrieve.visible = false;
+        }, 500); else {
+            setTimeout(function() {
+                $.btnRetrieve.visible = false;
+            }, 500);
             if (void 0 == $.bestSecond.getText() || "" == $.bestSecond.getText()) {
                 $.msgScore.setText("Best time:");
                 $.bestHour.setText("00:");
@@ -257,13 +265,11 @@ function Controller() {
             alert("Your best time is: " + bestTime + ".");
             if (bestTime > myTime || 0 == bestTime) {
                 alert("CONGRATULATIONS !!!!! You beat the best time");
-                $.bestHour.setText(hourVal + ":");
-                $.bestMinute.setText(minVal + ":");
-                $.bestSecond.setText(secVal);
+                $.msgScore.setText("Best time: " + hourVal + ":" + minVal + ":" + secVal);
             }
         }
     });
-    $.index.backgroundImage = "hq_dragon.jpg";
+    $.index.backgroundImage = "background.jpg";
     $.index.open();
     __defers["$.__views.btnRetrieve!click!retrieveGame"] && $.__views.btnRetrieve.addEventListener("click", retrieveGame);
     __defers["$.__views.btnPlay!click!playGame"] && $.__views.btnPlay.addEventListener("click", playGame);

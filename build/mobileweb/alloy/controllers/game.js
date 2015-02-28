@@ -81,7 +81,6 @@ function Controller() {
     }
     function checkCase(e) {
         if ("" != e.source.value) if (e.source.value != arraySolution[e.source.pos]) {
-            alert("You suck! You wrote: " + e.source.value + " (It should be: " + arraySolution[e.source.pos] + ")");
             e.source.backgroundColor = "#bb2828";
             e.source.color = "#ffffff";
         } else {
@@ -176,15 +175,15 @@ function Controller() {
     $.__views.backLabel = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
-        color: "#transparent",
+        color: "#ffffff",
         font: {
-            fontSize: 25
+            fontSize: 15
         },
         backgroundColor: "transparent",
-        top: "5dp",
-        bottom: "5dp",
-        right: "20dp",
-        left: "20dp",
+        top: "10dp",
+        right: "10dp",
+        bottom: "10dp",
+        left: "10dp",
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         id: "backLabel"
     });
@@ -198,7 +197,7 @@ function Controller() {
     $.__views.topWrapper.add($.__views.rightCorner);
     $.__views.timerView = Ti.UI.createView({
         right: 0,
-        width: 170,
+        width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         backgroundColor: "#bb2828",
         color: "#ffffff",
@@ -214,7 +213,7 @@ function Controller() {
         height: Ti.UI.SIZE,
         color: "#ffffff",
         font: {
-            fontSize: 20
+            fontSize: 15
         },
         right: "10dp",
         top: "10dp",
@@ -231,7 +230,7 @@ function Controller() {
         height: Ti.UI.SIZE,
         color: "#ffffff",
         font: {
-            fontSize: 20
+            fontSize: 15
         },
         left: 5,
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
@@ -243,7 +242,7 @@ function Controller() {
         height: Ti.UI.SIZE,
         color: "#ffffff",
         font: {
-            fontSize: 20
+            fontSize: 15
         },
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         id: "timerMinute"
@@ -254,32 +253,34 @@ function Controller() {
         height: Ti.UI.SIZE,
         color: "#ffffff",
         font: {
-            fontSize: 20
+            fontSize: 15
         },
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         id: "timerSecond"
     });
     $.__views.timerMainLabel.add($.__views.timerSecond);
-    $.__views.topImage = Ti.UI.createImageView({
+    $.__views.sudoWrapper = Ti.UI.createView({
         top: 20,
-        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
-        width: "40.0%",
-        height: 100,
-        id: "topImage",
-        image: "logo.png"
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        layout: "horizontal",
+        id: "sudoWrapper"
     });
-    $.__views.game_container.add($.__views.topImage);
+    $.__views.game_container.add($.__views.sudoWrapper);
     $.__views.tableView = Ti.UI.createTableView({
         height: Ti.UI.SIZE,
+        width: Ti.UI.FILL,
         backgroundColor: "transparent",
         borderColor: "transparent",
         separatorColor: "transparent",
         top: 20,
-        bottom: 20,
+        bottom: 5,
+        right: 5,
+        left: 10,
         layout: "vertical",
         id: "tableView"
     });
-    $.__views.game_container.add($.__views.tableView);
+    $.__views.sudoWrapper.add($.__views.tableView);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var sec, min, hr;
@@ -288,16 +289,16 @@ function Controller() {
     $.backLabel.setText("Back");
     var array = [];
     var arraySolution = [ 2, 9, 4, 1, 7, 3, 5, 8, 6, 1, 5, 6, 2, 8, 9, 3, 4, 7, 3, 8, 7, 4, 6, 5, 1, 9, 2, 5, 7, 1, 3, 9, 2, 4, 6, 8, 4, 2, 3, 6, 1, 8, 7, 5, 9, 8, 6, 9, 5, 4, 7, 2, 3, 1, 9, 4, 2, 8, 5, 1, 6, 7, 3, 6, 1, 8, 7, 3, 4, 9, 2, 5, 7, 3, 5, 9, 2, 6, 8, 1, 4 ];
-    var arrayStart = [ 2, , , 1, , , , , 6, , , 6, , 8, , 3, , 7, 3, , , , 6, , , , , , , , , 9, , , , , , , , 6, , , , , , , , , , 4, 7, , , 1, 9, , , 8, , , , , 3, , , , 7, , , 9, , , , , 5, 9, , 6, 8, 1 ];
+    var arrayStart = [ 2, 9, 4, 1, 7, 3, 5, 8, 6, 1, 5, 6, 2, 8, 9, 3, 4, 7, 3, 8, 7, 4, 6, 5, 1, 9, 2, 5, 7, 1, 3, 9, 2, 4, 6, 8, 4, 2, 3, 6, 1, 8, 7, 5, 9, 8, 6, 9, 5, 4, 7, 2, 3, 1, 9, 4, 2, 8, 5, 1, 6, 7, 3, 6, 1, 8, 7, 3, 4, 9, 2, 5, 7, 3, 5, 9, 2, 6, 8, 1 ];
     if (1 == args.newGame) {
         totalSeconds = 0;
-        setInterval(updateTime, 1e3);
         initGrid();
+        setInterval(updateTime, 1e3);
     } else {
         totalSeconds = 0;
-        setInterval(updateTime, 1e3);
         arrayStart = args.savedGameValue;
         initGrid();
+        setInterval(updateTime, 1e3);
     }
     if (0 != args.timeHourSudoku || 0 != args.timeMinuteSudoku || 0 != args.timeSecondSudoku) {
         totalSeconds = args.timeSecondSudoku;

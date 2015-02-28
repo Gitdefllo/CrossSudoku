@@ -17,6 +17,13 @@ if ($.bestSecond.getText() == undefined || $.bestSecond.getText() == '') {
 // retrieve the values when the game is paused or end
 Ti.App.addEventListener('retrieveDatas', function(data) {
 	
+	
+	if (Titanium.Platform.name == 'android') { 
+		setTimeout(function(evt){
+			$.btnPlay.visible = true;
+			$.contentView.visible = true;
+	    },500);
+	} 
 	//dataTableSudoku = data.tableValues;
 	//alert(dataTableSudoku);
 	
@@ -28,16 +35,24 @@ Ti.App.addEventListener('retrieveDatas', function(data) {
 	
 	if (data.pauseValues) {
 		// show "continue" button
-		$.btnRetrieve.show();
+		
 		if (Titanium.Platform.name == 'android') { 
-			$.btnRetrieve.visible = true;
+			setTimeout(function(evt){
+				$.btnRetrieve.visible = true;
+			},500);
+		}else {
+			$.btnRetrieve.show();
 		}
 		//alert('You paused at ' + hourVal + ':' + minVal + ':' + secVal);
 	} else {
 		// hide "continue" button when the game is sloved
-		$.btnRetrieve.hide();
-		if (Titanium.Platform.name == 'android') { 
-			$.btnRetrieve.visible = false;
+		
+		if (Titanium.Platform.name == 'android') {
+			setTimeout(function(evt){ 
+				$.btnRetrieve.visible = false;
+			},500);
+		}else{
+			$.btnRetrieve.hide();
 		}
 		//alert('You spend ' + hourVal + ':' + minVal + ':' + secVal +' to slove this Sudoku');
 		
@@ -58,11 +73,16 @@ Ti.App.addEventListener('retrieveDatas', function(data) {
 		
 		if (myTime < bestTime || bestTime == 0) {
 			alert("CONGRATULATIONS !!!!! You beat the best time" );
+
 			
-			// Does not update the label msgScore
-			$.bestHour.setText(hourVal + ':');
-			$.bestMinute.setText(minVal + ':');
-			$.bestSecond.setText(secVal);
+			if (Titanium.Platform.name == 'android') { 
+				$.msgScore.setText("Best time: "+hourVal + ":" + minVal +":" + secVal);
+			}else{
+				// Does not update the label msgScore
+				$.bestHour.setText(hourVal + ':');
+				$.bestMinute.setText(minVal + ':');
+				$.bestSecond.setText(secVal);
+			}
 		}
 	}
 });
@@ -85,9 +105,17 @@ function playGame(e) {
 		timeMinuteSudoku: 00,
 		timeHourSudoku: 00
 	}).getView();
-	// open the game view
-	game.backgroundImage = "hq_dragon.jpg";
-    game.open();
+	
+
+	if (Titanium.Platform.name == 'android') { 
+			$.btnRetrieve.visible = false;
+			$.btnPlay.visible = false;
+			$.contentView.visible = false;
+			game.open();
+	} else {
+			game.backgroundImage = "background.jpg";
+   			game.open();
+	}
 }
 
 // click event on "continue button"
@@ -100,8 +128,15 @@ function retrieveGame(e) {
 		savedGameValue: currentGameValue
 	}).getView();
 	// open the game view
-	game.backgroundImage = "hq_dragon.jpg";
-    game.open();
+	if (Titanium.Platform.name == 'android') { 
+			$.btnRetrieve.visible = false;
+			$.btnPlay.visible = false;
+			$.contentView.visible = false;
+			game.open();
+	} else {
+			game.backgroundImage = "background.jpg";
+   			game.open();
+	}
 }
 
 // replace ":" by a null char
@@ -111,5 +146,5 @@ function rewritetime(s) {
 }
 
 // open the home view
-$.index.backgroundImage = "hq_dragon.jpg";
+$.index.backgroundImage = "background.jpg";
 $.index.open();

@@ -17,10 +17,10 @@
 					</View>
 				</View>
 			</View>
-			<ImageView id="topImage" image="logo.png"></ImageView>
+			<View id="sudoWrapper">
+			<!--<ImageView id="topImage" image="logo.png"></ImageView>-->
 				<TableView id="tableView" />
-			<!--<View id="bottomWrapper">
+			</View>
 
-		</View> -->
 	</Window>
 </Alloy>

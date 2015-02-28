@@ -20,7 +20,7 @@ function Controller() {
             timeMinuteSudoku: 0,
             timeHourSudoku: 0
         }).getView();
-        game.backgroundImage = "hq_dragon.jpg";
+        game.backgroundImage = "background.jpg";
         game.open();
     }
     function retrieveGame() {
@@ -31,7 +31,7 @@ function Controller() {
             timeHourSudoku: hourVal,
             savedGameValue: currentGameValue
         }).getView();
-        game.backgroundImage = "hq_dragon.jpg";
+        game.backgroundImage = "background.jpg";
         game.open();
     }
     function rewritetime(s) {
@@ -258,7 +258,7 @@ function Controller() {
             }
         }
     });
-    $.index.backgroundImage = "hq_dragon.jpg";
+    $.index.backgroundImage = "background.jpg";
     $.index.open();
     __defers["$.__views.btnRetrieve!click!retrieveGame"] && $.__views.btnRetrieve.addEventListener("click", retrieveGame);
     __defers["$.__views.btnPlay!click!playGame"] && $.__views.btnPlay.addEventListener("click", playGame);
