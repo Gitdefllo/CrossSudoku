@@ -1,7 +1,5 @@
-// init background image
-
 // init variables
-var dataTableSudoku, secVal, minVal, hourVal, pausedVal, bestTime;
+var dataTableSudoku, secVal, minVal, hourVal, pausedVal, bestTime, helpVal;
 
 // hide "continue" button
 $.btnRetrieve.hide();
@@ -16,26 +14,22 @@ if ($.bestSecond.getText() == undefined || $.bestSecond.getText() == '') {
 
 // retrieve the values when the game is paused or end
 Ti.App.addEventListener('retrieveDatas', function(data) {
-	
-	
 	if (Titanium.Platform.name == 'android') { 
 		setTimeout(function(evt){
 			$.btnPlay.visible = true;
 			$.contentView.visible = true;
 	    },500);
-	} 
-	//dataTableSudoku = data.tableValues;
-	//alert(dataTableSudoku);
+	}
 	
 	// retrieve the time
 	secVal = data.secValues;
 	minVal = data.minValues;
 	hourVal = data.hourValues;
 	currentGameValue = data.curentGameValue;
+	helpVal = data.helpCounter;
 	
 	if (data.pauseValues) {
 		// show "continue" button
-		
 		if (Titanium.Platform.name == 'android') { 
 			setTimeout(function(evt){
 				$.btnRetrieve.visible = true;
@@ -46,7 +40,6 @@ Ti.App.addEventListener('retrieveDatas', function(data) {
 		//alert('You paused at ' + hourVal + ':' + minVal + ':' + secVal);
 	} else {
 		// hide "continue" button when the game is sloved
-		
 		if (Titanium.Platform.name == 'android') {
 			setTimeout(function(evt){ 
 				$.btnRetrieve.visible = false;
@@ -73,15 +66,17 @@ Ti.App.addEventListener('retrieveDatas', function(data) {
 		
 		if (myTime < bestTime || bestTime == 0) {
 			alert("CONGRATULATIONS !!!!! You beat the best time" );
-
-			
 			if (Titanium.Platform.name == 'android') { 
 				$.msgScore.setText("Best time: "+hourVal + ":" + minVal +":" + secVal);
+				$.msgScore.color = '#ffffff';
 			}else{
 				// Does not update the label msgScore
 				$.bestHour.setText(hourVal + ':');
+				$.bestHour.color = '#ffffff';
 				$.bestMinute.setText(minVal + ':');
+				$.bestMinute.color = '#ffffff';
 				$.bestSecond.setText(secVal);
+				$.bestSecond.color = '#ffffff';
 			}
 		}
 	}
@@ -125,7 +120,8 @@ function retrieveGame(e) {
 		timeSecondSudoku: secVal,
 		timeMinuteSudoku: minVal,
 		timeHourSudoku: hourVal,
-		savedGameValue: currentGameValue
+		savedGameValue: currentGameValue,
+		helpCounter: helpVal
 	}).getView();
 	// open the game view
 	if (Titanium.Platform.name == 'android') { 

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ts	1425158788000
+=======
+ts	1425154229000
+>>>>>>> 7b60cbc095e203f6a36e82f462d40a6044153c33
 Default-Landscape.png	513333
 Default-Portrait.png	76153
 Default.png	110858
@@ -8,10 +12,17 @@ alloy
 	constants.js	6654
 	controllers
 		BaseController.js	7259
+<<<<<<< HEAD
 		game.js	10588
 		index.js	8515
 	styles
 		game.js	2812
+=======
+		game.js	12839
+		index.js	8736
+	styles
+		game.js	3579
+>>>>>>> 7b60cbc095e203f6a36e82f462d40a6044153c33
 		index.js	2659
 	sync
 		localStorage.js	1913

@@ -3,7 +3,7 @@
 			<View id="topWrapper">
 				<View id="leftCorner">
 					<View id="backView" onClick="goBack">
-						<Label class="backLabel" id="backLabel" />
+						<Label id="backLabel" />
 					</View>					
 				</View>
 				<View id="rightCorner">
@@ -17,9 +17,12 @@
 				</View>
 			</View>
 			<View id="sudoWrapper">
-			<!--<ImageView id="topImage" image="logo.png"></ImageView>-->
 				<TableView id="tableView" />
 			</View>
-
+			<View id="bottomWrapper">
+				<View id="helpView" onClick="helpSolution">
+					<Label id="helpLabel" />
+				</View>
+			</View>
 	</Window>
 </Alloy>

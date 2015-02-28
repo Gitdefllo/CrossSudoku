@@ -29,7 +29,8 @@ function Controller() {
             timeSecondSudoku: secVal,
             timeMinuteSudoku: minVal,
             timeHourSudoku: hourVal,
-            savedGameValue: currentGameValue
+            savedGameValue: currentGameValue,
+            helpCounter: helpVal
         }).getView();
         game.backgroundImage = "background.jpg";
         game.open();
@@ -231,7 +232,7 @@ function Controller() {
     $.__views.btnPlay.add($.__views.__alloyId1);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    var secVal, minVal, hourVal;
+    var secVal, minVal, hourVal, helpVal;
     $.btnRetrieve.hide();
     (void 0 == $.bestSecond.getText() || "" == $.bestSecond.getText()) && $.msgScore.setText('Select "new game" to play.');
     Ti.App.addEventListener("retrieveDatas", function(data) {
@@ -239,6 +240,7 @@ function Controller() {
         minVal = data.minValues;
         hourVal = data.hourValues;
         currentGameValue = data.curentGameValue;
+        helpVal = data.helpCounter;
         if (data.pauseValues) $.btnRetrieve.show(); else {
             $.btnRetrieve.hide();
             if (void 0 == $.bestSecond.getText() || "" == $.bestSecond.getText()) {
@@ -253,8 +255,11 @@ function Controller() {
             if (bestTime > myTime || 0 == bestTime) {
                 alert("CONGRATULATIONS !!!!! You beat the best time");
                 $.bestHour.setText(hourVal + ":");
+                $.bestHour.color = "#ffffff";
                 $.bestMinute.setText(minVal + ":");
+                $.bestMinute.color = "#ffffff";
                 $.bestSecond.setText(secVal);
+                $.bestSecond.color = "#ffffff";
             }
         }
     });

@@ -8,6 +8,12 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+    function checkHelpButton() {
+        if (0 == help) {
+            $.helpView.setTouchEnabled(false);
+            $.helpView.backgroundColor = "#383838";
+        }
+    }
     function convertTime(h, m, s) {
         return timeSeconds = parseInt(3600 * h) + parseInt(60 * m) + parseInt(s);
     }
@@ -74,7 +80,10 @@ function Controller() {
         }
         for (j = 0; 80 >= j; j++) {
             array[j].setValue(arrayStart[j]);
-            null != arrayStart[j] ? array[j].setEnabled(false) : array[j].addEventListener("blur", function(e) {
+            if (null != arrayStart[j]) {
+                array[j].setEnabled(false);
+                array[j].backgroundColor = "#383838";
+            } else array[j].addEventListener("blur", function(e) {
                 checkCase(e);
             });
         }
@@ -89,6 +98,7 @@ function Controller() {
             e.source.color = "#ffffff";
             e.source.setEnabled(false);
         }
+        tagHelp = e.source.pos;
         checkSudoku();
     }
     function checkSudoku() {
@@ -115,9 +125,23 @@ function Controller() {
             minValues: min,
             hourValues: hr,
             curentGameValue: arrayStart,
-            pauseValues: true
+            pauseValues: true,
+            helpCounter: help
         });
         $.game_container.close();
+    }
+    function helpSolution() {
+        if (help > 0 && tagHelp > -1) {
+            array[tagHelp].setValue(arraySolution[tagHelp]);
+            array[tagHelp].backgroundColor = "#28bb28";
+            array[tagHelp].color = "#ffffff";
+            array[tagHelp].setEnabled(false);
+            arrayStart[tagHelp] = array[tagHelp].value;
+            help--;
+            tagHelp = -1;
+            $.helpLabel.setText("Solution (" + help + ")");
+            checkHelpButton();
+        }
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "game";
@@ -284,25 +308,70 @@ function Controller() {
         id: "tableView"
     });
     $.__views.sudoWrapper.add($.__views.tableView);
+    $.__views.bottomWrapper = Ti.UI.createView({
+        top: 10,
+        left: 20,
+        right: 20,
+        width: Ti.UI.FILL,
+        height: 60,
+        layout: "horizontal",
+        id: "bottomWrapper"
+    });
+    $.__views.game_container.add($.__views.bottomWrapper);
+    $.__views.helpView = Ti.UI.createView({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        backgroundColor: "#bb2828",
+        color: "#ffffff",
+        borderWidth: 1,
+        borderColor: "#1b1b1b",
+        borderRadius: 6,
+        layout: "horizontal",
+        id: "helpView"
+    });
+    $.__views.bottomWrapper.add($.__views.helpView);
+    helpSolution ? $.__views.helpView.addEventListener("click", helpSolution) : __defers["$.__views.helpView!click!helpSolution"] = true;
+    $.__views.helpLabel = Ti.UI.createLabel({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        color: "#ffffff",
+        font: {
+            fontSize: 15
+        },
+        backgroundColor: "transparent",
+        top: "10dp",
+        right: "10dp",
+        bottom: "10dp",
+        left: "10dp",
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+        textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+        id: "helpLabel"
+    });
+    $.__views.helpView.add($.__views.helpLabel);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var sec, min, hr;
     var args = arguments[0] || {};
     var totalSeconds, totalHours;
+    var help, tagHelp = -1;
     $.backLabel.setText("Back");
     var array = [];
     var arraySolution = [ 2, 9, 4, 1, 7, 3, 5, 8, 6, 1, 5, 6, 2, 8, 9, 3, 4, 7, 3, 8, 7, 4, 6, 5, 1, 9, 2, 5, 7, 1, 3, 9, 2, 4, 6, 8, 4, 2, 3, 6, 1, 8, 7, 5, 9, 8, 6, 9, 5, 4, 7, 2, 3, 1, 9, 4, 2, 8, 5, 1, 6, 7, 3, 6, 1, 8, 7, 3, 4, 9, 2, 5, 7, 3, 5, 9, 2, 6, 8, 1, 4 ];
     var arrayStart = [ 2, , , 1, , , , , 6, , , 6, , 8, , 3, , 7, 3, , , , 6, , , , , , , , , 9, , , , , , , , 6, , , , , , , , , , 4, 7, , , 1, 9, , , 8, , , , , 3, , , , 7, , , 9, , , , , 5, 9, , 6, 8, 1 ];
     if (1 == args.newGame) {
         totalSeconds = 0;
+        help = 5;
         initGrid();
         setInterval(updateTime, 1e3);
     } else {
         totalSeconds = 0;
+        help = args.helpCounter;
         arrayStart = args.savedGameValue;
         initGrid();
         setInterval(updateTime, 1e3);
     }
+    $.helpLabel.setText("Solution (" + help + ")");
+    checkHelpButton();
     if (0 != args.timeHourSudoku || 0 != args.timeMinuteSudoku || 0 != args.timeSecondSudoku) {
         totalSeconds = args.timeSecondSudoku;
         totalMinutes = args.timeMinuteSudoku;
@@ -311,6 +380,7 @@ function Controller() {
         setInterval(updateTime, 1e3);
     }
     __defers["$.__views.backView!click!goBack"] && $.__views.backView.addEventListener("click", goBack);
+    __defers["$.__views.helpView!click!helpSolution"] && $.__views.helpView.addEventListener("click", helpSolution);
     _.extend($, exports);
 }
 
