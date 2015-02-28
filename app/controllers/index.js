@@ -1,5 +1,5 @@
 // init variables
-var dataTableSudoku, secVal, minVal, hourVal, pausedVal, bestTime;
+var dataTableSudoku, secVal, minVal, hourVal, pausedVal, bestTime, helpVal;
 
 // hide "continue" button
 $.btnRetrieve.hide();
@@ -26,10 +26,10 @@ Ti.App.addEventListener('retrieveDatas', function(data) {
 	minVal = data.minValues;
 	hourVal = data.hourValues;
 	currentGameValue = data.curentGameValue;
+	helpVal = data.helpCounter;
 	
 	if (data.pauseValues) {
 		// show "continue" button
-		
 		if (Titanium.Platform.name == 'android') { 
 			setTimeout(function(evt){
 				$.btnRetrieve.visible = true;
@@ -40,7 +40,6 @@ Ti.App.addEventListener('retrieveDatas', function(data) {
 		//alert('You paused at ' + hourVal + ':' + minVal + ':' + secVal);
 	} else {
 		// hide "continue" button when the game is sloved
-		
 		if (Titanium.Platform.name == 'android') {
 			setTimeout(function(evt){ 
 				$.btnRetrieve.visible = false;
@@ -121,7 +120,8 @@ function retrieveGame(e) {
 		timeSecondSudoku: secVal,
 		timeMinuteSudoku: minVal,
 		timeHourSudoku: hourVal,
-		savedGameValue: currentGameValue
+		savedGameValue: currentGameValue,
+		helpCounter: helpVal
 	}).getView();
 	// open the game view
 	if (Titanium.Platform.name == 'android') { 

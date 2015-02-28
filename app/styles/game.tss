@@ -28,6 +28,13 @@
 	layout: "horizontal"
 }
 
+"#bottomWrapper": {
+	top: 10, left: 20, right: 20, // margins
+	width: Ti.UI.FILL,
+	height: 60,
+	layout: "horizontal"
+}
+
 /** PATCH TIMERVIEW TO RIGHT CORNER **/
 "#leftCorner": {
 	left: 0,
@@ -150,4 +157,30 @@
 
 "TableViewRow": {
     layout:"horizontal"
+}
+
+// Help button (joker)
+"#helpView": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	backgroundColor: "#bb2828",
+	color: "#ffffff",
+	borderWidth: 1,
+    borderColor: '#1b1b1b',
+	// shadowColor: "#87cefa", shadowOffset: {x:-2,y:-2},
+	borderRadius: 6,
+	layout:"horizontal"
+}
+
+"#helpLabel": {
+	font: {
+		fontSize: 15
+	},
+	color: "#ffffff",
+	backgroundColor: "transparent",
+	top: "10dp", right: "10dp", bottom: "10dp", left: "10dp", // padding
+	verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE
 }

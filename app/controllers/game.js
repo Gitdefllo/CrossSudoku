@@ -3,6 +3,7 @@ var sec, min, hr;
 var args = arguments[0] || {};
 var totalSeconds, totalMiutes, totalHours;
 var andHour, andMin, andSec;
+var help, tagHelp = -1;
 
 // set text to back button
 $.backLabel.setText("Back");
@@ -34,6 +35,8 @@ var arrayStart = 		[2, , , 1, , , , , 6,
 if(args.newGame == 1) {
 	// init the timer and interval time
 	totalSeconds = 0;
+	// init help counter
+	help = 5;
 	// initialize Sudoku
 	if (Titanium.Platform.name == 'android') { 
 		initGridAndroid();
@@ -47,6 +50,8 @@ if(args.newGame == 1) {
 }else{
 	// init the timer and interval time
 	totalSeconds = 0;
+	// init help counter
+	help = args.helpCounter;
 	// add saved value to arrayStart
 	arrayStart = args.savedGameValue;
 	// initialize Sudoku
@@ -60,6 +65,17 @@ if(args.newGame == 1) {
 		setInterval(updateTime, 1000);	
 	}
 };
+
+// set text to help button
+$.helpLabel.setText("Solution ("+help+")");
+checkHelpButton();
+
+function checkHelpButton() {
+	if (help == 0) {
+		$.helpView.setTouchEnabled(false);
+		$.helpView.backgroundColor = '#383838';
+	}
+}
 
 // check the time
 if(args.timeHourSudoku != 00 || args.timeMinuteSudoku != 00 || args.timeSecondSudoku != 00) {
@@ -93,7 +109,6 @@ function updateTimeAndroid() {
 	andMin = parseInt(totalSeconds/60);
 	andSec = totalSeconds%60;
 }
-
 
 // to write time with "0" in first position
 // (ex. with="02:06:04" without="2:6:4")
@@ -196,7 +211,6 @@ function initGrid(){
 	}
 }
 
-
 function initGridAndroid(){
 	var cpt = 0, row, tf, sf, count = 0;
 	
@@ -281,10 +295,10 @@ function checkCase(e){
 			e.source.color = '#ffffff';
 			e.source.setEnabled(false);
 		};
-	}	
+	}
+	tagHelp = e.source.pos;
 	checkSudoku();
 }
-
 	
 // checks if the sudoku is sloved and send the time spend
 function checkSudoku(){
@@ -332,8 +346,28 @@ function goBack(e) {
 		minValues: min,
 		hourValues: hr,
 		curentGameValue: arrayStart,
-		pauseValues: true
+		pauseValues: true,
+		helpCounter: help 
 	});
 	// close game view
 	$.game_container.close();
+}
+
+// click event on "help button"
+function helpSolution(e) {
+	// check the joker number
+	if (help > 0 && tagHelp > -1) {
+		// retrieve which field has focus
+		array[tagHelp].setValue(arraySolution[tagHelp]);
+		array[tagHelp].backgroundColor = '#28bb28';
+		array[tagHelp].color = '#ffffff';
+		array[tagHelp].setEnabled(false);
+		// update the saved array
+		arrayStart[tagHelp] = array[tagHelp].value;
+		// update the counter and position
+		help--; tagHelp = -1;
+		// update help button and tag
+		$.helpLabel.setText("Solution ("+help+")");
+		checkHelpButton();
+	}
 }

@@ -20,5 +20,10 @@
 			<View id="sudoWrapper">
 				<TableView id="tableView" />
 			</View>
+			<View id="bottomWrapper">
+				<View id="helpView" onClick="helpSolution">
+					<Label id="helpLabel" />
+				</View>
+			</View>
 	</Window>
 </Alloy>
