@@ -213,6 +213,21 @@ function initGrid(){
 
 // not the same size !
 function initGridAndroid(){
+	
+	$.helpView.visible = false;
+	$.game_container.activity.onCreateOptionsMenu = function(e) { 
+		var menu = e.menu; 
+		var menuItem = menu.add({ 
+		title : "Help", 
+		icon : "help.png", 
+		showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM 
+		}); 
+		menuItem.addEventListener("click", function(e) { 
+			console.log("ok");
+			helpSolution();
+		}); 
+	};
+
 	var cpt = 0, row, tf, sf, count = 0;
 	
 	$.tableView.height = Titanium.Platform.displayCaps.dpi+9;
@@ -283,6 +298,9 @@ function initGridAndroid(){
 		} else {
 			array[j].addEventListener('change', function(e){
 				checkCase(e);
+			});
+			array[j].addEventListener('focus', function(e){
+				tagHelp = e.source.pos;
 			});
 		}
 	}

@@ -35,6 +35,19 @@ function Controller() {
         return time.length < 2 ? "0" + time : time;
     }
     function initGridAndroid() {
+        $.helpView.visible = false;
+        $.game_container.activity.onCreateOptionsMenu = function(e) {
+            var menu = e.menu;
+            var menuItem = menu.add({
+                title: "Help",
+                icon: "help.png",
+                showAsAction: Ti.Android.SHOW_AS_ACTION_IF_ROOM
+            });
+            menuItem.addEventListener("click", function() {
+                console.log("ok");
+                helpSolution();
+            });
+        };
         var row, tf, sf, cpt = 0, count = 0;
         $.tableView.height = Titanium.Platform.displayCaps.dpi + 9;
         $.tableView.width = Ti.UI.SIZE;
@@ -93,9 +106,14 @@ function Controller() {
         }
         for (j = 0; 80 >= j; j++) {
             array[j].setValue(arrayStart[j]);
-            null != arrayStart[j] ? array[j].setEnabled(false) : array[j].addEventListener("change", function(e) {
-                checkCase(e);
-            });
+            if (null != arrayStart[j]) array[j].setEnabled(false); else {
+                array[j].addEventListener("change", function(e) {
+                    checkCase(e);
+                });
+                array[j].addEventListener("focus", function(e) {
+                    tagHelp = e.source.pos;
+                });
+            }
         }
     }
     function checkCase(e) {
@@ -141,6 +159,7 @@ function Controller() {
         $.game_container.close();
     }
     function helpSolution() {
+        console.log("enter in helpsolution");
         if (help > 0 && tagHelp > -1) {
             array[tagHelp].setValue(arraySolution[tagHelp]);
             array[tagHelp].backgroundColor = "#28bb28";
@@ -299,7 +318,7 @@ function Controller() {
         right: "0%",
         left: "0%",
         width: Titanium.UI.SIZE,
-        height: Titanium.UI.FILL,
+        height: Titanium.UI.SIZE,
         layout: "horizontal",
         id: "sudoWrapper"
     });

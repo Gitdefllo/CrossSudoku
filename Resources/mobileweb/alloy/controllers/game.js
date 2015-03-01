@@ -299,7 +299,6 @@ function Controller() {
         width: Ti.UI.FILL,
         backgroundColor: "transparent",
         borderColor: "transparent",
-        separatorColor: "transparent",
         top: "5dp",
         bottom: "5dp",
         right: "5dp",
