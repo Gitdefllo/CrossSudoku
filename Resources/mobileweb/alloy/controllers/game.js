@@ -289,7 +289,7 @@ function Controller() {
         right: "0%",
         left: "0%",
         width: Titanium.UI.SIZE,
-        height: Titanium.UI.FILL,
+        height: Titanium.UI.SIZE,
         layout: "horizontal",
         id: "sudoWrapper"
     });
