@@ -1,1 +1,284 @@
-function __processArg(e,t){var i=null;return e&&(i=e[t]||null,delete e[t]),i}function Controller(){function e(e,t,i){var r;return r=parseInt(3600*e)+parseInt(60*t)+parseInt(i)}function t(){var e=Alloy.createController("game",{newGame:1,timeSecondSudoku:0,timeMinuteSudoku:0,timeHourSudoku:0}).getView();o.btnRetrieve.visible=!1,o.btnPlay.visible=!1,o.contentView.visible=!1,e.open()}function i(){var e=Alloy.createController("game",{newGame:0,timeSecondSudoku:a,timeMinuteSudoku:l,timeHourSudoku:c,savedGameValue:currentGameValue,helpCounter:u}).getView();o.btnRetrieve.visible=!1,o.btnPlay.visible=!1,o.contentView.visible=!1,e.open()}function r(e){return e=e.replace(":","")}require("alloy/controllers/BaseController").apply(this,Array.prototype.slice.call(arguments)),this.__controllerPath="index",arguments[0]&&(__processArg(arguments[0],"__parentSymbol"),__processArg(arguments[0],"$model"),__processArg(arguments[0],"__itemTemplate"));var o=this,n={},s={};o.__views.index=Ti.UI.createWindow({width:Ti.UI.FILL,height:Ti.UI.FILL,layout:"vertical",id:"index"}),o.__views.index&&o.addTopLevelView(o.__views.index),o.__views.wrapper=Ti.UI.createView({top:0,width:Ti.UI.FILL,height:Ti.UI.FILL,id:"wrapper"}),o.__views.index.add(o.__views.wrapper),o.__views.topWrapper=Ti.UI.createView({top:0,left:20,right:20,width:Ti.UI.FILL,height:60,layout:"horizontal",id:"topWrapper"}),o.__views.wrapper.add(o.__views.topWrapper),o.__views.topImage=Ti.UI.createImageView({top:20,verticalAlign:Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,width:"40.0%",height:100,id:"topImage",image:"logo.png"}),o.__views.wrapper.add(o.__views.topImage),o.__views.contentWrapper=Ti.UI.createView({right:20,left:20,top:120,id:"contentWrapper"}),o.__views.wrapper.add(o.__views.contentWrapper),o.__views.contentView=Ti.UI.createView({top:50,backgroundColor:"#404040",color:"#ffffff",borderWidth:1,borderColor:"#1b1b1b",borderRadius:6,width:Ti.UI.FILL,height:Ti.UI.SIZE,id:"contentView"}),o.__views.contentWrapper.add(o.__views.contentView),o.__views.msgScore=Ti.UI.createLabel({font:{fontFamily:"Arial",fontSize:25},width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#ffffff",top:"40dp",bottom:"40dp",textAlign:Titanium.UI.TEXT_ALIGNMENT_CENTER,layout:"horizontal",text:"",id:"msgScore"}),o.__views.contentView.add(o.__views.msgScore),o.__views.bestHour=Ti.UI.createLabel({font:{fontFamily:"Arial",fontSize:25},width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000",left:5,id:"bestHour"}),o.__views.msgScore.add(o.__views.bestHour),o.__views.bestMinute=Ti.UI.createLabel({font:{fontFamily:"Arial",fontSize:25},width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000",id:"bestMinute"}),o.__views.msgScore.add(o.__views.bestMinute),o.__views.bestSecond=Ti.UI.createLabel({font:{fontFamily:"Arial",fontSize:25},width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000",id:"bestSecond"}),o.__views.msgScore.add(o.__views.bestSecond),o.__views.bottomWrapper=Ti.UI.createView({bottom:20,left:20,right:20,id:"bottomWrapper"}),o.__views.wrapper.add(o.__views.bottomWrapper),o.__views.buttonContainer=Ti.UI.createView({bottom:0,width:Ti.UI.FILL,height:Ti.UI.SIZE,id:"buttonContainer"}),o.__views.bottomWrapper.add(o.__views.buttonContainer),o.__views.btnRetrieve=Ti.UI.createView({width:Ti.UI.FILL,height:Ti.UI.SIZE,backgroundColor:"#bb2828",color:"#ffffff",borderWidth:1,borderColor:"#1b1b1b",borderRadius:6,left:0,bottom:110,id:"btnRetrieve"}),o.__views.buttonContainer.add(o.__views.btnRetrieve),i?o.__views.btnRetrieve.addEventListener("click",i):s["$.__views.btnRetrieve!click!retrieveGame"]=!0,o.__views.__alloyId0=Ti.UI.createLabel({font:{fontFamily:"Arial",fontSize:20},width:Ti.UI.FILL,height:Ti.UI.SIZE,color:"#ffffff",backgroundColor:"transparent",top:"10dp",bottom:"10dp",textAlign:Titanium.UI.TEXT_ALIGNMENT_CENTER,text:"continue",id:"__alloyId0"}),o.__views.btnRetrieve.add(o.__views.__alloyId0),o.__views.btnPlay=Ti.UI.createView({width:Ti.UI.FILL,height:Ti.UI.SIZE,backgroundColor:"#bb2828",color:"#ffffff",borderWidth:1,borderColor:"#1b1b1b",borderRadius:6,right:0,id:"btnPlay"}),o.__views.buttonContainer.add(o.__views.btnPlay),t?o.__views.btnPlay.addEventListener("click",t):s["$.__views.btnPlay!click!playGame"]=!0,o.__views.__alloyId1=Ti.UI.createLabel({font:{fontFamily:"Arial",fontSize:20},width:Ti.UI.FILL,height:Ti.UI.SIZE,color:"#ffffff",backgroundColor:"transparent",top:"10dp",bottom:"10dp",textAlign:Titanium.UI.TEXT_ALIGNMENT_CENTER,text:"new game",id:"__alloyId1"}),o.__views.btnPlay.add(o.__views.__alloyId1),n.destroy=function(){},_.extend(o,o.__views);var a,l,c,u;o.btnRetrieve.hide(),o.btnRetrieve.visible=!1,(void 0==o.bestSecond.getText()||""==o.bestSecond.getText())&&o.msgScore.setText('Select "new game" to play.'),Ti.App.addEventListener("retrieveDatas",function(t){if(setTimeout(function(){o.btnPlay.visible=!0,o.contentView.visible=!0},500),a=t.secValues,l=t.minValues,c=t.hourValues,currentGameValue=t.curentGameValue,u=t.helpCounter,t.pauseValues)setTimeout(function(){o.btnRetrieve.visible=!0},500);else{setTimeout(function(){o.btnRetrieve.visible=!1},500),(void 0==o.bestSecond.getText()||""==o.bestSecond.getText())&&(o.msgScore.setText("Best time:"),o.bestHour.setText("00:"),o.bestMinute.setText("00:"),o.bestSecond.setText("00"));var i=e(c,l,a),n=e(r(o.bestHour.getText()),r(o.bestMinute.getText()),o.bestSecond.getText());alert("Your best time is: "+n+"."),(n>i||0==n)&&(alert("CONGRATULATIONS !!!!! You beat the best time"),o.msgScore.setText("Best time: "+c+":"+l+":"+a),o.msgScore.color="#ffffff")}}),o.index.backgroundImage="background.jpg",o.index.open(),s["$.__views.btnRetrieve!click!retrieveGame"]&&o.__views.btnRetrieve.addEventListener("click",i),s["$.__views.btnPlay!click!playGame"]&&o.__views.btnPlay.addEventListener("click",t),_.extend(o,n)}var Alloy=require("alloy"),Backbone=Alloy.Backbone,_=Alloy._;module.exports=Controller;
+function __processArg(obj, key) {
+    var arg = null;
+    if (obj) {
+        arg = obj[key] || null;
+        delete obj[key];
+    }
+    return arg;
+}
+
+function Controller() {
+    function convertTime(h, m, s) {
+        var timeSeconds;
+        timeSeconds = parseInt(3600 * h) + parseInt(60 * m) + parseInt(s);
+        return timeSeconds;
+    }
+    function playGame() {
+        var game = Alloy.createController("game", {
+            newGame: 1,
+            timeSecondSudoku: 0,
+            timeMinuteSudoku: 0,
+            timeHourSudoku: 0
+        }).getView();
+        $.btnRetrieve.visible = false;
+        $.btnPlay.visible = false;
+        $.contentView.visible = false;
+        game.open();
+    }
+    function retrieveGame() {
+        var game = Alloy.createController("game", {
+            newGame: 0,
+            timeSecondSudoku: secVal,
+            timeMinuteSudoku: minVal,
+            timeHourSudoku: hourVal,
+            savedGameValue: currentGameValue,
+            helpCounter: helpVal
+        }).getView();
+        $.btnRetrieve.visible = false;
+        $.btnPlay.visible = false;
+        $.contentView.visible = false;
+        game.open();
+    }
+    function rewritetime(s) {
+        s = s.replace(":", "");
+        return s;
+    }
+    require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
+    this.__controllerPath = "index";
+    if (arguments[0]) {
+        {
+            __processArg(arguments[0], "__parentSymbol");
+        }
+        {
+            __processArg(arguments[0], "$model");
+        }
+        {
+            __processArg(arguments[0], "__itemTemplate");
+        }
+    }
+    var $ = this;
+    var exports = {};
+    var __defers = {};
+    $.__views.index = Ti.UI.createWindow({
+        width: Ti.UI.FILL,
+        height: Ti.UI.FILL,
+        layout: "vertical",
+        id: "index"
+    });
+    $.__views.index && $.addTopLevelView($.__views.index);
+    $.__views.wrapper = Ti.UI.createView({
+        top: 0,
+        width: Ti.UI.FILL,
+        height: Ti.UI.FILL,
+        id: "wrapper"
+    });
+    $.__views.index.add($.__views.wrapper);
+    $.__views.topWrapper = Ti.UI.createView({
+        top: 0,
+        left: 20,
+        right: 20,
+        width: Ti.UI.FILL,
+        height: 60,
+        layout: "horizontal",
+        id: "topWrapper"
+    });
+    $.__views.wrapper.add($.__views.topWrapper);
+    $.__views.topImage = Ti.UI.createImageView({
+        top: 20,
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+        width: "40.0%",
+        height: 100,
+        id: "topImage",
+        image: "logo.png"
+    });
+    $.__views.wrapper.add($.__views.topImage);
+    $.__views.contentWrapper = Ti.UI.createView({
+        right: 20,
+        left: 20,
+        top: 120,
+        id: "contentWrapper"
+    });
+    $.__views.wrapper.add($.__views.contentWrapper);
+    $.__views.contentView = Ti.UI.createView({
+        top: 50,
+        backgroundColor: "#404040",
+        color: "#ffffff",
+        borderWidth: 1,
+        borderColor: "#1b1b1b",
+        borderRadius: 6,
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        id: "contentView"
+    });
+    $.__views.contentWrapper.add($.__views.contentView);
+    $.__views.msgScore = Ti.UI.createLabel({
+        font: {
+            fontFamily: "Arial",
+            fontSize: 25
+        },
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        color: "#ffffff",
+        top: "40dp",
+        bottom: "40dp",
+        textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+        layout: "horizontal",
+        text: "",
+        id: "msgScore"
+    });
+    $.__views.contentView.add($.__views.msgScore);
+    $.__views.bestHour = Ti.UI.createLabel({
+        font: {
+            fontFamily: "Arial",
+            fontSize: 25
+        },
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        color: "#000",
+        left: 5,
+        id: "bestHour"
+    });
+    $.__views.msgScore.add($.__views.bestHour);
+    $.__views.bestMinute = Ti.UI.createLabel({
+        font: {
+            fontFamily: "Arial",
+            fontSize: 25
+        },
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        color: "#000",
+        id: "bestMinute"
+    });
+    $.__views.msgScore.add($.__views.bestMinute);
+    $.__views.bestSecond = Ti.UI.createLabel({
+        font: {
+            fontFamily: "Arial",
+            fontSize: 25
+        },
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        color: "#000",
+        id: "bestSecond"
+    });
+    $.__views.msgScore.add($.__views.bestSecond);
+    $.__views.bottomWrapper = Ti.UI.createView({
+        bottom: 20,
+        left: 20,
+        right: 20,
+        id: "bottomWrapper"
+    });
+    $.__views.wrapper.add($.__views.bottomWrapper);
+    $.__views.buttonContainer = Ti.UI.createView({
+        bottom: 0,
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        id: "buttonContainer"
+    });
+    $.__views.bottomWrapper.add($.__views.buttonContainer);
+    $.__views.btnRetrieve = Ti.UI.createView({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        backgroundColor: "#bb2828",
+        color: "#ffffff",
+        borderWidth: 1,
+        borderColor: "#1b1b1b",
+        borderRadius: 6,
+        left: 0,
+        bottom: 110,
+        id: "btnRetrieve"
+    });
+    $.__views.buttonContainer.add($.__views.btnRetrieve);
+    retrieveGame ? $.__views.btnRetrieve.addEventListener("click", retrieveGame) : __defers["$.__views.btnRetrieve!click!retrieveGame"] = true;
+    $.__views.__alloyId0 = Ti.UI.createLabel({
+        font: {
+            fontFamily: "Arial",
+            fontSize: 20
+        },
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        color: "#ffffff",
+        backgroundColor: "transparent",
+        top: "10dp",
+        bottom: "10dp",
+        textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+        text: "continue",
+        id: "__alloyId0"
+    });
+    $.__views.btnRetrieve.add($.__views.__alloyId0);
+    $.__views.btnPlay = Ti.UI.createView({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        backgroundColor: "#bb2828",
+        color: "#ffffff",
+        borderWidth: 1,
+        borderColor: "#1b1b1b",
+        borderRadius: 6,
+        right: 0,
+        id: "btnPlay"
+    });
+    $.__views.buttonContainer.add($.__views.btnPlay);
+    playGame ? $.__views.btnPlay.addEventListener("click", playGame) : __defers["$.__views.btnPlay!click!playGame"] = true;
+    $.__views.__alloyId1 = Ti.UI.createLabel({
+        font: {
+            fontFamily: "Arial",
+            fontSize: 20
+        },
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        color: "#ffffff",
+        backgroundColor: "transparent",
+        top: "10dp",
+        bottom: "10dp",
+        textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+        text: "new game",
+        id: "__alloyId1"
+    });
+    $.__views.btnPlay.add($.__views.__alloyId1);
+    exports.destroy = function() {};
+    _.extend($, $.__views);
+    var secVal, minVal, hourVal, helpVal;
+    $.btnRetrieve.hide();
+    $.btnRetrieve.visible = false;
+    (void 0 == $.bestSecond.getText() || "" == $.bestSecond.getText()) && $.msgScore.setText('Select "new game" to play.');
+    Ti.App.addEventListener("retrieveDatas", function(data) {
+        setTimeout(function() {
+            $.btnPlay.visible = true;
+            $.contentView.visible = true;
+        }, 500);
+        secVal = data.secValues;
+        minVal = data.minValues;
+        hourVal = data.hourValues;
+        currentGameValue = data.curentGameValue;
+        helpVal = data.helpCounter;
+        if (data.pauseValues) setTimeout(function() {
+            $.btnRetrieve.visible = true;
+        }, 500); else {
+            setTimeout(function() {
+                $.btnRetrieve.visible = false;
+            }, 500);
+            if (void 0 == $.bestSecond.getText() || "" == $.bestSecond.getText()) {
+                $.msgScore.setText("Best time:");
+                $.bestHour.setText("00:");
+                $.bestMinute.setText("00:");
+                $.bestSecond.setText("00");
+            }
+            var myTime = convertTime(hourVal, minVal, secVal);
+            var bestTime = convertTime(rewritetime($.bestHour.getText()), rewritetime($.bestMinute.getText()), $.bestSecond.getText());
+            alert("Your best time is: " + bestTime + ".");
+            if (bestTime > myTime || 0 == bestTime) {
+                alert("CONGRATULATIONS !!!!! You beat the best time");
+                $.msgScore.setText("Best time: " + hourVal + ":" + minVal + ":" + secVal);
+                $.msgScore.color = "#ffffff";
+            }
+        }
+    });
+    $.index.backgroundImage = "background.jpg";
+    $.index.open();
+    __defers["$.__views.btnRetrieve!click!retrieveGame"] && $.__views.btnRetrieve.addEventListener("click", retrieveGame);
+    __defers["$.__views.btnPlay!click!playGame"] && $.__views.btnPlay.addEventListener("click", playGame);
+    _.extend($, exports);
+}
+
+var Alloy = require("alloy"), Backbone = Alloy.Backbone, _ = Alloy._;
+
+module.exports = Controller;

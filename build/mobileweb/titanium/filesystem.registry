@@ -1,4 +1,4 @@
-ts	1425210657000
+ts	1425223554000
 Default-Landscape.png	513333
 Default-Portrait.png	76153
 Default.png	110858
@@ -30,6 +30,51 @@ apple-touch-icon-72x72-precomposed.png	7641
 apple-touch-icon-precomposed.png	5449
 background.jpg	4178648
 favicon.ico	849
+iphone
+	Default-568h@2x.png	502634
+	Default-Landscape-736h@3x.png	1863539
+	Default-Landscape.png	290681
+	Default-Landscape@2x.png	816546
+	Default-Portrait-667h@2x.png	773314
+	Default-Portrait-736h@3x.png	1734238
+	Default-Portrait.png	197444
+	Default-Portrait@2x.png	863482
+	Default.png	104301
+	Default@2x.png	343708
+	alloy
+		CFG.js	35
+		backbone.js	54540
+		constants.js	6883
+		controllers
+			BaseController.js	7500
+			game.js	13397
+			index.js	9010
+		styles
+			game.js	3491
+			index.js	2660
+		sync
+			localStorage.js	2056
+			properties.js	1899
+			sql.js	13500
+		underscore.js	42651
+		widget.js	1502
+	alloy.js	10686
+	app.js	105
+	appicon-60.png	10025
+	appicon-60@2x.png	22811
+	appicon-60@3x.png	40399
+	appicon-72.png	8445
+	appicon-72@2x.png	21003
+	appicon-Small-50.png	5116
+	appicon-Small.png	2393
+	appicon-Small@2x.png	6254
+	appicon.png	6106
+	appicon@2x.png	15471
+	background.jpg	885994
+	iTunesArtwork	151843
+	iTunesArtwork@2x	211013
+	logo.png	28414
+	soundGame.mp3	18203421
 logo.png	28414
 soundGame.mp3	18203421
 themes
@@ -186,5 +231,5 @@ titanium
 	Ti.js	6758
 	dependencies.json	10476
 	package.json	660
-titanium.css	39835
+titanium.css	39894
 titanium.js	481250

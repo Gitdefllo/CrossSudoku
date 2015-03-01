@@ -38,11 +38,13 @@ function Controller() {
         var row, tf, sf, cpt = 0, count = 0;
         $.tableView.height = Titanium.Platform.displayCaps.dpi + 9;
         $.tableView.width = Ti.UI.SIZE;
+        $.tableView.left = 10;
         for (i = 1; 9 >= i; i++) {
             row = Ti.UI.createTableViewRow({
                 className: "row",
-                height: "43dp",
-                width: "33dp",
+                height: Titanium.Platform.displayCaps.dpi / 9,
+                width: Titanium.Platform.displayCaps.dpi,
+                left: 5,
                 layout: "horizontal"
             });
             if (4 == i || 7 == i) {
@@ -60,7 +62,7 @@ function Controller() {
                     id: "case" + j * i,
                     pos: count,
                     height: Titanium.UI.FILL,
-                    width: "34dp",
+                    width: Titanium.Platform.displayCaps.dpi / 9,
                     textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
                     keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
                     borderWidth: 1,

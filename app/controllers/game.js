@@ -210,19 +210,23 @@ function initGrid(){
 		}
 	}
 }
+
+// not the same size !
 function initGridAndroid(){
 	var cpt = 0, row, tf, sf, count = 0;
 	
 	$.tableView.height = Titanium.Platform.displayCaps.dpi+9;
 	$.tableView.width = Ti.UI.SIZE;
+	$.tableView.left = 10;
 	
 	for(i = 1; i<=9; i++){
 		row = Ti.UI.createTableViewRow({
 			className: "row",			
-			height: "43dp", 
-			width: "33dp",
-			/*height:"45dp", //Titanium.Platform.displayCaps.dpi/9, 
-			width: "40dp",//Titanium.Platform.displayCaps.dpi,*/
+			/*height: "43dp", 
+			width: "33dp",*/
+			height: Titanium.Platform.displayCaps.dpi/9, 
+			width: Titanium.Platform.displayCaps.dpi,
+			left: 5,
 			layout: "horizontal"
 		});
 		if (i==4 || i==7) {
@@ -241,9 +245,9 @@ function initGridAndroid(){
 				id: "case"+j*i, 
 				pos: count,
 				height: Titanium.UI.FILL,
-				width: "34dp",
-				/*height: Titanium.Platform.displayCaps.dpi/9,
-				width:Titanium.Platform.displayCaps.dpi/9,*/
+				//width: "34dp",
+				//height: Titanium.Platform.displayCaps.dpi/9,
+				width:Titanium.Platform.displayCaps.dpi/9,
 				textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
 				keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
 				borderWidth: 1, 
