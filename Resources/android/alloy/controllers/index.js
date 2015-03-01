@@ -31,7 +31,8 @@ function Controller() {
             timeSecondSudoku: secVal,
             timeMinuteSudoku: minVal,
             timeHourSudoku: hourVal,
-            savedGameValue: currentGameValue
+            savedGameValue: currentGameValue,
+            helpCounter: helpVal
         }).getView();
         $.btnRetrieve.visible = false;
         $.btnPlay.visible = false;
@@ -235,7 +236,7 @@ function Controller() {
     $.__views.btnPlay.add($.__views.__alloyId1);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    var secVal, minVal, hourVal;
+    var secVal, minVal, hourVal, helpVal;
     $.btnRetrieve.hide();
     $.btnRetrieve.visible = false;
     (void 0 == $.bestSecond.getText() || "" == $.bestSecond.getText()) && $.msgScore.setText('Select "new game" to play.');
@@ -248,6 +249,7 @@ function Controller() {
         minVal = data.minValues;
         hourVal = data.hourValues;
         currentGameValue = data.curentGameValue;
+        helpVal = data.helpCounter;
         if (data.pauseValues) setTimeout(function() {
             $.btnRetrieve.visible = true;
         }, 500); else {
@@ -266,6 +268,7 @@ function Controller() {
             if (bestTime > myTime || 0 == bestTime) {
                 alert("CONGRATULATIONS !!!!! You beat the best time");
                 $.msgScore.setText("Best time: " + hourVal + ":" + minVal + ":" + secVal);
+                $.msgScore.color = "#ffffff";
             }
         }
     });

@@ -36,8 +36,8 @@ function Controller() {
         for (i = 1; 9 >= i; i++) {
             row = Ti.UI.createTableViewRow({
                 className: "row",
-                height: "50dp",
-                width: Titanium.UI.FILL,
+                height: 50,
+                width: 452,
                 layout: "horizontal"
             });
             if (4 == i || 7 == i) {
@@ -54,7 +54,7 @@ function Controller() {
                     id: "case" + j * i,
                     pos: count,
                     height: Titanium.UI.FILL,
-                    width: "30dp",
+                    width: 50,
                     textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
                     borderWidth: 1,
                     color: "#fff",
@@ -66,7 +66,7 @@ function Controller() {
                     sf = Ti.UI.createView({
                         className: "separator",
                         height: Titanium.UI.FILL,
-                        width: 1,
+                        width: "1dp",
                         backgroundColor: "#bb2828"
                     });
                     row.add(sf);
@@ -288,7 +288,7 @@ function Controller() {
         bottom: "50dp",
         right: "0%",
         left: "0%",
-        width: Ti.UI.FILL,
+        width: Titanium.UI.SIZE,
         height: Titanium.UI.FILL,
         layout: "horizontal",
         id: "sudoWrapper"
@@ -297,7 +297,7 @@ function Controller() {
     $.__views.tableView = Ti.UI.createTableView({
         height: Ti.UI.SIZE,
         width: Ti.UI.FILL,
-        backgroundColor: "red",
+        backgroundColor: "transparent",
         borderColor: "transparent",
         separatorColor: "transparent",
         top: "5dp",

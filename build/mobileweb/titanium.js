@@ -7,7 +7,7 @@ var require = {
 		analytics: false,
 		copyright: "2014 by Ridley, Mathieu, Florent",
 		deployType: "development",
-		description: "",
+		description: "undefined",
 		guid: "89523480-172a-458d-a142-68be09c52a31",
 		id: "com.esgi.crosssudoku",
 		name: "CrossSudoku",
