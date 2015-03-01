@@ -75,6 +75,7 @@ function checkHelpButton() {
 		$.helpView.setTouchEnabled(false);
 		$.helpView.backgroundColor = '#383838';
 	}
+	checkSudoku();
 }
 
 // check the time
@@ -97,8 +98,8 @@ function convertTime(h,m,s) {
 function updateTime() {
 	++totalSeconds;
 	$.timerSecond.setText(':' + writetime(totalSeconds%60));
-	$.timerMinute.setText(':' + writetime(parseInt(totalSeconds/60))); //  -- check the minute, it's wrong when minutes aren't 0
-	$.timerHour.setText(writetime(parseInt(totalSeconds/3600))); // -- check the hour? same here.
+	$.timerMinute.setText(':' + writetime(parseInt(totalSeconds/60)));
+	$.timerHour.setText(writetime(parseInt(totalSeconds/3600)));
 }
 
 // update timer every 1sec

@@ -62,7 +62,7 @@ Ti.App.addEventListener('retrieveDatas', function(data) {
 									rewritetime($.bestMinute.getText()),
 									$.bestSecond.getText()
 						); // recover value in seconds of the bestTime
-		alert("Your best time is: "+bestTime+".");
+		alert("Your best time is: "+hourVal + ":" + minVal +":" + secVal+".");
 		
 		if (myTime < bestTime || bestTime == 0) {
 			alert("CONGRATULATIONS !!!!! You beat the best time" );

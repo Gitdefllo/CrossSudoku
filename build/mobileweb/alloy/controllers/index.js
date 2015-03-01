@@ -251,7 +251,7 @@ function Controller() {
             }
             var myTime = convertTime(hourVal, minVal, secVal);
             var bestTime = convertTime(rewritetime($.bestHour.getText()), rewritetime($.bestMinute.getText()), $.bestSecond.getText());
-            alert("Your best time is: " + bestTime + ".");
+            alert("Your best time is: " + hourVal + ":" + minVal + ":" + secVal + ".");
             if (bestTime > myTime || 0 == bestTime) {
                 alert("CONGRATULATIONS !!!!! You beat the best time");
                 $.bestHour.setText(hourVal + ":");

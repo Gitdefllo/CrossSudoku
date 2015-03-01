@@ -13,6 +13,7 @@ function Controller() {
             $.helpView.setTouchEnabled(false);
             $.helpView.backgroundColor = "#383838";
         }
+        checkSudoku();
     }
     function convertTime(h, m, s) {
         return timeSeconds = parseInt(3600 * h) + parseInt(60 * m) + parseInt(s);
@@ -299,6 +300,7 @@ function Controller() {
         width: Ti.UI.FILL,
         backgroundColor: "transparent",
         borderColor: "transparent",
+        separatorColor: "transparent",
         top: "5dp",
         bottom: "5dp",
         right: "5dp",
